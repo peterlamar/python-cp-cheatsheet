@@ -3,21 +3,18 @@ public:
     int myAtoi(string str) {
         long result=0;  
         int multiplier=1;
-        int x = str.find_first_not_of(' ');
+        
+        if (str.length() == 0) return 0;
+        
+        int x = str.find_first_not_of(" ");
 
-        for (; x<str.length(); x++){
-            
-            if (str[x] == '-') {
-                multiplier *= -1;
-            } else if (str[x] == '+'){
-                multiplier *= 1;
-            }
-             else if (str[x] >= '0' and str[x] <= '9'){
-                break;
-            } else {
-                 return 0;
-            }
+        if (x == -1) return 0;
+        
+        if (str[x] == '-' || str[x] == '+'){
+            multiplier = ((str[x]=='-') ? -1 : 1);  
+            x++;
         }
+ 
         
         for (int y=x; y<str.length(); y++){
 
