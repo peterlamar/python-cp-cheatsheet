@@ -1,30 +1,17 @@
 class LRUCache {
 /*
 
-["LRUCache","put","put","get","put","get","get"]
-[[2],[2,1],[1,1],[2],[4,1],[1],[2]]
+["LRUCache","get","put","get","put","put","get","get"]
+[[2],[2],[2,6],[1],[1,5],[1,2],[1],[2]]
 
 put (2,1)
 put (1,1)
 kv: [1]=1,[2]=1
 l:2,1
 
-get(2)
-kv: [1]=1,[2]=1
-l:1,2
-
-put(4,1)
-kv: [1]=1,[4]=1
-l:4,2
-
-get(1): -1
-kv: [4]=1,[1]=1
-l:4,2
-
-get(2): -1
-kv: [4]=1,[1]=1
-l:4,2
-
+put (2,3)
+kv:  [1]=1, [2]=3
+l: 1,3
 */
 public:
     int size;
@@ -41,22 +28,23 @@ public:
             return -1;
         }
             
-        lru.push_front(key);        
         lru.erase(kvitr[key]);
+        lru.push_front(key);       
+        kvitr[key] = lru.begin();
 
         return kv[key];
     }
     
     void put(int key, int value) {
-        kv[key] = value;
-        lru.push_front(key);
-        kvitr[key] = lru.begin();
-
         // check capacity
-        if (kv.size() > size){
+        if (kv.size() == size){
             kv.erase(lru.back());
             kvitr.erase(lru.back());
             lru.pop_back();
         }
+        
+        kv[key] = value;
+        lru.push_front(key);
+        kvitr[key] = lru.begin();
     }
 };
