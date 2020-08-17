@@ -4,83 +4,47 @@
 #         self.val = val
 #         self.next = next
 """
-BF
-loop through to end
-ptr at beginning point to end
-end point to next
+1->2->3->4->5->6, 
 
-head
-tail
+# Split middle
+1->2->3 4->5->6, 
 
-Handle Tail Edge case
+# Reorder Right
+1->2->3 6->5->4,
 
-tmp = frontNode.next
-frontNode.next = backNode
-backNode.next = tmp
-
-d[2] = 1
-d[3] = 2
-d[4] = 3
-d[5] = 4
-
-1->2->3->4->5
-
-1->5->2->4->3
-
-frontNode 2
-backNode 4
-
-1->2->3->4->5
-f           t
-
-1->5->2->3->4
-   f        t
-
-1->5->2->3->4
-      f     t
-      
-      
-      
+# Weave two lists
+1->6->2->5->3->4
 """
 class Solution:
     def reorderList(self, head: ListNode) -> None:
         """
         Do not return anything, modify head in-place instead.
         """
-        node = frontNode = tailNode = head
-        hm = {}
-        
         if not head:
-            return
+            return 
         
-        # Get tail node and fill hm
-        while node:
-            print(node.val)
-            if not node.next:
-                tailNode = node
-                break                
-            else: 
-                hm[node.next] = node
-            node = node.next
+        slow = fast = head
         
-        while frontNode.next and (frontNode.next).next:
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next 
         
-            # point new tail to null
-            newTail = hm[tailNode]
-            newTail.next = None             
-            # Start swapping
-            tmp = frontNode.next
-            frontNode.next = tailNode
-            tailNode.next = tmp   
-
-            tailNode = newTail
-
-            if frontNode.next:
-                frontNode = frontNode.next
-                if frontNode.next:
-                    frontNode = frontNode.next
+        prev, curr = None, slow
+        while curr:
+            tmp = curr.next
             
+            curr.next = prev
+            prev = curr
+            curr = tmp
             
+        first, second = head, prev
+        tmp = None
         
-        
-        
+        while second.next:
+            tmp = first.next
+            first.next = second
+            first = tmp
+            
+            tmp = second.next
+            second.next = first
+            second = tmp
