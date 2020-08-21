@@ -46,13 +46,13 @@ class Solution:
         nums.sort()     
    
         i = 0
-        while i < len(nums) -1:    
+        while i < len(nums):    
             ht={}
             j = i + 1     
             if i==0 or nums[i] != nums[i-1]:
                 while j < len(nums):
                     if nums[j] in ht:
-                        res.append([ht[nums[j]][0],ht[nums[j]][1], nums[j]])
+                        res.append([ht[nums [j]][0],ht[nums[j]][1], nums[j]])
                         while j + 1 < len(nums) and nums[j] == nums[j+1]: j += 1
 
                     compliment = -nums[j] - nums[i]
