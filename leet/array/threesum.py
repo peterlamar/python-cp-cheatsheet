@@ -33,8 +33,6 @@ if i==0 or nums[i] != nums[i-1]:
 
 
 """            
-# TODO: skip over dup nums
-
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
