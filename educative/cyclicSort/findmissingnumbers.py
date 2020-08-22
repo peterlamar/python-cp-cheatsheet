@@ -1,17 +1,18 @@
 def find_missing_numbers(nums):
+
   i = 0
   while i < len(nums):
     j = nums[i] - 1
     if nums[i] != nums[j]:
-      nums[i], nums[j] = nums[j], nums[i]  # swap
+      nums[j], nums[i] = nums[i], nums[j]
     else:
       i += 1
 
   missingNumbers = []
 
-  for i in range(len(nums)):
-    if nums[i] != i + 1:
-      missingNumbers.append(i + 1)
+  for x, n in enumerate(nums):
+    if x+1 != n:
+      missingNumbers.append(x+1)
 
   return missingNumbers
 
