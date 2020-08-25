@@ -1,8 +1,7 @@
 """
 time: 5 min
 error: 
-  maxSum, total, j = 0
-  if i - j == k:
+  n instead of arr[j]
 
 """
 
