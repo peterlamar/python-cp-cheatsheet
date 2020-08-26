@@ -1,5 +1,5 @@
 
-[Linked List](#linked-list)
+[Linked List](##linked-list)
 
 
 
@@ -88,7 +88,7 @@ def cyclic_sort(nums):
   return nums
 ```
 
-# Linked List
+## Linked List
 
 1. Lots of linked list operations require 3 pointers (reverse/merge)
 
