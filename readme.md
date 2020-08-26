@@ -37,7 +37,7 @@ class Solution:
 ## Sliding Window
 
 1. Have a counter or hash-map to count specific array input and keep on increasing the window toward right using outer loop.
-1. Have a while loop inside to reduce the window side by sliding toward right. Movement will be based on constraints of problem. Go through few examples below
+1. Have a while loop inside to reduce the window side by sliding toward right. Movement will be based on constraints of problem.
 1. Store the current maximum window size or minimum window size or number of windows based on problem requirement.
 
 ```python
