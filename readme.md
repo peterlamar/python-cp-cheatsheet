@@ -1,5 +1,5 @@
 
-[Linked List](##linked-list)
+[Linked List](#linked-list)
 
 
 
