@@ -1,9 +1,14 @@
+# Algorithms
 
-[Linked List](#linked-list)
+1. [Binary Search](#binary-search)
+1. [Sliding Window](#sliding-window)
+1. [Dynamic Programming](#dynamic-programming)
+1. [Cyclic Search](#cyclic-search)
+1. [Linked List](#linked-list)
 
 
 
-### Binary Search
+## Binary Search
 
 [binary search](https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
 
@@ -30,7 +35,7 @@ class Solution:
         return left - 1
 ```
 
-### Sliding Window
+## Sliding Window
 
 1. Have a counter or hash-map to count specific array input and keep on increasing the window toward right using outer loop.
 1. Have a while loop inside to reduce the window side by sliding toward right. Movement will be based on constraints of problem. Go through few examples below
@@ -62,14 +67,14 @@ def fruits_into_baskets(fruits):
   return maxCount
 ```
 
-### Dynamic Programming
+## Dynamic Programming
 
 [dynamic programming](https://leetcode.com/discuss/general-discussion/458695/Dynamic-Programming-Patterns)
 [dp notes](https://leetcode.com/discuss/general-discussion/475924/my-experience-and-notes-for-learning-dp)
 
 [facebook interviewquestions](https://leetcode.com/discuss/interview-question/675445/facebook-interview-experiences-all-combined-from-lc-till-date-07-jun-2020)
 
-### Cyclic Search
+## Cyclic Search
 
 1. Useful algo when sorting in place
 
