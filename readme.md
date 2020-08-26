@@ -45,6 +45,11 @@ while l < r:
   r -= 1
 ```
 
+Go past the loop if we are clever with our boundry
+```python
+for i in range(len(message) + 1):
+  if i == len(message) or message[i] == ' ':
+```
 
 # Algorithms
 
