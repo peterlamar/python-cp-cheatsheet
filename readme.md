@@ -1,4 +1,8 @@
-# Algorithms
+[Language Mechanics](#language-mechanics)
+
+1. [Loops](#loops)
+
+[Algorithms](#algorithms)
 
 1. [Binary Search](#binary-search)
 1. [Sliding Window](#sliding-window)
@@ -6,7 +10,18 @@
 1. [Cyclic Search](#cyclic-search)
 1. [Linked List](#linked-list)
 
+# Language Mechanics
 
+## Loops
+
+Go through all elements
+```python
+i = 0
+while i < len(str):
+   i += 1
+```
+
+# Algorithms
 
 ## Binary Search
 
