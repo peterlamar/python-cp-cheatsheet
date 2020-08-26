@@ -88,7 +88,7 @@ def cyclic_sort(nums):
   return nums
 ```
 
-### <a name="linkedlist"></a> Linked List
+# Linked List
 
 1. Lots of linked list operations require 3 pointers (reverse/merge)
 
