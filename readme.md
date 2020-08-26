@@ -2,6 +2,7 @@
 
 1. [Loops](#loops)
 
+
 [Algorithms](#algorithms)
 
 1. [Binary Search](#binary-search)
@@ -9,6 +10,8 @@
 1. [Dynamic Programming](#dynamic-programming)
 1. [Cyclic Search](#cyclic-search)
 1. [Linked List](#linked-list)
+
+[Algorithm Tips](#algo-tips)
 
 # Language Mechanics
 
@@ -18,8 +21,24 @@ Go through all elements
 ```python
 i = 0
 while i < len(str):
-   i += 1
+  i += 1
 ```
+
+Get largest number index from right
+```python
+while i > 0 and nums [i-1] >= nums[i]:
+  i -= 1
+```
+
+Manually reversing
+```python
+l, r = i, len(nums) - 1
+while l < r:
+  nums[l], nums[r] = nums[r], nums[l]
+  l += 1
+  r -= 1
+```
+
 
 # Algorithms
 
@@ -159,4 +178,18 @@ def mergeLinkedLists(headOne, headTwo):
 		prev.next = p2
 	
 	return headOne if headOne.value < headTwo.value else headTwo
+```
+
+## Algo tips
+
+Store knowledge in the data structure by sorting it. For example, merging [meeting times](https://www.interviewcake.com/question/python/merging-ranges?course=fc1&section=array-and-string-manipulation) by sorting and merging
+
+```
+[(0, 1), (3, 5), (4, 8), (10, 12), (9, 10)]
+```
+
+into
+
+```
+[(0, 1), (3, 8), (9, 12)]
 ```
