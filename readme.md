@@ -24,6 +24,12 @@ while i < len(str):
   i += 1
 ```
 
+equivalent
+```python
+for i in range(len(message)):
+  print(i)
+```
+
 Get largest number index from right
 ```python
 while i > 0 and nums [i-1] >= nums[i]:
