@@ -1,7 +1,10 @@
 [Language Mechanics](#language-mechanics)
 
 1. [Loops](#loops)
-
+1. [Strings](#strings)
+1. [Sort](#sort)
+1. [Hash](#hash)
+1. [List](#list)
 
 [Algorithms](#algorithms)
 
@@ -49,6 +52,53 @@ Go past the loop if we are clever with our boundry
 ```python
 for i in range(len(message) + 1):
   if i == len(message) or message[i] == ' ':
+```
+
+## Strings
+
+Reverse works with built in split, [::-1] and " ".join()
+```python
+# s = "the sky  is blue"
+def reverseWords(self, s: str) -> str:  
+  wordsWithoutWhitespace = s.split() # ['the', 'sky', 'is', 'blue']
+  reversedWords = wordsWithoutWhitespace[::-1] # ['blue', 'is', 'sky', 'the']        
+  final = " ".join(reversedWords) # blue is sky the
+```
+
+Manual split based on isalpha()
+```python
+def splitWords(input_string) -> list: 
+  words = [] # 
+  start = length = 0
+  for i, c in enumerate(input_string):
+    if c.isalpha():
+      if length == 0:
+        start = i                    
+        length += 1
+      else:
+        words.append(input_string[start:start+length])
+        length = 0
+  if length > 0:
+    words.append(input_string[start:start+length])
+  return words
+```
+
+## Sort
+
+```python
+  def merge_sorted_lists(arr1, arr2): # built in sorted does Timsort optimized for subsection sorted lists
+    return sorted(arr1 + arr2)
+```
+
+## Hash
+
+```python
+for c in s1: # Adds counter for c
+  ht[c] = ht.get(c, 0) + 1 # ht[a] = 1, ht[a]=2, etc
+```
+
+```python
+test = [0] * 100 # initialize list with 100 0's
 ```
 
 # Algorithms

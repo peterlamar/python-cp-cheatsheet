@@ -29,17 +29,13 @@ errors: none, had algo insight
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        j = 0
         i = 1
-        
-        if len(nums) <= 1:
-            return len(nums)
+        j = 0
         
         while i < len(nums):
-            if nums[j] != nums[i]:
+            if nums[j] < nums[i]:
                 j += 1
                 nums[j] = nums[i]
             i += 1
-            
-        return j + 1
         
+        return j + 1
