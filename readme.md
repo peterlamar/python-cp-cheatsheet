@@ -97,6 +97,8 @@ for c in s1: # Adds counter for c
   ht[c] = ht.get(c, 0) + 1 # ht[a] = 1, ht[a]=2, etc
 ```
 
+## List
+
 ```python
 test = [0] * 100 # initialize list with 100 0's
 ```
