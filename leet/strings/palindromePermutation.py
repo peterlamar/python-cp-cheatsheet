@@ -1,3 +1,7 @@
+"""
+time: 2 min
+errors: none
+"""
 class Solution:
     def canPermutePalindrome(self, s: str) -> bool:
         st = set()

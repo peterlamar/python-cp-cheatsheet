@@ -4,6 +4,7 @@
 1. [Strings](#strings)
 1. [Sort](#sort)
 1. [Hash](#hash)
+1. [Set](#set)
 1. [List](#list)
 
 [Algorithms](#algorithms)
@@ -95,6 +96,14 @@ def splitWords(input_string) -> list:
 ```python
 for c in s1: # Adds counter for c
   ht[c] = ht.get(c, 0) + 1 # ht[a] = 1, ht[a]=2, etc
+```
+
+## Set
+
+```python
+st = set()
+st.add(a) # Add to st
+st.remove(a) # Remove from st
 ```
 
 ## List
