@@ -10,9 +10,7 @@ alices_list[m]
 """
 
 def merge_lists(my_list, alices_list):
-
     # Combine the sorted lists into one large sorted list
-
     merged = []
     m = a = 0
     
@@ -24,7 +22,6 @@ def merge_lists(my_list, alices_list):
             merged.append(alices_list[a])
             a += 1
        
-    
     while m < len(my_list):
         merged.append(my_list[m])
         m += 1
@@ -33,7 +30,6 @@ def merge_lists(my_list, alices_list):
         merged.append(alices_list[a])
         a += 1  
 
-    
     return merged
 
 

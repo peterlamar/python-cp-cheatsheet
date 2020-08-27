@@ -7,21 +7,17 @@ errors: extra if statement logic, didn't minimize algo
 def merge_ranges(meetings):
 
     sortedMeetings = sorted(meetings)
-
     mergedMeetings = [sortedMeetings[0]]
 
     c = 1
-
     while c < len(sortedMeetings):
         # if starts are equal and current end time is after/equal to next meeting start
         mstart, mend = mergedMeetings[-1]
         sstart, send = sortedMeetings[c]
-
         if mend >= sstart:
             mergedMeetings[-1] = (mstart, max(mend, send))
         else:
             mergedMeetings.append(sortedMeetings[c])
-
         c += 1    
 
     return mergedMeetings
