@@ -38,9 +38,7 @@ class Solution:
         MAX = float('inf')
         dp =  [MAX] * (amount + 1)
         dp[0] = 0
-    
         for c in coins:
             for a in range(c, amount+1):    
-                dp[a] =  min(dp[a], dp[a-c]+1)
-                
+                dp[a] =  min(dp[a], dp[a-c]+1)      
         return dp[amount] if dp[amount] != MAX else -1

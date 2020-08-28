@@ -6,6 +6,9 @@
 1. [Hash](#hash)
 1. [Set](#set)
 1. [List](#list)
+1. [heapq](#heapq)
+1. [Search](#search)
+1. [Constants](#Constants)
 
 [Algorithms](#algorithms)
 
@@ -14,6 +17,7 @@
 1. [Dynamic Programming](#dynamic-programming)
 1. [Cyclic Search](#cyclic-search)
 1. [Linked List](#linked-list)
+1. [Greedy])(#greedy)
 
 [Algorithm Tips](#algo-tips)
 
@@ -55,6 +59,17 @@ for i in range(len(message) + 1):
   if i == len(message) or message[i] == ' ':
 ```
 
+Fun with Ranges
+```python
+for a in range(0,3): # 0,1,2
+for a in reversed(range(0,3)) # 2,1,0
+for i in range(len(A)//2): # A = [0,1,2,3,4,5]
+  print(i) # 0,1,2 
+  print(A[i]) # 0,1,2
+  print(~i) # -1,-2,-3
+  print(A[~i]) # 5,4,3
+```
+
 ## Strings
 
 Reverse works with built in split, [::-1] and " ".join()
@@ -84,6 +99,35 @@ def splitWords(input_string) -> list:
   return words
 ```
 
+Test type of char
+```python
+def rotationalCipher(input, rotation_factor):
+  rtn = []
+  for c in input:
+    if c.isupper():
+      ci = ord(c) - ord('A')
+      ci = (ci + rotation_factor) % 26
+      rtn.append(chr(ord('A') + ci))
+    elif c.islower():
+      ci = ord(c) - ord('a')
+      ci = (ci + rotation_factor) % 26
+      rtn.append(chr(ord('a') + ci))
+    elif c.isnumeric():
+      ci = ord(c) - ord('0')
+      ci = (ci + rotation_factor) % 10
+      rtn.append(chr(ord('0') + ci))
+    else:
+      rtn.append(c)
+  return "".join(rtn)  
+```
+
+Get charactor index
+```python
+print(ord('A')) # 65
+print(ord('B')-ord('A')+1) # 2
+print(chr(ord('a') + 2)) # c
+```
+
 ## Sort
 
 ```python
@@ -110,6 +154,29 @@ st.remove(a) # Remove from st
 
 ```python
 test = [0] * 100 # initialize list with 100 0's
+```
+
+## Heapq
+
+[Priority Queue](https://realpython.com/python-heapq-module/#data-structures-heaps-and-priority-queues) 
+1. Implemented as complete binary tree, which has all levels as full excepted deepest
+1. In a heap tree the node is smaller than its children
+
+```python
+def maximumProduct(self, nums: List[int]) -> int:
+  l = heapq.nlargest(3, nums)
+  s = heapq.nsmallest(3, nums)
+  return max(l[0]*l[1]*l[2],s[0]*s[1]*l[0])
+```
+## Search
+
+[Binary Search Tree](https://en.wikipedia.org/wiki/Binary_search_tree) - left node is smaller than value of its parent
+
+## Constants
+
+```Python
+max = float('-inf')
+min = float('inf')
 ```
 
 # Algorithms
@@ -145,6 +212,13 @@ class Solution:
 1. Have a counter or hash-map to count specific array input and keep on increasing the window toward right using outer loop.
 1. Have a while loop inside to reduce the window side by sliding toward right. Movement will be based on constraints of problem.
 1. Store the current maximum window size or minimum window size or number of windows based on problem requirement.
+
+### Typical Problem Clues:
+1. Get min/max/number of satisfied sub arrays
+1. Return length of the subarray with max sum/product
+1. Return max/min length/number of subarrays whose sum/product equals K
+
+Can require [2 or 3 pointers to solve](https://medium.com/algorithms-and-leetcode/magic-solution-to-leetcode-problems-sliding-window-algorithm-891e3d60bf89)
 
 ```python
 def fruits_into_baskets(fruits):
@@ -251,6 +325,19 @@ def mergeLinkedLists(headOne, headTwo):
 	
 	return headOne if headOne.value < headTwo.value else headTwo
 ```
+
+## Greedy
+
+Greedy algorithm chooses the option that looks best at every step and solves by keeping the best answer so far. I.e. giving change by giving the largest coin possible at every step. Look to solve choices incrementally until optimal solution.
+
+1. Divide problem into subproblems, including one small problem and the remaining subproblem
+2. Determine the optimal substructure of the problems (formulating a recurrance function)
+3. Show if we make the greedy choice, then only one subproblem remains
+
+### Typical Problem Clues:
+Greedy/Dynamic Programming [hints](https://medium.com/algorithms-and-leetcode/greedy-algorithm-explained-using-leetcode-problems-80d6fee071c4):
+1. True/False
+1. Max/Min numer
 
 ## Algo tips
 
