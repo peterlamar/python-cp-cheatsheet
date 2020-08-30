@@ -8,6 +8,7 @@
 1. [List](#list)
 1. [heapq](#heapq)
 1. [Search](#search)
+1. [Random](#random)
 1. [Constants](#Constants)
 
 [Algorithms](#algorithms)
@@ -172,6 +173,15 @@ def maximumProduct(self, nums: List[int]) -> int:
 
 [Binary Search Tree](https://en.wikipedia.org/wiki/Binary_search_tree) - left node is smaller than value of its parent
 
+## Random
+
+```Python
+for i, l in enumerate(shuffle):
+  r = random.randrange(0+i, len(shuffle))
+  shuffle[i], shuffle[r] = shuffle[r], shuffle[i]
+return shuffle
+```
+
 ## Constants
 
 ```Python
@@ -185,25 +195,26 @@ min = float('inf')
 
 ```python
 class Solution:
-    """
-    12345678 
-    FFTTTTTT
-    """
-    def mySqrt(self, x: int) -> int:
-        def condition(value, x) -> bool:
-            return value * value > x
-        
-        if x == 1:
-            return 1
+"""
+12345678 
+FFTTTTTT
+"""
+def mySqrt(self, x: int) -> int:
+  def condition(value, x) -> bool:
+    return value * value > x
 
-        left, right = 1, x
-        while left < right:
-            mid = left + (right-left) // 2
-            if condition(mid, x):
-                right = mid
-            else:
-                left = mid + 1
-        return left - 1
+  if x == 1:
+    return 1
+
+  left, right = 1, x
+  while left < right:
+    mid = left + (right-left) // 2
+    if condition(mid, x):
+      right = mid
+    else:
+      left = mid + 1
+      
+  return left - 1
 ```
 [binary search](https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
 
