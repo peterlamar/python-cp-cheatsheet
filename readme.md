@@ -164,6 +164,12 @@ st.remove(a) # Remove from st
 test = [0] * 100 # initialize list with 100 0's
 ```
 
+2D
+```python
+rtn.append([])
+rtn[0].append(1) # [[1]]               
+```
+
 ## Deque
 
 ```python
