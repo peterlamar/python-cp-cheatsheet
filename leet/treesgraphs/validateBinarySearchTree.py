@@ -9,18 +9,14 @@ class Solution:
         if not root:
             return True
         
-        stack = [(root, float('-inf'), float('inf'))]
-        while stack:
-            root, lower, upper = stack.pop()
-            if not root:
-                continue
-            val = root.val
-            if val >= upper:
-                return False
-            if val <= lower:
-                return False
-            stack.append((root.right, val, upper))
-            stack.append((root.left, lower, val))
-  
+        stk = [(root, float(-inf), float(inf))]
+        while stk:
+            node, floor, ceil = stk.pop()
+            if node:
+                if node.val >= ceil or node.val <= floor:
+                    return False
+                stk.append((node.right, node.val, ceil))
+                stk.append((node.left, floor, node.val))
+
         return True
         

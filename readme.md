@@ -182,15 +182,82 @@ deque([1, 2, 3])
 ```
 ## BinaryTree
 
-Pre, In Order, and Post order Traversal
+
+DFS Pre, In Order, and Post order Traversal
+
+- Preorder
+  - encounters roots before leaves
+  - Create copy
+- Inorder
+  - flatten tree back to original sequence
+  - Get values in non-decreasing order in BST
+- Post order
+  - encounter leaves before roots
+  - Helpful for deleting
+
+Recursive
 ```python
-def preorder_print(self, start, traversal):
-  """Root->Left->Right"""
-  if start:
-    traversal += (str(start.value) + "-") # Pre Order
-    traversal = self.preorder_print(start.left, traversal)
-    traversal = self.preorder_print(start.right, traversal)
-  return traversal
+"""
+     1
+    / \
+   2   3
+  / \
+ 4   5
+"""
+def postOrder(node):
+  if node is None:
+    return
+  postorder(node.left)
+  postorder(node.right)
+  print(node.value, end=' ')
+```
+
+Iterative PreOrder
+```python
+# PreOrder  1 2 4 5 3 (Root-Left-Right)
+def preOrder(tree_root):
+  stack = [(tree_root, False)]
+  while stack:
+    node, visited = stack.pop()
+    if node:
+      if visited:
+        print(node.value, end=' ')
+      else:
+        stack.append((node.right, False))
+        stack.append((node.left, False))
+        stack.append((node, True))
+```
+
+Iterative InOrder
+```python
+# InOrder   4 2 5 1 3 (Left-Root-Right)
+def inOrder(tree_root):
+  stack = [(tree_root, False)]
+  while stack:
+    node, visited = stack.pop()
+    if node:
+      if visited:
+        print(node.value, end=' ')
+      else:
+        stack.append((node.right, False))
+        stack.append((node, True))
+        stack.append((node.left, False))
+```
+
+Iterative PostOrder
+```python
+# PostOrder 4 5 2 3 1  (Left-Right-Root)
+def postOrder(tree_root):
+  stack = [(tree_root, False)]
+  while stack:
+    node, visited = stack.pop()
+    if node:
+      if visited:
+        print(node.value, end=' ')
+      else:
+        stack.append((node, True))
+        stack.append((node.right, False))
+        stack.append((node.left, False))
 ```
 
 ## Heapq
