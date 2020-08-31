@@ -7,6 +7,8 @@
 """
 Error
 max(leftMax + rightMax), not  max(leftMax, rightMax) 
+
+https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/674181/Python-recursive-and-iterative-solution-(easy-to-read-and-understand)
 """
 class Solution:
     def maxPathSum(self, root: TreeNode) -> int:

@@ -6,6 +6,8 @@
 1. [Hash](#hash)
 1. [Set](#set)
 1. [List](#list)
+1. [Deque](#deque)
+1. [Binary Tree](#binarytree)
 1. [heapq](#heapq)
 1. [Search](#search)
 1. [Random](#random)
@@ -122,6 +124,11 @@ def rotationalCipher(input, rotation_factor):
   return "".join(rtn)  
 ```
 
+AlphaNumberic
+```python
+isalnum()
+```
+
 Get charactor index
 ```python
 print(ord('A')) # 65
@@ -155,6 +162,35 @@ st.remove(a) # Remove from st
 
 ```python
 test = [0] * 100 # initialize list with 100 0's
+```
+
+## Deque
+
+```python
+>>> from collections import deque
+>>> deq = deque([1, 2, 3])
+>>> deq.appendleft(5)
+>>> deq.append(6)
+>>> deq
+deque([5, 1, 2, 3, 6])
+>>> deq.popleft()
+5
+>>> deq.pop()
+6
+>>> deq
+deque([1, 2, 3])
+```
+## BinaryTree
+
+Pre, In Order, and Post order Traversal
+```python
+def preorder_print(self, start, traversal):
+  """Root->Left->Right"""
+  if start:
+    traversal += (str(start.value) + "-") # Pre Order
+    traversal = self.preorder_print(start.left, traversal)
+    traversal = self.preorder_print(start.right, traversal)
+  return traversal
 ```
 
 ## Heapq
@@ -213,7 +249,7 @@ def mySqrt(self, x: int) -> int:
       right = mid
     else:
       left = mid + 1
-      
+
   return left - 1
 ```
 [binary search](https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
