@@ -20,7 +20,7 @@
 1. [Dynamic Programming](#dynamic-programming)
 1. [Cyclic Search](#cyclic-search)
 1. [Linked List](#linked-list)
-1. [Greedy])(#greedy)
+1. [Greedy](#greedy)
 1. [Convert Base](#convert-base)
 
 [Algorithm Tips](#algo-tips)
