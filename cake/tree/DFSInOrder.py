@@ -4,19 +4,16 @@ import unittest
 
 #DFS InOrder 4 2 5 1 3 (Left-Root-Right)
 def inOrder(tree_root):
-  current = tree_root  
-  stack = [] 
-  while True: 
-    if current: 
-      stack.append(current) 
-      current = current.left  
-    elif(stack): 
-      current = stack.pop() 
-      print(current.value, end=" ") 
-      current = current.right  
-    else: 
-      break
-  return True 
+  stack = [(tree_root, False)]
+  while stack:
+    node, visited = stack.pop()
+    if node:
+      if visited:
+        print(node.value, end=' ')
+      else:
+        stack.append((node.right, False))
+        stack.append((node, True))
+        stack.append((node.left, False))
 
 
 

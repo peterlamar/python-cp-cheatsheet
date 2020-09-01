@@ -9,15 +9,16 @@ import unittest
 
 #DFS PreOrder  1 2 4 5 3 (Root-Left-Right)
 def preOrder(tree_root):
-  nodes = [tree_root]
-  while nodes:
-    node = nodes.pop()
-    print(node.value, end=" ")
-    if node.left: 
-      nodes.append(node.left)
-    if node.right: 
-      nodes.append(node.right)
-  return True
+  stack = [(tree_root, False)]
+  while stack:
+    node, visited = stack.pop()
+    if node:
+      if visited:
+        print(node.value, end=' ')
+      else:
+        stack.append((node.right, False))
+        stack.append((node.left, False))
+        stack.append((node, True))
 
 
 

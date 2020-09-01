@@ -170,6 +170,12 @@ rtn.append([])
 rtn[0].append(1) # [[1]]               
 ```
 
+List Comprehension
+```python
+number_list = [ x for x in range(20) if x % 2 == 0]
+print(number_list) # [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+```
+
 ## Deque
 
 ```python
@@ -264,6 +270,51 @@ def postOrder(tree_root):
         stack.append((node, True))
         stack.append((node.right, False))
         stack.append((node.left, False))
+```
+
+Iterative BFS(LevelOrder)
+```python
+from collections import deque
+
+#BFS levelOrder 1 2 3 4 5 
+def levelOrder(tree_root):
+  queue = deque([tree_root])
+  while queue:
+    node = queue.popleft()
+    if node:
+        print(node.value, end=' ')
+        queue.append(node.left)
+        queue.append(node.right)
+
+def levelOrderStack(tree_root):
+    stk = [(tree_root, 0)]
+    rtn = []
+    while stk:
+        node, depth = stk.pop()
+        if node:
+            if len(rtn) < depth + 1:
+                rtn.append([])
+            rtn[depth].append(node.value)            
+            stk.append((node.right, depth+1))
+            stk.append((node.left, depth+1))
+    print(rtn)
+    return True     
+
+def levelOrderStackRec(tree_root):
+    rtn = []
+        
+    def helper(node, depth):
+        if len(rtn) == depth:
+            rtn.append([])
+        rtn[depth].append(node.value)
+        if node.left:
+            helper(node.left, depth + 1)
+        if node.right:
+            helper(node.right, depth + 1)
+            
+    helper(tree_root, 0)
+    print(rtn)
+    return rtn
 ```
 
 ## Heapq
@@ -373,7 +424,7 @@ def fruits_into_baskets(fruits):
 
 [facebook interviewquestions](https://leetcode.com/discuss/interview-question/675445/facebook-interview-experiences-all-combined-from-lc-till-date-07-jun-2020)
 
-## Cyclic Search
+## Cyclic Sort
 
 1. Useful algo when sorting in place
 
