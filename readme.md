@@ -21,6 +21,7 @@
 1. [Cyclic Search](#cyclic-search)
 1. [Linked List](#linked-list)
 1. [Greedy])(#greedy)
+1. [Convert Base](#convert-base)
 
 [Algorithm Tips](#algo-tips)
 
@@ -522,4 +523,20 @@ into
 
 ```
 [(0, 1), (3, 8), (9, 12)]
+```
+
+## Convert Base
+
+Base 10 to 16, or any base by changing '16' and index
+```python
+def toHex(self, num: int) -> str:
+  rtn = []
+  index = "0123456789abcdef"
+  if num == 0: return '0'
+  if num < 0: num += 2 ** 32
+  while num > 0:
+    digit = num % 16
+    num = num // 16
+    rtn.append(index[digit])
+  return "".join(rtn[::-1])
 ```
