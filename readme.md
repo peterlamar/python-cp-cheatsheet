@@ -9,9 +9,11 @@
 1. [Deque](#deque)
 1. [Binary Tree](#binarytree)
 1. [heapq](#heapq)
+1. [lambda](#lambda)
 1. [Search](#search)
 1. [Random](#random)
 1. [Constants](#Constants)
+1. [Ternary Condition](#Ternary)
 
 [Algorithms](#algorithms)
 
@@ -135,6 +137,14 @@ Get charactor index
 print(ord('A')) # 65
 print(ord('B')-ord('A')+1) # 2
 print(chr(ord('a') + 2)) # c
+```
+
+Replace characters or strings
+```python
+def isValid(self, s: str) -> bool:
+  while '[]' in s or '()' in s or '{}' in s:
+    s = s.replace('[]','').replace('()','').replace('{}','')
+  return len(s) == 0
 ```
 
 ## Sort
@@ -330,6 +340,26 @@ def maximumProduct(self, nums: List[int]) -> int:
   s = heapq.nsmallest(3, nums)
   return max(l[0]*l[1]*l[2],s[0]*s[1]*l[0])
 ```
+
+## Lambda
+
+Can be used with (list).sort(), sorted(), min(), max(), (heapq).nlargest,nsmallest(), map()
+
+```python
+# a=3,b=8,target=10
+min((b,a), key=lambda x: abs(target - x)) # 8
+```
+
+```python
+>>> ids = ['id1', 'id2', 'id30', 'id3', 'id22', 'id100']
+>>> print(sorted(ids)) # Lexicographic sort
+['id1', 'id100', 'id2', 'id22', 'id3', 'id30']
+>>> sorted_ids = sorted(ids, key=lambda x: int(x[2:])) # Integer sort
+>>> print(sorted_ids)
+['id1', 'id2', 'id3', 'id22', 'id30', 'id100']
+```
+
+
 ## Search
 
 [Binary Search Tree](https://en.wikipedia.org/wiki/Binary_search_tree) - left node is smaller than value of its parent
@@ -348,6 +378,13 @@ return shuffle
 ```Python
 max = float('-inf')
 min = float('inf')
+```
+
+## Ternary
+
+a if condition else b
+```Python
+test = stk.pop() if stk else '#'
 ```
 
 # Algorithms
@@ -420,10 +457,20 @@ def fruits_into_baskets(fruits):
 
 ## Dynamic Programming
 
+```python
+def coinChange(self, coins: List[int], amount: int) -> int:
+  MAX = float('inf')
+  dp =  [MAX] * (amount + 1)
+  dp[0] = 0
+  for c in coins:
+    for a in range(c, amount+1):    
+      dp[a] =  min(dp[a], dp[a-c]+1)      
+  return dp[amount] if dp[amount] != MAX else -1
+```
+
+
 [dynamic programming](https://leetcode.com/discuss/general-discussion/458695/Dynamic-Programming-Patterns)
 [dp notes](https://leetcode.com/discuss/general-discussion/475924/my-experience-and-notes-for-learning-dp)
-
-[facebook interviewquestions](https://leetcode.com/discuss/interview-question/675445/facebook-interview-experiences-all-combined-from-lc-till-date-07-jun-2020)
 
 ## Cyclic Sort
 
@@ -536,7 +583,7 @@ def toHex(self, num: int) -> str:
   if num < 0: num += 2 ** 32
   while num > 0:
     digit = num % 16
-    num = num // 16
     rtn.append(index[digit])
+    num = num // 16
   return "".join(rtn[::-1])
 ```
