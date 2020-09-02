@@ -24,6 +24,7 @@
 1. [Linked List](#linked-list)
 1. [Greedy](#greedy)
 1. [Convert Base](#convert-base)
+1. [Parenthesis](#Parenthesis)
 
 [Algorithm Tips](#algo-tips)
 
@@ -170,6 +171,8 @@ st.remove(a) # Remove from st
 ```
 
 ## List
+
+Stacks are implemented with Lists. Stacks are good for parsing and graph traversal
 
 ```python
 test = [0] * 100 # initialize list with 100 0's
@@ -325,6 +328,28 @@ def levelOrderStackRec(tree_root):
             
     helper(tree_root, 0)
     print(rtn)
+    return rtn
+```
+
+Traversing data types as a graph, for example BFS
+```python
+def removeInvalidParentheses(self, s: str) -> List[str]:
+    rtn = []
+    v = set()
+    v.add(s)
+    if len(s) == 0: return [""]
+    while True:
+        for n in v:
+            if self.isValid(n):
+                rtn.append(n)
+        if len(rtn) > 0: break
+        level = set()
+        for n in v:
+            for i, c in enumerate(n):
+                if c == '(' or c == ')':
+                    sub = n[0:i] + n[i + 1:len(n)]
+                    level.add(sub)
+        v = level
     return rtn
 ```
 
@@ -586,4 +611,54 @@ def toHex(self, num: int) -> str:
     rtn.append(index[digit])
     num = num // 16
   return "".join(rtn[::-1])
+```
+
+## Parenthesis
+
+Count can be used if simple case, otherwise stack. 
+```python
+def isValid(self, s) -> bool:
+  cnt = 0
+  for c in s:
+    if c == '(':
+      cnt += 1
+    elif c == ')':
+      cnt -= 1
+      if cnt < 0:
+        return False
+  return cnt == 0
+```
+
+Stack can be used if more complex 
+```python
+def isValid(self, s: str) -> bool:
+  stk = []
+  mp = {")":"(", "}":"{", "]":"["}
+    for c in s:
+      if c in mp.values():
+        stk.append(c)
+      elif c in mp.keys():
+        test = stk.pop() if stk else '#'
+        if mp[c] != test:
+          return False
+  return len(stk) == 0
+```
+
+Or must store parenthesis index for further modification
+
+```python
+def minRemoveToMakeValid(self, s: str) -> str:
+  rtn = list(s)
+  stk = []
+  for i, c in enumerate(s):
+    if c == '(':
+      stk.append(i)
+    elif c == ')':
+      if len(stk) > 0:
+        stk.pop()
+      else:
+        rtn[i] = ''
+  while stk:
+    rtn[stk.pop()] = ''
+  return "".join(rtn)
 ```

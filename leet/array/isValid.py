@@ -17,7 +17,6 @@ class Solution:
     def isValid(self, s: str) -> bool:
         stk = []
         mp = {")":"(", "}":"{", "]":"["}
-        
         for c in s:
             if c in mp.values():
                 stk.append(c)
@@ -25,6 +24,5 @@ class Solution:
                 test = stk.pop() if stk else '#'
                 if mp[c] != test:
                     return False
-    
         return len(stk) == 0
                 

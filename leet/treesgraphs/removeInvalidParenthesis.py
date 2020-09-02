@@ -14,23 +14,16 @@ class Solution:
                 if cnt < 0:
                     return False
         return cnt == 0
-    
     def removeInvalidParentheses(self, s: str) -> List[str]:
         rtn = []
         v = set()
         v.add(s)
-        
         if len(s) == 0: return [""]
-                
         while True:
             for n in v:
                 if self.isValid(n):
                     rtn.append(n)
-            
-            if len(rtn) > 0:
-                break
-            
-            # add children to set
+            if len(rtn) > 0: break
             level = set()
             for n in v:
                 for i, c in enumerate(n):

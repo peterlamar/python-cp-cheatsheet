@@ -7,7 +7,6 @@ class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
         rtn = list(s)
         stk = []
-        
         for i, c in enumerate(s):
             if c == '(':
                 stk.append(i)
@@ -16,9 +15,7 @@ class Solution:
                     stk.pop()
                 else:
                     rtn[i] = ''
-        
         while stk:
             rtn[stk.pop()] = ''
-        
         return "".join(rtn)
             
