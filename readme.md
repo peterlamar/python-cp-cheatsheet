@@ -24,7 +24,8 @@
 1. [Linked List](#linked-list)
 1. [Greedy](#greedy)
 1. [Convert Base](#convert-base)
-1. [Parenthesis](#Parenthesis)
+1. [Parenthesis](#parenthesis)
+1. [Max Profit](#max-profit)
 
 [Algorithm Tips](#algo-tips)
 
@@ -661,4 +662,38 @@ def minRemoveToMakeValid(self, s: str) -> str:
   while stk:
     rtn[stk.pop()] = ''
   return "".join(rtn)
+```
+
+## Max Profit
+
+Infinite Transactions, base formula
+```python
+def maxProfit(self, prices: List[int]) -> int:
+    t0, t1 = 0, float('-inf')
+    for p in prices:
+        t0old = t0
+        t0 = max(t0, t1 + p)
+        t1 = max(t1, t0old - p)
+    return t0
+```
+
+Single Transaction, t0 (k-1) = 0
+```python
+def maxProfit(self, prices: List[int]) -> int:
+    t0, t1 = float('-inf')
+    for p in prices:
+        t0 = max(t0, t1 + p)
+        t1 = max(t1, - p)
+    return t0
+```
+
+K Transactions
+```python
+t0 = [0] * (k+1)
+t1 = [float(-inf)] * (k+1)
+for p in prices:
+    for i in range(k, 0, -1):
+        t0[i] = max(t0[i], t1[i] + p)
+        t1[i] = max(t1[i], t0[i-1] - p)
+return t0[k]
 ```
