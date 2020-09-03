@@ -666,7 +666,7 @@ def minRemoveToMakeValid(self, s: str) -> str:
 
 ## Max Profit
 
-Infinite Transactions, base formula
+Infinite Transactions, [base formula](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/75924/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems)
 ```python
 def maxProfit(self, prices: List[int]) -> int:
     t0, t1 = 0, float('-inf')
