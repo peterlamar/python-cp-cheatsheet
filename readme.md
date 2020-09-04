@@ -6,14 +6,19 @@
 1. [Hash](#hash)
 1. [Set](#set)
 1. [List](#list)
-1. [Deque](#deque)
 1. [Binary Tree](#binarytree)
 1. [heapq](#heapq)
 1. [lambda](#lambda)
-1. [Search](#search)
+1. [zip](#zip)
 1. [Random](#random)
 1. [Constants](#Constants)
 1. [Ternary Condition](#Ternary)
+1. [any](#any)
+1. [all](#all)
+
+[Collections](#Collections)
+1. [Deque](#deque)
+1. [Counter](#counter)
 
 [Algorithms](#algorithms)
 
@@ -25,7 +30,8 @@
 1. [Greedy](#greedy)
 1. [Convert Base](#convert-base)
 1. [Parenthesis](#parenthesis)
-1. [Max Profit](#max-profit)
+1. [Max Profit Stock](#max-profit-stock)
+1. [Exponential by Squaring](#exponential-by-squaring)
 
 [Algorithm Tips](#algo-tips)
 
@@ -189,23 +195,6 @@ List Comprehension
 ```python
 number_list = [ x for x in range(20) if x % 2 == 0]
 print(number_list) # [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
-```
-
-## Deque
-
-```python
->>> from collections import deque
->>> deq = deque([1, 2, 3])
->>> deq.appendleft(5)
->>> deq.append(6)
->>> deq
-deque([5, 1, 2, 3, 6])
->>> deq.popleft()
-5
->>> deq.pop()
-6
->>> deq
-deque([1, 2, 3])
 ```
 ## BinaryTree
 
@@ -385,10 +374,45 @@ min((b,a), key=lambda x: abs(target - x)) # 8
 ['id1', 'id2', 'id3', 'id22', 'id30', 'id100']
 ```
 
+```python
+trans = lambda x: list(al[i] for i in x) # apple, a->0..
+print(trans(words[0])) # [0, 15, 15, 11, 4]
+```
 
-## Search
+## Zip
 
-[Binary Search Tree](https://en.wikipedia.org/wiki/Binary_search_tree) - left node is smaller than value of its parent
+Combine two dicts or lists
+```python
+s1 = {2, 3, 1}
+s2 = {'b', 'a', 'c'}
+list(zip(s1, s2)) # [(1, 'a'), (2, 'c'), (3, 'b')]
+```
+
+Traverse in Parallel
+```python
+letters = ['a', 'b', 'c']
+numbers = [0, 1, 2]
+for l, n in zip(letters, numbers):
+  print(f'Letter: {l}') # a,b,c
+  print(f'Number: {n}') # 0,1,2
+```
+
+Empty in one list is ignored
+```python
+letters = ['a', 'b', 'c']
+numbers = []
+for l, n in zip(letters, numbers):
+  print(f'Letter: {l}') #
+  print(f'Number: {n}') #
+```
+
+Compare characters of alternating words
+```python
+for a, b in zip(words, words[1:]):
+    for c1, c2 in zip(a,b):
+        print("c1 ", c1, end=" ")
+        print("c2 ", c2, end=" ") 
+```
 
 ## Random
 
@@ -411,6 +435,54 @@ min = float('inf')
 a if condition else b
 ```Python
 test = stk.pop() if stk else '#'
+```
+
+## any
+
+if any element of the iterable is True
+```python
+def any(iterable):
+    for element in iterable:
+        if element:
+            return True
+    return False
+```
+
+## all
+```python
+def all(iterable):
+    for element in iterable:
+        if not element:
+            return False
+    return True
+```
+
+# Collections
+
+Stack with appendleft() and popleft()
+## Deque
+
+```python
+from collections import deque
+deq = deque([1, 2, 3])
+deq.appendleft(5)
+deq.append(6)
+deq
+deque([5, 1, 2, 3, 6])
+deq.popleft()
+5
+deq.pop()
+6
+deq
+deque([1, 2, 3])
+```
+
+## Counter
+
+```python
+from collections import Counter
+count = Counter("hello") # Counter({'h': 1, 'e': 1, 'l': 2, 'o': 1})
+count['l'] # 2
 ```
 
 # Algorithms
@@ -664,7 +736,7 @@ def minRemoveToMakeValid(self, s: str) -> str:
   return "".join(rtn)
 ```
 
-## Max Profit
+## Max Profit Stock
 
 Infinite Transactions, [base formula](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/75924/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems)
 ```python
@@ -696,4 +768,21 @@ for p in prices:
         t0[i] = max(t0[i], t1[i] + p)
         t1[i] = max(t1[i], t0[i-1] - p)
 return t0[k]
+```
+
+## Exponential by Squaring
+
+Fast Power, or Exponential by [squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring)
+```python
+def myPow(self, x: float, n: int) -> float:
+    if n < 0:
+        n *= -1
+        x = 1/x
+    ans = 1        
+    while n > 0:
+        if n % 2 == 1:
+            ans = ans * x
+        x *= x
+        n = n // 2
+    return ans
 ```

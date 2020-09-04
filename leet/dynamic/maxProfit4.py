@@ -37,10 +37,8 @@ class Solution:
         
         t0 = [0] * (k+1)
         t1 = [float(-inf)] * (k+1)
-        
         for p in prices:
             for i in range(k, 0, -1):
                 t0[i] = max(t0[i], t1[i] + p)
                 t1[i] = max(t1[i], t0[i-1] - p)
-                
         return t0[k]
