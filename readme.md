@@ -25,7 +25,7 @@
 1. [Binary Search](#binary-search)
 1. [Sliding Window](#sliding-window)
 1. [Dynamic Programming](#dynamic-programming)
-1. [Cyclic Search](#cyclic-search)
+1. [Cyclic Search](#cyclic-sort)
 1. [Linked List](#linked-list)
 1. [Greedy](#greedy)
 1. [Convert Base](#convert-base)
@@ -785,4 +785,20 @@ def myPow(self, x: float, n: int) -> float:
         x *= x
         n = n // 2
     return ans
+```
+
+## Shift Array Right
+Arrays can be shifted right by reversing the whole string, and then reversing 0,k-1 and k,len(str)
+```python
+def rotate(self, nums: List[int], k: int) -> None:
+    def reverse(l, r, nums):
+        while l < r:
+            nums[l], nums[r] = nums[r], nums[l]
+            l += 1
+            r -= 1
+    if len(nums) <= 1: return
+    k = k % len(nums)
+    reverse(0, len(nums)-1, nums)
+    reverse(0, k-1, nums)
+    reverse(k, len(nums)-1, nums)
 ```
