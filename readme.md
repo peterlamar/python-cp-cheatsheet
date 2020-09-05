@@ -346,6 +346,13 @@ def removeInvalidParentheses(self, s: str) -> List[str]:
 ```
 
 ## Heapq
+```
+      1
+     / \
+    2   3
+   / \ / \
+  5  6 8  7
+```
 
 [Priority Queue](https://realpython.com/python-heapq-module/#data-structures-heaps-and-priority-queues) 
 1. Implemented as complete binary tree, which has all levels as full excepted deepest
@@ -356,6 +363,38 @@ def maximumProduct(self, nums: List[int]) -> int:
   l = heapq.nlargest(3, nums)
   s = heapq.nsmallest(3, nums)
   return max(l[0]*l[1]*l[2],s[0]*s[1]*l[0])
+```
+
+Heap elements can be tuples, heappop() frees the smallest element (flip sign to pop largest)
+```python
+def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+    heap = []
+    for p in points:
+        distance = sqrt(p[0]* p[0] + p[1]*p[1])
+        heapq.heappush(heap,(-distance, p))
+        if len(heap) > K:
+            heapq.heappop(heap)            
+    return ([h[1] for h in heap])
+```
+
+nsmallest can take a lambda argument
+```python
+def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:    
+    return heapq.nsmallest(K, points, lambda x: x[0]*x[0] + x[1]*x[1])
+```
+
+The key can be a function as well in nsmallest/nlargest
+```python
+def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    count = Counter(nums)
+    return heapq.nlargest(k, count, count.get)
+```
+
+Tuple sort, 1st/2nd element. increasing frequency then decreasing order
+```python
+def topKFrequent(self, words: List[str], k: int) -> List[str]:
+    freq = Counter(words)
+    return heapq.nsmallest(k, freq.keys(), lambda x:(-freq[x], x))
 ```
 
 ## Lambda
@@ -379,6 +418,12 @@ min((b,a), key=lambda x: abs(target - x)) # 8
 ```python
 trans = lambda x: list(al[i] for i in x) # apple, a->0..
 print(trans(words[0])) # [0, 15, 15, 11, 4]
+```
+
+Lambda can sort by 1st, 2nd element in tuple
+```python
+sorted([('abc', 121),('bbb',23),('abc', 148),('bbb', 24)], key=lambda x: (x[0],x[1]))
+# [('abc', 121), ('abc', 148), ('bbb', 23), ('bbb', 24)]
 ```
 
 ## Zip
@@ -485,6 +530,16 @@ deque([1, 2, 3])
 from collections import Counter
 count = Counter("hello") # Counter({'h': 1, 'e': 1, 'l': 2, 'o': 1})
 count['l'] # 2
+```
+
+Get counter most common
+```python
+# [1,1,1,2,2,3]
+# Counter  [(1, 3), (2, 2)]
+def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    if len(nums) == k:
+        return nums
+    return [n[0] for n in Counter(nums).most_common(k)] # [1,2]
 ```
 
 # Algorithms
