@@ -32,6 +32,8 @@
 1. [Parenthesis](#parenthesis)
 1. [Max Profit Stock](#max-profit-stock)
 1. [Exponential by Squaring](#exponential-by-squaring)
+1. [Shift Array Right](#shift-array-right)
+1. [Subarray Sum](#subarray-sum)
 
 [Algorithm Tips](#algo-tips)
 
@@ -801,4 +803,19 @@ def rotate(self, nums: List[int], k: int) -> None:
     reverse(0, len(nums)-1, nums)
     reverse(0, k-1, nums)
     reverse(k, len(nums)-1, nums)
+```
+
+## Subarray Sum
+
+The total number of continuous subarrays with sum k can be found by hashing the continuous sum per value and adding the count of continuous sum - k
+
+```python
+def subarraySum(self, nums: List[int], k: int) -> int:
+    mp = {0: 1} 
+    rtn, total = 0, 0
+    for n in nums:
+        total += n
+        rtn += mp.get(total - k, 0)
+        mp[total] = mp.get(total, 0) + 1
+    return rtn
 ```
