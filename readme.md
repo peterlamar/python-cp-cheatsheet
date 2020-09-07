@@ -11,14 +11,17 @@
 1. [lambda](#lambda)
 1. [zip](#zip)
 1. [Random](#random)
-1. [Constants](#Constants)
-1. [Ternary Condition](#Ternary)
+1. [Constants](#constants)
+1. [Ternary Condition](#ternary)
+1. [Bitwise operators](#bitwise)
+1. [Modulo](#modulo)
 1. [any](#any)
 1. [all](#all)
 
-[Collections](#Collections)
+[Collections](#collections)
 1. [Deque](#deque)
 1. [Counter](#counter)
+1. [Default Dict](#default-dict)
 
 [Algorithms](#algorithms)
 
@@ -157,6 +160,11 @@ def isValid(self, s: str) -> bool:
   return len(s) == 0
 ```
 
+Insert values in strings
+```python
+txt3 = "My name is {}, I'm {}".format("John",36) # My name is John, I'm 36
+```
+
 ## Sort
 
 ```python
@@ -197,6 +205,13 @@ List Comprehension
 ```python
 number_list = [ x for x in range(20) if x % 2 == 0]
 print(number_list) # [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+```
+
+Reverse a list
+```python
+ss = [1,2,3]
+ss.reverse()
+print(ss) #3,2,1
 ```
 ## BinaryTree
 
@@ -484,7 +499,43 @@ a if condition else b
 test = stk.pop() if stk else '#'
 ```
 
-## any
+## Bitwise Operators
+```python
+'0b{:04b}'.format(0b1100 & 0b1010) # '0b1000' and
+'0b{:04b}'.format(0b1100 | 0b1010) # '0b1110' or 
+'0b{:04b}'.format(0b1100 ^ 0b1010) # '0b0110' exclusive or
+'0b{:04b}'.format(0b1100 >> 2)     # '0b0011' shift right
+'0b{:04b}'.format(0b0011 << 2)     # '0b1100' shift left
+```
+
+## Modulo
+
+```python
+for n in range(-8,8):
+    print n, n//4, n%4
+    
+ -8 -2 0
+ -7 -2 1
+ -6 -2 2
+ -5 -2 3
+
+ -4 -1 0
+ -3 -1 1
+ -2 -1 2
+ -1 -1 3
+
+  0  0 0
+  1  0 1
+  2  0 2
+  3  0 3
+
+  4  1 0
+  5  1 1
+  6  1 2
+  7  1 3
+```
+
+## Any
 
 if any element of the iterable is True
 ```python
@@ -495,7 +546,7 @@ def any(iterable):
     return False
 ```
 
-## all
+## All
 ```python
 def all(iterable):
     for element in iterable:
@@ -530,6 +581,8 @@ deque([1, 2, 3])
 from collections import Counter
 count = Counter("hello") # Counter({'h': 1, 'e': 1, 'l': 2, 'o': 1})
 count['l'] # 2
+count['l'] += 1
+count['l'] # 3
 ```
 
 Get counter most common
@@ -540,6 +593,15 @@ def topKFrequent(self, nums: List[int], k: int) -> List[int]:
     if len(nums) == k:
         return nums
     return [n[0] for n in Counter(nums).most_common(k)] # [1,2]
+```
+
+## Default Dict
+
+```python
+from collections import defaultdict
+dd = defaultdict(list)
+dd['key'].append(1) # defaultdict(<class 'list'>, {'key': [1]})
+dd['key'].append(2) # defaultdict(<class 'list'>, {'key': [1, 2]})
 ```
 
 # Algorithms

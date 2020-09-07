@@ -1,12 +1,14 @@
+"""
+time: n
+space: 1
+"""
 class Solution:
     def thirdMax(self, nums: List[int]) -> int:
-        mx = set()
+        seen = set()
         for n in nums:
-            mx.add(n)
-            if len(mx) > 3:
-                mset = min(mx)
-                mx.remove(mset)
-        if len(mx) < 3:
-            return max(mx)
-        return min(mx)
-                
+            seen.add(n)
+            if len(seen) > 3:
+                seen.remove(min(seen))
+        if len(seen) < 3:
+            return max(seen)
+        return min(seen)

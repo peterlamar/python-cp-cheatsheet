@@ -1,3 +1,7 @@
+"""
+time: n setup, add lgk
+space: k
+"""
 class KthLargest:
 
     def __init__(self, k: int, nums: List[int]):

@@ -34,3 +34,34 @@ class Solution:
             return -1
         else:
             return curx + 1
+
+class Solution:
+    def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
+        res, (y, x) = -1, binaryMatrix.dimensions()
+        print("x :", x)
+
+        for i in range(y):
+            for j in range(res % x, -1, -1):
+                if binaryMatrix.get(i, j): res = j
+                else: break
+
+        return res
+
+class Solution:
+    def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
+        y, x =  binaryMatrix.dimensions()
+        foundOne = False
+        res = x -1
+        
+        for i in range(y):
+            for j in range(res, -1, -1):
+                if binaryMatrix.get(i, j): 
+                    res = j
+                    foundOne = True
+                else: 
+                    break
+
+        if foundOne == False:
+            return -1
+                    
+        return res
