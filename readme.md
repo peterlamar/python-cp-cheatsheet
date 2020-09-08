@@ -17,6 +17,7 @@
 1. [Modulo](#modulo)
 1. [any](#any)
 1. [all](#all)
+1. [bisect](#bisect)
 
 [Collections](#collections)
 1. [Deque](#deque)
@@ -166,6 +167,20 @@ txt3 = "My name is {}, I'm {}".format("John",36) # My name is John, I'm 36
 ```
 
 ## Sort
+
+Sort sorts alphabectically
+```python
+cars = ['Ford', 'BMW', 'Volvo']
+cars.sort() # returns None type
+print(cars) # ['BMW', 'Ford', 'Volvo']
+cars.sort(key=lambda x: len(x) )
+print(cars) # ['VW', 'BMW', 'Ford', 'Mitsubishi']
+```
+
+```python
+print(sorted(['Ford', 'BMW', 'Volvo'])) # ['BMW', 'Ford', 'Volvo']
+```
+
 
 ```python
   def merge_sorted_lists(arr1, arr2): # built in sorted does Timsort optimized for subsection sorted lists
@@ -358,6 +373,28 @@ def removeInvalidParentheses(self, s: str) -> List[str]:
                     level.add(sub)
         v = level
     return rtn
+```
+
+## Graph
+
+Build an adjecency graph
+```python
+# N = 6, edges = [[0,1],[0,2],[2,3],[2,4],[2,5]]
+graph = [[] for _ in range(N)]
+for u,v in edges:
+    graph[u].append(v)
+    graph[v].append(u)
+# [[1, 2], [0], [0, 3, 4, 5], [2], [2], [2]]
+```
+
+Traverse Tree in graph notation
+```python
+# [[1, 2], [0], [0, 3, 4, 5], [2], [2], [2]]
+def dfs(node, par=-1):
+    for nei in graph[node]:
+        if nei != par:
+            res = dfs(nei, node)
+dfs(0) # 1->2->3->4->5
 ```
 
 ## Heapq
@@ -555,9 +592,40 @@ def all(iterable):
     return True
 ```
 
+## Bisect
+
+* bisect.bisect_left returns the leftmost place in the sorted list to insert the given element
+* bisect.bisect_right returns the rightmost place in the sorted list to insert the given element
+
+```python
+import bisect
+bisect.bisect_left([1,2,3,4,5], 2)  # 1
+bisect.bisect_right([1,2,3,4,5], 2) # 2
+bisect.bisect_left([1,2,3,4,5], 7)  # 5
+bisect.bisect_right([1,2,3,4,5], 7) # 5
+```
+
+Insert x in a in sorted order. This is equivalent to a.insert(bisect.bisect_left(a, x, lo, hi), x) assuming that a is already sorted. Search is binary search O(logn) and insert is O(n)
+
+```python
+import bisect
+l = [1, 3, 7, 5, 6, 4, 9, 8, 2]
+result = []
+for e in l:
+    bisect.insort(result, e)
+print(result) # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+```python
+li1 = [1, 3, 4, 4, 4, 6, 7] # [1, 3, 4, 4, 4, 5, 6, 7]
+bisect.insort(li1, 5) # 
+```
+
+
 # Collections
 
 Stack with appendleft() and popleft()
+
 ## Deque
 
 ```python
