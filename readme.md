@@ -18,6 +18,7 @@
 1. [any](#any)
 1. [all](#all)
 1. [bisect](#bisect)
+1. [iter](#iter)
 
 [Collections](#collections)
 1. [Deque](#deque)
@@ -29,7 +30,8 @@
 1. [Binary Search](#binary-search)
 1. [Sliding Window](#sliding-window)
 1. [Dynamic Programming](#dynamic-programming)
-1. [Cyclic Search](#cyclic-sort)
+1. [Cyclic Sort](#cyclic-sort)
+1. [Quick Sort](#quick-sort)
 1. [Linked List](#linked-list)
 1. [Greedy](#greedy)
 1. [Convert Base](#convert-base)
@@ -228,6 +230,22 @@ ss = [1,2,3]
 ss.reverse()
 print(ss) #3,2,1
 ```
+
+## Dict
+
+Hashtables are implemented with dictionaries
+
+Dictionary keys can be iterated through
+```python
+def intToRoman(self, num: int) -> str:
+    d = {1000: 'M', 900: 'CM', 500: 'D', 400: 'CD', 100: 'C', 90: 'XC', 50:'L', 40: 'XL', 10:'X', 9:'IX', 5:'V', 4:'IV', 1:'I'}
+    res = ''
+    for i in d:
+        res += num//i*d[i] # num // key * referenced character
+        num %= i
+    return res
+```
+
 ## BinaryTree
 
 
@@ -377,7 +395,7 @@ def removeInvalidParentheses(self, s: str) -> List[str]:
 
 ## Graph
 
-Build an adjecency graph
+Build an adjecency graph from edges list
 ```python
 # N = 6, edges = [[0,1],[0,2],[2,3],[2,4],[2,5]]
 graph = [[] for _ in range(N)]
@@ -385,6 +403,21 @@ for u,v in edges:
     graph[u].append(v)
     graph[v].append(u)
 # [[1, 2], [0], [0, 3, 4, 5], [2], [2], [2]]
+```
+
+Build adjecency graph from traditional tree
+```python
+adj = collections.defaultdict(list)
+def dfs(node):
+    if node.left:
+        adj[node].append(node.left)
+        adj[node.left].append(node)
+        dfs(node.left)
+    if node.right:
+        adj[node].append(node.right)
+        adj[node.right].append(node)
+        dfs(node.right)
+dfs(root)
 ```
 
 Traverse Tree in graph notation
@@ -621,6 +654,16 @@ li1 = [1, 3, 4, 4, 4, 6, 7] # [1, 3, 4, 4, 4, 5, 6, 7]
 bisect.insort(li1, 5) # 
 ```
 
+## Iter
+
+Creates iterator from container object such as list, tuple, dictionary and set
+
+```python
+mytuple = ("apple", "banana", "cherry")
+myit = iter(mytuple)
+print(next(myit)) # apple
+print(next(myit)) # banana
+```
 
 # Collections
 
@@ -774,6 +817,32 @@ def cyclic_sort(nums):
     else:
       i += 1
   return nums
+```
+
+## Quick Sort
+
+1. Can be modified for divide in conquer problems
+
+```python
+def quickSort(array):
+	def sort(arr, l, r):
+		if l < r:
+			p = part(arr, l, r)
+			sort(arr, l, p-1)
+			sort(arr, p+1, r)
+
+	def part(arr, l, r):
+		pivot = arr[r]
+		a = l
+		for i in range(l,r):
+			if arr[i] < pivot:
+				arr[i], arr[a] = arr[a], arr[i]
+				a += 1
+		arr[r], arr[a] = arr[a], arr[r]
+		return a
+    
+	sort(array, 0, len(array)-1)
+	return array
 ```
 
 ## Linked List
