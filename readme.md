@@ -395,7 +395,7 @@ def removeInvalidParentheses(self, s: str) -> List[str]:
 
 ## Graph
 
-Build an adjecency graph from edges list
+Build an [adjecency graph](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs) from edges list
 ```python
 # N = 6, edges = [[0,1],[0,2],[2,3],[2,4],[2,5]]
 graph = [[] for _ in range(N)]
@@ -840,7 +840,7 @@ def quickSort(array):
 				a += 1
 		arr[r], arr[a] = arr[a], arr[r]
 		return a
-    
+
 	sort(array, 0, len(array)-1)
 	return array
 ```

@@ -4,40 +4,38 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-"""
-t: 2n
-s: n
-"""
 
+"""
+time: O(n + k)
+space: n
+"""
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, K: int) -> List[int]:
-        #Build adjecency graph
         adj = collections.defaultdict(list)
-        def dfs(node):
+        
+        def dfsa(node):
             if node.left:
                 adj[node].append(node.left)
                 adj[node.left].append(node)
-                dfs(node.left)
+                dfsa(node.left)
             if node.right:
                 adj[node].append(node.right)
                 adj[node.right].append(node)
-                dfs(node.right)
-        dfs(root)
-    
-        rtn = []
-        visited = set()
-        def dfs2(node, d):
-            if d < K:
-                visited.add(node)
-                for nei in adj[node]:
-                    if nei not in visited:
-                        dfs2(nei, d+1)
-            else:
-                rtn.append(node.val)
-        
-        dfs2(target, 0)
-        
-        return rtn
+                dfsa(node.right)
                 
-            
+        dfsa(root)
         
+        
+        def dfs(node, prev, d):
+            if node:
+                if d == K:
+                    rtn.append(node.val)
+                else:
+                    for nei in adj[node]:
+                        if nei != prev:
+                            dfs(nei, node, d+1)
+                    
+        rtn = []
+        dfs(target, None, 0)
+            
+        return rtn

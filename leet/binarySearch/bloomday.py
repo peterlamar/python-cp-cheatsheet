@@ -1,5 +1,5 @@
 """
-time: lgn
+time: lgn*n
 space: 1
 """
 class Solution:
