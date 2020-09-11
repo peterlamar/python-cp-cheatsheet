@@ -19,6 +19,9 @@
 1. [all](#all)
 1. [bisect](#bisect)
 1. [iter](#iter)
+1. [map](#map)
+1. [filter](#filter)
+1. [reduce](#reduce)
 
 [Collections](#collections)
 1. [Deque](#deque)
@@ -202,6 +205,14 @@ for c in s1: # Adds counter for c
 st = set()
 st.add(a) # Add to st
 st.remove(a) # Remove from st
+```
+
+```python
+s = set('abc') # {'c', 'a', 'b'}
+s |= set('cdf') # {'f', 'a', 'b', 'd', 'c'} set s with elements from new set
+s &= set('bd') # {'d', 'b'} only elements from new set
+s -= set('b') # {'d'} remove elements from new set
+s ^= set('abd') # {'a', 'b'} elements from s or new but not both
 ```
 
 ## List
@@ -663,6 +674,50 @@ mytuple = ("apple", "banana", "cherry")
 myit = iter(mytuple)
 print(next(myit)) # apple
 print(next(myit)) # banana
+```
+
+## Map
+
+map(func, *iterables)
+
+```python
+my_pets = ['alfred', 'tabitha', 'william', 'arla']
+uppered_pets = list(map(str.upper, my_pets)) # ['ALFRED', 'TABITHA', 'WILLIAM', 'ARLA']
+my_strings = ['a', 'b', 'c', 'd', 'e']
+my_numbers = [1,2,3,4,5]
+results = list(map(lambda x, y: (x, y), my_strings, my_numbers)) # [('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)]
+```
+
+## Filter
+
+filter(func, iterable)
+
+```python
+scores = [66, 90, 68, 59, 76, 60, 88, 74, 81, 65]
+over_75 = list(filter(lambda x: x>75, scores)) # [90, 76, 88, 81]
+```
+
+```python
+scores = [66, 90, 68, 59, 76, 60, 88, 74, 81, 65]
+def is_A_student(score):
+    return score > 75
+over_75 = list(filter(is_A_student, scores)) # [90, 76, 88, 81]
+```
+
+```python
+dromes = ("demigod", "rewire", "madam", "freer", "anutforajaroftuna", "kiosk")
+palindromes = list(filter(lambda word: word == word[::-1], dromes)) # ['madam', 'anutforajaroftuna']
+```
+
+## Reduce
+
+reduce(func, iterable[, initial]) 
+where initial is optional
+
+```python
+numbers = [3, 4, 6, 9, 34, 12]
+result = reduce(lambda x, y: x+y, numbers) # 68
+result = reduce(lambda x, y: x+y, numbers, 10) #78
 ```
 
 # Collections
