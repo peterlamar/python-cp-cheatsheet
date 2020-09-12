@@ -22,15 +22,15 @@ space: O(1)
 """
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
-        al = {}
+        dct = {}
         
         for i, c in enumerate(order):
-            al[c] = i
-         
-        trans = lambda x: list(al[i] for i in x)
-        """
-        for i in range(len(words) - 1):
-            if trans(words[i+1]) < trans(words[i]):
+            dct[c] = i
+        
+        trans = lambda x: list(dct[c] for c in x)
+        
+        for w1, w2 in zip(words, words[1:]):
+            if trans(w1) > trans(w2):
                 return False
-        """
-        return all(trans(words[i+1]) >= trans(words[i]) for i in range(len(words)-1))
+        
+        return True

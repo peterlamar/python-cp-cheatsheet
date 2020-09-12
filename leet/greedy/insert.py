@@ -1,3 +1,7 @@
+"""
+time: n
+space: n
+"""
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         bisect.insort(intervals, newInterval)

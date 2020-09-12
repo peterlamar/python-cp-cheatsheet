@@ -6,6 +6,7 @@
 1. [Hash](#hash)
 1. [Set](#set)
 1. [List](#list)
+1. (Dict)(#dict)
 1. [Binary Tree](#binarytree)
 1. [heapq](#heapq)
 1. [lambda](#lambda)
@@ -14,6 +15,7 @@
 1. [Constants](#constants)
 1. [Ternary Condition](#ternary)
 1. [Bitwise operators](#bitwise)
+1. [For Else](#for-else)
 1. [Modulo](#modulo)
 1. [any](#any)
 1. [all](#all)
@@ -171,6 +173,14 @@ Insert values in strings
 txt3 = "My name is {}, I'm {}".format("John",36) # My name is John, I'm 36
 ```
 
+Multiply strings/lists with *, even booleans which map to True(1) and False(0)
+```python
+'meh' * 2 # mehmeh
+['meh'] * 2 # ['meh', 'meh']
+['meh'] * True #['meh']
+['meh'] * False #[]
+```
+
 ## Sort
 
 Sort sorts alphabectically
@@ -255,6 +265,12 @@ def intToRoman(self, num: int) -> str:
         res += num//i*d[i] # num // key * referenced character
         num %= i
     return res
+```
+
+Dict can also be initiated with comprehension
+```python
+nodes = {'f', 'e', 'r', 'w', 't'}
+degree = {x:0 for x in nodes} # {'f': 0, 'e': 0, 'r': 0, 'w': 0, 't': 0}
 ```
 
 ## BinaryTree
@@ -587,6 +603,22 @@ test = stk.pop() if stk else '#'
 '0b{:04b}'.format(0b1100 ^ 0b1010) # '0b0110' exclusive or
 '0b{:04b}'.format(0b1100 >> 2)     # '0b0011' shift right
 '0b{:04b}'.format(0b0011 << 2)     # '0b1100' shift left
+```
+
+## For Else
+
+Else condition on for loops if break is not called
+
+```python
+for w1, w2 in zip(words, words[1:]): #abc, ab
+    for c1, c2 in zip(w1, w2):
+        if c1 != c2:
+            adj[c1].append(c2)
+            degrees[c2] += 1
+            break
+    else: # nobreak
+        if len(w1) > len(w2):
+            return ""   # Triggers since ab should be before abc, not after
 ```
 
 ## Modulo
@@ -933,7 +965,7 @@ def reverse(head):
 Merge:
 ```python
 def mergeLinkedLists(headOne, headTwo):
-    p1 = headOne
+  p1 = headOne
 	p2 = headTwo
 	prev = None
 	
