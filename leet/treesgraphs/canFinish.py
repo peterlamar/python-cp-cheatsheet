@@ -1,26 +1,27 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         adj = collections.defaultdict(list)
-        degrees = collections.Counter()
+        degree = collections.Counter()
         
-        for p in prerequisites:
-            dest, orig = p
+        for dest, orig in prerequisites:
             adj[orig].append(dest)
-            degrees[dest] += 1
-            if orig not in degrees:
-                degrees[orig] = 0
+            degree[dest] += 1
+            if orig not in degree:
+                degree[orig] = 0
         
-        stk = list(filter(lambda x:degrees[x]==0, degrees.keys()))
-        cnt = len(stk)
+        free = set(range(numCourses))-set(degree)
+        for f in free:
+            degree[f] = 0
         
+        stk = list(filter(lambda x: degree[x]==0, degree.keys()))
+        
+        cnt = 0
         while stk:
             node = stk.pop()
+            cnt += 1
             for nei in adj[node]:
-                degrees[nei] -= 1
-                if degrees[nei] == 0:
+                degree[nei] -= 1
+                if degree[nei] == 0:
                     stk.append(nei)
-                    cnt += 1
         
-        return (cnt + numCourses - len(degrees)) == numCourses
-
-
+        return cnt == numCourses

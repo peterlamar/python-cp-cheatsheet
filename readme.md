@@ -1160,3 +1160,27 @@ def subarraySum(self, nums: List[int], k: int) -> int:
         mp[total] = mp.get(total, 0) + 1
     return rtn
 ```
+
+## Events
+
+Events pattern can be applied when to many interval problems such as 'Find employee free time between meetings' and 'find peak population' when individual start/ends
+are irrelavent and sum start/end times are more important
+
+```python
+def employeeFreeTime(self, schedule: '[[Interval]]') -> '[Interval]':
+    events = []
+    for e in schedule:
+        for m in e:
+            events.append((m.start, 1))
+            events.append((m.end, -1))
+    events.sort()
+    itv = []
+    prev = None
+    bal = 0
+    for t, c in events:
+        if bal == 0 and prev is not None and t != prev:
+            itv.append(Interval(prev, t))
+        bal += c
+        prev = t
+    return itv
+```
