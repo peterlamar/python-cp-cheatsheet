@@ -2,11 +2,12 @@
 
 1. [Loops](#loops)
 1. [Strings](#strings)
+1. [Tuples](#tuples)
 1. [Sort](#sort)
 1. [Hash](#hash)
 1. [Set](#set)
 1. [List](#list)
-1. (Dict)(#dict)
+1. [Dict](#dict)
 1. [Binary Tree](#binarytree)
 1. [heapq](#heapq)
 1. [lambda](#lambda)
@@ -34,6 +35,7 @@
 
 1. [Binary Search](#binary-search)
 1. [Sliding Window](#sliding-window)
+1. [Anagrams](#anagrams)
 1. [Dynamic Programming](#dynamic-programming)
 1. [Cyclic Sort](#cyclic-sort)
 1. [Quick Sort](#quick-sort)
@@ -45,6 +47,7 @@
 1. [Exponential by Squaring](#exponential-by-squaring)
 1. [Shift Array Right](#shift-array-right)
 1. [Subarray Sum](#subarray-sum)
+1. [Trie](#Trie)
 
 [Algorithm Tips](#algo-tips)
 
@@ -179,6 +182,26 @@ Multiply strings/lists with *, even booleans which map to True(1) and False(0)
 ['meh'] * 2 # ['meh', 'meh']
 ['meh'] * True #['meh']
 ['meh'] * False #[]
+```
+
+## Tuple
+
+Collection that is ordered and unchangable
+
+```python
+thistuple = ("apple", "banana", "cherry")
+print(thistuple[1]) # banana
+```
+
+Can be used with Dicts
+
+```python
+def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    d = defaultdict(list)
+    for w in strs:
+        key = tuple(sorted(w))
+        d[key].append(w)
+    return d.values()
 ```
 
 ## Sort
@@ -870,6 +893,48 @@ def fruits_into_baskets(fruits):
 1. [sliding window template](https://leetcode.com/discuss/general-discussion/657507/Sliding-Window-for-Beginners-Problems-or-Template-or-Sample-Solutions)
 1. [sliding window example](https://leetcode.com/problems/fruit-into-baskets/discuss/170740/JavaC%2B%2BPython-Sliding-Window-for-K-Elements)
 
+## Anagrams
+
+Subsection of sliding window, solve with Counter Dict
+
+i.e.
+abc   =   bca   !=  eba
+111       111       111
+
+```python
+def isAnagram(self, s: str, t: str) -> bool:
+    sc = collections.Counter(s)
+    st = collections.Counter(t)
+    if sc != st:
+        return False
+    return True
+```
+
+Sliding Window version (substring)
+
+```python
+def findAnagrams(self, s: str, p: str) -> List[int]:
+    cntP = collections.Counter(p)
+    cntS = collections.Counter()
+    P = len(p)
+    S = len(s)
+    if P > S:
+        return []
+    ans = []
+    for i, c in enumerate(s):
+        cntS[c] += 1
+        if i >= P:
+            if cntS[s[i-P]] > 1:
+                cntS[s[i-P]] -= 1
+            else:
+                del cntS[s[i-P]]
+        if cntS == cntP:
+            ans.append(i-(P-1))
+    return ans
+```
+
+
+
 ## Dynamic Programming
 
 ```python
@@ -1183,4 +1248,37 @@ def employeeFreeTime(self, schedule: '[[Interval]]') -> '[Interval]':
         bal += c
         prev = t
     return itv
+```
+
+## Trie
+
+Good for autocomplete, spell checker, IP routing (match longest prefix), predictive text, solving word games
+
+```python
+def __init__(self):
+    self.trie = {}
+def addWord(self, word: str) -> None:
+    node = self.trie 
+    for c in word:
+        if c not in node:
+            node[c] = {}
+        node = node[c]
+    node['$'] = True
+```
+
+Search example with . for wildcards
+
+```python
+def search(self, word: str) -> bool:
+    node = self.trie
+    def searchNode(word, node):
+        for i,c in enumerate(word):
+            if c in node:
+                node = node[c]
+            elif c == '.':
+                return any(searchNode(word[i+1:], node[cn]) for cn in node if cn != '$' )
+            else:
+                return False
+        return '$' in node
+    return searchNode(word, self.trie)
 ```

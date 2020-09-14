@@ -58,4 +58,18 @@ class Solution:
             bal += c
             prev = t
         return itv
+
+
+class Solution:
+    def employeeFreeTime(self, schedule: '[[Interval]]') -> '[Interval]':
+        events = sorted([m for e in schedule for m in e], key=lambda x: x.start)
         
+        end = events[0].end
+        rtn = []
+        
+        for e in events:
+            if e.start > end:
+                rtn.append(Interval(end, e.start))
+            end = max(end, e.end)
+            
+        return rtn

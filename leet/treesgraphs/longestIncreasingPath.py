@@ -82,21 +82,24 @@ class Solution:
 
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        if not matrix or not matrix[0]: return 0
-
+        if len(matrix) == 0: 
+            return 0
+        
         Y = len(matrix)
         X = len(matrix[0])
-        dp = [[0] * X for i in range(Y)]
-
-        def dfs(y, x):
+        
+        dp = [[0] * X for y in range(Y)]
+        
+        def exp(y,x):
             if dp[y][x] == 0:
                 val = matrix[y][x]
-                dp[y][x] = 1 + max(
-                dfs(y,x-1) if x and matrix[y][x-1] < val else 0,
-                dfs(y,x+1) if x+1 < X and matrix[y][x+1] < val else 0,
-                dfs(y-1,x) if y and matrix[y-1][x] < val else 0,
-                dfs(y+1,x) if y+1 < Y and matrix[y+1][x] < val else 0,
-                )
+                dp[y][x] = max(
+                    exp(y-1,x) if y > 0 and val < matrix[y-1][x] else 0,
+                    exp(y+1,x) if y+1 < Y and val < matrix[y+1][x] else 0,
+                    exp(y,x-1) if x > 0 and val < matrix[y][x-1] else 0,
+                    exp(y,x+1) if x+1 < X and val < matrix[y][x+1] else 0,
+                ) + 1
             return dp[y][x]
 
-        return max(dfs(y,x) for y in range(Y) for x in range(X))
+        rtn = max(exp(y,x) for y in range(Y) for x in range(X))
+        return rtn

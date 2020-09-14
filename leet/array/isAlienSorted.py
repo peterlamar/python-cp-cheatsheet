@@ -34,3 +34,15 @@ class Solution:
                 return False
         
         return True
+
+class Solution:
+    def isAlienSorted(self, words: List[str], order: str) -> bool:
+        dt = {c:i for i,c in enumerate(order)}
+        
+        trans = lambda x: list(dt[c] for c in x)
+        
+        for w1, w2 in zip(words, words[1:]):
+            if trans(w1) > trans(w2):
+                return False
+        
+        return True
