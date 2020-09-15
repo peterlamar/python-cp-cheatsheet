@@ -816,6 +816,28 @@ def topKFrequent(self, nums: List[int], k: int) -> List[int]:
     return [n[0] for n in Counter(nums).most_common(k)] # [1,2]
 ```
 
+elements() lets you walk through each number in the Counter
+```python
+def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+    c1 = collections.Counter(nums1) # [1,2,2,1]
+    c2 = collections.Counter(nums2) # [2,2]
+    dif = c1 & c2                   # {2:2}
+    return list(dif.elements())     # [2,2]
+```
+
+operators work on Counter
+```python
+c = Counter(a=3, b=1)
+d = Counter(a=1, b=2)
+c + d # {'a': 4, 'b': 3}
+c - d # {'a': 2}
+c & d # {'a': 1, 'b': 1}
+c | d # {'a': 3, 'b': 2}
+c = Counter(a=2, b=-4)
++c # {'a': 2}
+-c # {'b': 4}
+```
+
 ## Default Dict
 
 ```python
@@ -1270,7 +1292,6 @@ Search example with . for wildcards
 
 ```python
 def search(self, word: str) -> bool:
-    node = self.trie
     def searchNode(word, node):
         for i,c in enumerate(word):
             if c in node:
