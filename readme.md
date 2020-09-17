@@ -44,10 +44,12 @@
 1. [Convert Base](#convert-base)
 1. [Parenthesis](#parenthesis)
 1. [Max Profit Stock](#max-profit-stock)
-1. [Exponential by Squaring](#exponential-by-squaring)
 1. [Shift Array Right](#shift-array-right)
 1. [Subarray Sum](#subarray-sum)
 1. [Trie](#Trie)
+1. [Kadane's Algorithm - Max subarray sum](#kadane)
+1. [Union Find/DSU](#union-Find)
+1. [Fast Power](#fast-power)
 
 [Algorithm Tips](#algo-tips)
 
@@ -184,6 +186,12 @@ Multiply strings/lists with *, even booleans which map to True(1) and False(0)
 ['meh'] * False #[]
 ```
 
+Find substring in string
+```python
+txt = "Hello, welcome to my world."
+x = txt.find("welcome")  # 7
+```
+
 ## Tuple
 
 Collection that is ordered and unchangable
@@ -275,6 +283,13 @@ ss.reverse()
 print(ss) #3,2,1
 ```
 
+Join list
+```python
+list1 = ["a", "b" , "c"]
+list2 = [1, 2, 3]
+list3 = list1 + list2 # ['a', 'b', 'c', 1, 2, 3]
+```
+
 ## Dict
 
 Hashtables are implemented with dictionaries
@@ -294,6 +309,12 @@ Dict can also be initiated with comprehension
 ```python
 nodes = {'f', 'e', 'r', 'w', 't'}
 degree = {x:0 for x in nodes} # {'f': 0, 'e': 0, 'r': 0, 'w': 0, 't': 0}
+```
+
+Default can be set dict[key]=default if key is not already in dict
+```python
+par = {}
+par.setdefault(1,1) # returns 1, makes par = { 1 : 1 } 
 ```
 
 ## BinaryTree
@@ -596,6 +617,23 @@ for a, b in zip(words, words[1:]):
         print("c2 ", c2, end=" ") 
 ```
 
+A single argument can be passed when traversing a list of lists
+
+```python
+a = [[1,2],[3,4]]
+test = zip(*a)
+print(test) # (1, 3) (2, 4)
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+test = zip(*matrix)
+print(*test) # (1, 4, 7) (2, 5, 8) (3, 6, 9)
+```
+
+Useful when rotating a matrix
+```python
+# matrix = [[1,2,3],[4,5,6],[7,8,9]]
+matrix[:] = zip(*matrix[::-1]) # [[7,4,1],[8,5,2],[9,6,3]]
+```
+
 ## Random
 
 ```Python
@@ -839,6 +877,16 @@ c = Counter(a=2, b=-4)
 ```
 
 ## Default Dict
+
+```python
+d={}
+print(d['Grapes'])# This gives Key Error
+from collections import defaultdict
+d = defaultdict(int) # set default
+print(d['Grapes']) # 0, no key error
+d = collections.defaultdict(lambda: 1)
+print(d['Grapes']) # 1, no key error
+```
 
 ```python
 from collections import defaultdict
@@ -1200,23 +1248,6 @@ for p in prices:
 return t0[k]
 ```
 
-## Exponential by Squaring
-
-Fast Power, or Exponential by [squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring)
-```python
-def myPow(self, x: float, n: int) -> float:
-    if n < 0:
-        n *= -1
-        x = 1/x
-    ans = 1        
-    while n > 0:
-        if n % 2 == 1:
-            ans = ans * x
-        x *= x
-        n = n // 2
-    return ans
-```
-
 ## Shift Array Right
 Arrays can be shifted right by reversing the whole string, and then reversing 0,k-1 and k,len(str)
 ```python
@@ -1302,4 +1333,97 @@ def search(self, word: str) -> bool:
                 return False
         return '$' in node
     return searchNode(word, self.trie)
+```
+
+## Kadane
+
+Determine max subarray sum
+
+```python
+# input: [-2,1,-3,4,-1,2,1,-5,4]
+def maxSubArray(self, nums: List[int]) -> int:
+    for i in range(1, len(nums)):
+        if nums[i-1] > 0:
+            nums[i] += nums[i-1]
+    return max(nums) # max([-2,1,-2,4,3,5,6,1,5]) = 6
+```
+
+## Union Find
+
+[Union Find](https://www.geeksforgeeks.org/union-find/) is a useful algorithm for graph
+
+DSU for integers
+```python
+class DSU:
+    def __init__(self, N):
+        self.par = list(range(N))
+
+    def find(self, x): # Find Parent
+        if self.par[x] != x:
+            self.par[x] = self.find(self.par[x])
+        return self.par[x]
+
+    def union(self, x, y):
+        xr, yr = self.find(x), self.find(y)
+        if xr == yr: # If parents are equal, return
+            return False
+        self.par[yr] = xr # Give y node parent of x
+        return True
+```
+
+DSU for strings
+```python
+class DSU:
+    def __init__(self):
+        self.par = {}
+
+    def find(self, x):
+        if x != self.par.setdefault(x, x):
+            self.par[x] = self.find(self.par[x])
+        return self.par[x]
+
+    def union(self, x, y):
+        xr, yr = self.find(x), self.find(y)
+        if xr == yr: return
+        self.par[yr] = xr
+```
+
+DSU with union by rank
+```python
+class DSU:
+    def __init__(self, N):
+        self.par = list(range(N))
+        self.sz = [1] * N
+
+    def find(self, x):
+        if self.par[x] != x:
+            self.par[x] = self.find(self.par[x])
+        return self.par[x]
+
+    def union(self, x, y):
+        xr, yr = self.find(x), self.find(y)
+        if xr == yr:
+            return False
+        if self.sz[xr] < self.sz[yr]:
+            xr, yr = yr, xr
+        self.par[yr] = xr
+        self.sz[xr] += self.sz[yr]
+        return True
+```
+
+## Fast Power
+
+Fast Power, or Exponential by [squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring) allows calculating squares in logn time (x^n)*2 = x^(2*n)
+```python
+def myPow(self, x: float, n: int) -> float:
+    if n < 0:
+        n *= -1
+        x = 1/x
+    ans = 1        
+    while n > 0:
+        if n % 2 == 1:
+            ans = ans * x
+        x *= x
+        n = n // 2
+    return ans
 ```
