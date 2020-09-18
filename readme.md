@@ -25,7 +25,7 @@
 1. [map](#map)
 1. [filter](#filter)
 1. [reduce](#reduce)
-1. [regular expression](#regular expression)
+1. [regular expression](#regular-expression)
 
 [Collections](#collections)
 1. [Deque](#deque)
@@ -49,9 +49,9 @@
 1. [Subarray Sum](#subarray-sum)
 1. [Trie](#Trie)
 1. [Kadane's Algorithm - Max subarray sum](#kadane)
-1. [Union Find/DSU](#union-Find)
+1. [Union Find/DSU](#union-find)
 1. [Fast Power](#fast-power)
-1. [Fibonacci Golden](#Fibonacci Golden)
+1. [Fibonacci Golden](#fibonacci-golden)
 
 [Algorithm Tips](#algo-tips)
 
