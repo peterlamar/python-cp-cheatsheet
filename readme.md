@@ -25,6 +25,7 @@
 1. [map](#map)
 1. [filter](#filter)
 1. [reduce](#reduce)
+1. [regular expression](#regular expression)
 
 [Collections](#collections)
 1. [Deque](#deque)
@@ -50,6 +51,7 @@
 1. [Kadane's Algorithm - Max subarray sum](#kadane)
 1. [Union Find/DSU](#union-Find)
 1. [Fast Power](#fast-power)
+1. [Fibonacci Golden](#Fibonacci Golden)
 
 [Algorithm Tips](#algo-tips)
 
@@ -813,6 +815,15 @@ result = reduce(lambda x, y: x+y, numbers) # 68
 result = reduce(lambda x, y: x+y, numbers, 10) #78
 ```
 
+## Regular Expression
+
+RE module allows regular expressions in python
+
+```python
+def removeVowels(self, S: str) -> str:
+    return re.sub('a|e|i|o|u', '', S)
+```
+
 # Collections
 
 Stack with appendleft() and popleft()
@@ -844,7 +855,7 @@ count['l'] += 1
 count['l'] # 3
 ```
 
-Get counter most common
+Get counter k most common in list of tuples
 ```python
 # [1,1,1,2,2,3]
 # Counter  [(1, 3), (2, 2)]
@@ -1365,10 +1376,10 @@ class DSU:
 
     def union(self, x, y):
         xr, yr = self.find(x), self.find(y)
-        if xr == yr: # If parents are equal, return
+        if xr == yr: # If parents are equal, return False
             return False
         self.par[yr] = xr # Give y node parent of x
-        return True
+        return True # return True if union occured
 ```
 
 DSU for strings
@@ -1426,4 +1437,14 @@ def myPow(self, x: float, n: int) -> float:
         x *= x
         n = n // 2
     return ans
+```
+
+## Fibonacci Golden
+
+Fibonacci can be calulated with [Golden Ratio](https://demonstrations.wolfram.com/GeneralizedFibonacciSequenceAndTheGoldenRatio/)
+
+```python
+def fib(self, N: int) -> int:
+    golden_ratio = (1 + 5 ** 0.5) / 2
+    return int((golden_ratio ** N + 1) / 5 ** 0.5)
 ```
