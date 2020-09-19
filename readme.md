@@ -35,11 +35,13 @@
 [Algorithms](#algorithms)
 
 1. [Binary Search](#binary-search)
+1. [Topological Search](#topological-search)
 1. [Sliding Window](#sliding-window)
 1. [Anagrams](#anagrams)
 1. [Dynamic Programming](#dynamic-programming)
 1. [Cyclic Sort](#cyclic-sort)
 1. [Quick Sort](#quick-sort)
+1. [Merge Sort](#merge-sort)
 1. [Linked List](#linked-list)
 1. [Greedy](#greedy)
 1. [Convert Base](#convert-base)
@@ -47,6 +49,8 @@
 1. [Max Profit Stock](#max-profit-stock)
 1. [Shift Array Right](#shift-array-right)
 1. [Subarray Sum](#subarray-sum)
+1. [Events](#Events)
+1. [Merge Meetings](#merge-meetings)
 1. [Trie](#Trie)
 1. [Kadane's Algorithm - Max subarray sum](#kadane)
 1. [Union Find/DSU](#union-find)
@@ -935,6 +939,41 @@ def mySqrt(self, x: int) -> int:
 ```
 [binary search](https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
 
+## Topological Search
+
+[Kahn's algorithm](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm), detects cycles through degrees and needs all the nodes represented to work 
+
+```python
+def alienOrder(self, words: List[str]) -> str:
+    nodes = set("".join(words))
+    adj = collections.defaultdict(list)
+    degree = collections.Counter(nodes)
+    
+    for w1, w2 in zip(words, words[1:]):
+        for c1, c2 in zip(w1, w2):
+            if c1 != c2:
+                adj[c1].append(c2)
+                degree[c2] += 1
+                break
+        else:
+            if len(w1) > len(w2):
+                return ""
+    
+    stk = list(filter(lambda x: degree[x]==1, degree.keys()))
+    
+    ans = []
+    while stk:
+        node = stk.pop()
+        ans.append(node)
+        for nei in adj[node]:
+            degree[nei] -= 1
+            if degree[nei] == 1:
+                stk.append(nei)
+    
+    return "".join(ans) * (set(ans) == nodes)
+        
+```
+
 ## Sliding Window
 
 1. Have a counter or hash-map to count specific array input and keep on increasing the window toward right using outer loop.
@@ -1076,6 +1115,33 @@ def quickSort(array):
 
 	sort(array, 0, len(array)-1)
 	return array
+```
+
+## Merge Sort
+
+```python
+from collections import deque 
+def mergeSort(array):
+    def sortArray(nums):
+        if len(nums) > 1:
+            mid = len(nums)//2
+            l1 = sortArray(nums[:mid])
+            l2 = sortArray(nums[mid:])
+            nums = sort(l1,l2)
+        return nums
+    
+    def sort(l1,l2):
+        result = []
+        l1 = deque(l1)
+        l2 = deque(l2)
+        while l1 and l2:
+            if l1[0] <= l2[0]:
+                result.append(l1.popleft())
+            else:
+                result.append(l2.popleft())
+        result.extend(l1 or l2)
+        return result
+	return sortArray(array)
 ```
 
 ## Linked List
@@ -1312,6 +1378,24 @@ def employeeFreeTime(self, schedule: '[[Interval]]') -> '[Interval]':
         bal += c
         prev = t
     return itv
+```
+
+## Merge Meetings
+
+Merging a new meeting into a list
+
+```python
+def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+    bisect.insort(intervals, newInterval)
+    merged = [intervals[0]]
+    for i in intervals:
+        ms, me = merged[-1]
+        s, e = i
+        if me >= s:
+            merged[-1] = (ms, max(me, e))
+        else:
+            merged.append(i)
+    return merged
 ```
 
 ## Trie
