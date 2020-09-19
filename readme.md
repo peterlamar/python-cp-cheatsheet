@@ -43,12 +43,11 @@
 1. [Quick Sort](#quick-sort)
 1. [Merge Sort](#merge-sort)
 1. [Linked List](#linked-list)
-1. [Greedy](#greedy)
 1. [Convert Base](#convert-base)
 1. [Parenthesis](#parenthesis)
 1. [Max Profit Stock](#max-profit-stock)
 1. [Shift Array Right](#shift-array-right)
-1. [Subarray Sum](#subarray-sum)
+1. [Continuous Subarrays with Sum k ](#continuous-subarrays-with-sum-k)
 1. [Events](#Events)
 1. [Merge Meetings](#merge-meetings)
 1. [Trie](#Trie)
@@ -249,9 +248,13 @@ for c in s1: # Adds counter for c
 ## Set
 
 ```python
+a = 3
 st = set()
 st.add(a) # Add to st
 st.remove(a) # Remove from st
+st.discard(a) # Removes from set with no error
+st.add(a) # Add to st
+st.pop() # returns 3
 ```
 
 ```python
@@ -321,6 +324,19 @@ Default can be set dict[key]=default if key is not already in dict
 ```python
 par = {}
 par.setdefault(1,1) # returns 1, makes par = { 1 : 1 } 
+```
+
+Removing vals
+```python
+ par = {0:True, 1:False}
+par.pop(0) # Returns True
+print(par) # {1: False}
+par = {0:True, 1:False}
+par.pop(2) # key error
+par.pop(2,0) # 0 as default is passed
+par = {0:True, 1:False}
+del par[0]
+print(par) # {1: False}
 ```
 
 ## BinaryTree
@@ -647,6 +663,17 @@ for i, l in enumerate(shuffle):
   r = random.randrange(0+i, len(shuffle))
   shuffle[i], shuffle[r] = shuffle[r], shuffle[i]
 return shuffle
+```
+
+Other random generators
+```Python
+import random
+ints = [0,1,2]
+random.choice(ints) # 0,1,2
+random.randint(0,2) # 0,1, 2
+random.randint(0,0) # 0
+random.randrange(0,0) # error
+random.randrange(0,2) # 0,1
 ```
 
 ## Constants
@@ -1198,33 +1225,6 @@ def mergeLinkedLists(headOne, headTwo):
 	return headOne if headOne.value < headTwo.value else headTwo
 ```
 
-## Greedy
-
-Greedy algorithm chooses the option that looks best at every step and solves by keeping the best answer so far. I.e. giving change by giving the largest coin possible at every step. Look to solve choices incrementally until optimal solution.
-
-1. Divide problem into subproblems, including one small problem and the remaining subproblem
-2. Determine the optimal substructure of the problems (formulating a recurrance function)
-3. Show if we make the greedy choice, then only one subproblem remains
-
-### Typical Problem Clues:
-Greedy/Dynamic Programming [hints](https://medium.com/algorithms-and-leetcode/greedy-algorithm-explained-using-leetcode-problems-80d6fee071c4):
-1. True/False
-1. Max/Min numer
-
-## Algo tips
-
-Store knowledge in the data structure by sorting it. For example, merging [meeting times](https://www.interviewcake.com/question/python/merging-ranges?course=fc1&section=array-and-string-manipulation) by sorting and merging
-
-```
-[(0, 1), (3, 5), (4, 8), (10, 12), (9, 10)]
-```
-
-into
-
-```
-[(0, 1), (3, 8), (9, 12)]
-```
-
 ## Convert Base
 
 Base 10 to 16, or any base by changing '16' and index
@@ -1341,7 +1341,7 @@ def rotate(self, nums: List[int], k: int) -> None:
     reverse(k, len(nums)-1, nums)
 ```
 
-## Subarray Sum
+## Continuous Subarrays with Sum k 
 
 The total number of continuous subarrays with sum k can be found by hashing the continuous sum per value and adding the count of continuous sum - k
 
