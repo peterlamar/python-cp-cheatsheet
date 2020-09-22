@@ -21,6 +21,7 @@
 1. [any](#any)
 1. [all](#all)
 1. [bisect](#bisect)
+1. [math](#math)
 1. [iter](#iter)
 1. [map](#map)
 1. [filter](#filter)
@@ -789,6 +790,29 @@ print(result) # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```python
 li1 = [1, 3, 4, 4, 4, 6, 7] # [1, 3, 4, 4, 4, 5, 6, 7]
 bisect.insort(li1, 5) # 
+```
+
+## Math
+
+Calulate power
+
+```python
+# (a ^ b) % p. 
+d = pow(a, b, p) 
+```
+
+Division with remainder
+```python
+divmod(8, 3) # (2, 2)
+divmod(3, 8) #  (0, 3)
+```
+
+## eval
+
+Evaluates an expression
+```python
+x = 1
+print(eval('x + 1'))
 ```
 
 ## Iter
