@@ -56,6 +56,8 @@
 1. [Union Find/DSU](#union-find)
 1. [Fast Power](#fast-power)
 1. [Fibonacci Golden](#fibonacci-golden)
+1. [Basic Calculator](#basic-calculator)
+1. [Reverse Polish](#reverse-polish)
 
 [Algorithm Tips](#algo-tips)
 
@@ -1555,4 +1557,67 @@ Fibonacci can be calulated with [Golden Ratio](https://demonstrations.wolfram.co
 def fib(self, N: int) -> int:
     golden_ratio = (1 + 5 ** 0.5) / 2
     return int((golden_ratio ** N + 1) / 5 ** 0.5)
+```
+
+## Basic Calculator
+
+A calculator can be simulated with stack
+
+```python
+class Solution:
+    def calculate(self, s: str) -> int:
+        s += '$'
+        def helper(stk, i):
+            sign = '+'
+            num = 0
+            while i < len(s):
+                c = s[i]
+                if c == " ":
+                    i += 1
+                    continue
+                elif c.isdigit():
+                    num = num * 10 + int(c)
+                    i += 1
+                elif c == '(':
+                    num, i = helper([], i+1)
+                else:
+                    if sign == '+':
+                        stk.append(num)
+                    if sign == '-':
+                        stk.append(-num)
+                    if sign == '*':
+                        stk.append(stk.pop() * num)
+                    if sign == '/':
+                        stk.append(int(stk.pop() / num))
+                    i += 1
+                    num = 0
+                    if c == ')':
+                        return sum(stk), i
+                    sign = c
+            return sum(stk)
+        return helper([],0)
+```
+
+## Reverse Polish
+
+```python
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stk = []
+        while tokens:
+            c = tokens.pop(0)
+            if c not in '+-/*':
+                stk.append(int(c))
+            else:
+                a = stk.pop()
+                b = stk.pop()
+                if c == '+':
+                    stk.append(a + b)
+                if c == '-':
+                    stk.append(b-a)
+                if c == '*':
+                    stk.append(a * b)
+                if c == '/':
+                    stk.append(int(b / a))
+        return stk[0]
 ```

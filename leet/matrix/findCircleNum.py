@@ -5,17 +5,18 @@ space: n
 class Solution:
     def findCircleNum(self, M: List[List[int]]) -> int:
         seen = set()
+        ans = 0
         
-        def dfs(node):
-            for nei, adj in enumerate(M[node]):
+        def dfs(m):
+            for nei, adj in enumerate(M[m]):
                 if adj and nei not in seen:
                     seen.add(nei)
                     dfs(nei)
+                
         
-        ans = 0
-        for n in range(len(M)):
-            if n not in seen:
-                dfs(n)
+        for m in range(len(M)):
+            if m not in seen:
+                dfs(m)
                 ans += 1
         
         return ans
