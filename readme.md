@@ -59,6 +59,7 @@
 1. [Fibonacci Golden](#fibonacci-golden)
 1. [Basic Calculator](#basic-calculator)
 1. [Reverse Polish](#reverse-polish)
+1. [Resevior Sampling](#resevior-sampling)
 
 [Algorithm Tips](#algo-tips)
 
@@ -112,6 +113,13 @@ for i in range(len(A)//2): # A = [0,1,2,3,4,5]
 ```
 
 ## Strings
+
+Parse a log on ":"
+```python
+l = "0:start:0"
+tokens = l.split(":")
+print(tokens) # ['0', 'start', '0']
+```
 
 Reverse works with built in split, [::-1] and " ".join()
 ```python
@@ -242,6 +250,35 @@ print(sorted(['Ford', 'BMW', 'Volvo'])) # ['BMW', 'Ford', 'Volvo']
     return sorted(arr1 + arr2)
 ```
 
+Sort an array but keep the original indexes
+
+```python
+self.idx, self.vals = zip(*sorted([(i,v) for i,v in enumerate(nums)], key=lambda x:x[1]))
+```
+
+Sort by tuple, 2nd element then 1st ascending
+```python
+a = [(5,10), (2,20), (2,3), (0,100)]
+test = sorted(a, key = lambda x: (x[1],x[0])) 
+print(test) # [(2, 3), (5, 10), (2, 20), (0, 100)]
+test = sorted(a, key = lambda x: (-x[1],x[0])) 
+print(test) # [(0, 100), (2, 20), (5, 10), (2, 3)]
+```
+
+Sort and print dict values by key
+
+```python
+ans = {-1: [(10, 1), (3, 3)], 0: [(0, 0), (2, 2), (7, 4)], -3: [(8, 5)]}
+for key, value in sorted(ans.items()): print(value)
+# [(8, 5)]
+# [(10, 1), (3, 3)]
+# [(0, 0), (2, 2), (7, 4)]
+
+# Or just sort the dict directly
+[ans[i] for i in sorted(ans)]
+# [[(8, 5)], [(10, 1), (3, 3)], [(0, 0), (2, 2), (7, 4)]]
+```
+
 ## Hash
 
 ```python
@@ -341,6 +378,12 @@ par.pop(2,0) # 0 as default is passed
 par = {0:True, 1:False}
 del par[0]
 print(par) # {1: False}
+```
+
+Access items as a list
+```python
+sales = { 'apple': 2, 'orange': 3, 'grapes': 4 }
+print (sales.items()) # dict_items([('apple', 2), ('orange', 3), ('grapes', 4)])
 ```
 
 ## BinaryTree
@@ -794,6 +837,16 @@ print(result) # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```python
 li1 = [1, 3, 4, 4, 4, 6, 7] # [1, 3, 4, 4, 4, 5, 6, 7]
 bisect.insort(li1, 5) # 
+```
+
+Bisect can give two ends of a range, if the array is sorted of course
+```python
+s = bisect.bisect_left(nums, target)
+e = bisect.bisect(nums, target) -1
+if s <= e:
+    return [s,e]
+else:
+    return [-1,-1]
 ```
 
 ## Math
@@ -1633,4 +1686,49 @@ class Solution:
                 if c == '/':
                     stk.append(int(b / a))
         return stk[0]
+```
+
+## Resevior Sampling
+
+Used to sample large unknown populations. Each new item added has a 1/count chance of being selected
+
+```python
+def __init__(self, nums):
+    self.nums = nums
+def pick(self, target):
+    res = None
+    count = 0
+    for i, x in enumerate(self.nums):
+        if x == target:
+            count += 1
+            chance = random.randint(1, count)
+            if chance == 1:
+                res = i
+    return res
+```
+
+## String Subsequence
+
+Can find the min number of subsequences of strings in some source through binary search and a dict of the indexes of the source array
+
+```python
+    def shortestWay(self, source: str, target: str) -> int:
+        ref = collections.defaultdict(list)
+        for i,c in enumerate(source):
+            ref[c].append(i)
+        
+        ans = 1
+        i = -1
+        for c in target:
+            if c not in ref:
+                return -1
+            offset = ref[c]
+            j = bisect.bisect_left(offset, i)
+            if j == len(offset):
+                ans += 1
+                i = offset[0] + 1
+            else:
+                i = offset[j] + 1
+                
+        return ans
 ```

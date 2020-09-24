@@ -5,7 +5,10 @@ class Node:
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 """
-
+"""
+time: O(N)
+space: O(N), space from recursion stack O(H)
+"""
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         if node is None:
