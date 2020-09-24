@@ -44,7 +44,7 @@
 1. [Cyclic Sort](#cyclic-sort)
 1. [Quick Sort](#quick-sort)
 1. [Merge Sort](#merge-sort)
-1. [Merge K Sorted Arrays][#merge-arrays]
+1. [Merge K Sorted Arrays](#merge-arrays)
 1. [Linked List](#linked-list)
 1. [Convert Base](#convert-base)
 1. [Parenthesis](#parenthesis)
