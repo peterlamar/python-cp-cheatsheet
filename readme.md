@@ -26,6 +26,7 @@
 1. [map](#map)
 1. [filter](#filter)
 1. [reduce](#reduce)
+1. [itertools](#itertools)
 1. [regular expression](#regular-expression)
 
 [Collections](#collections)
@@ -673,6 +674,7 @@ Other random generators
 import random
 ints = [0,1,2]
 random.choice(ints) # 0,1,2
+random.choices([1,2,3],[1,1,10]) # 3, heavily weighted
 random.randint(0,2) # 0,1, 2
 random.randint(0,0) # 0
 random.randrange(0,0) # error
@@ -870,6 +872,17 @@ where initial is optional
 numbers = [3, 4, 6, 9, 34, 12]
 result = reduce(lambda x, y: x+y, numbers) # 68
 result = reduce(lambda x, y: x+y, numbers, 10) #78
+```
+
+## itertools
+
+```python
+import itertools
+data = [3, 4, 6, 2, 1, 9, 0, 7, 5, 8]
+list(itertools.accumulate(data)) # [3, 7, 13, 15, 16, 25, 25, 32, 37, 45]
+list(accumulate(data, max))  # [3, 4, 6, 6, 6, 9, 9, 9, 9, 9]
+cashflows = [1000, -90, -90, -90, -90]  # Amortize a 5% loan of 1000 with 4 annual payments of 90
+list(itertools.accumulate(cashflows, lambda bal, pmt: bal*1.05 + pmt)) [1000, 960.0, 918.0, 873.9000000000001, 827.5950000000001]
 ```
 
 ## Regular Expression
