@@ -44,6 +44,7 @@
 1. [Cyclic Sort](#cyclic-sort)
 1. [Quick Sort](#quick-sort)
 1. [Merge Sort](#merge-sort)
+1. [Merge K Sorted Arrays][#merge-arrays]
 1. [Linked List](#linked-list)
 1. [Convert Base](#convert-base)
 1. [Parenthesis](#parenthesis)
@@ -60,6 +61,7 @@
 1. [Basic Calculator](#basic-calculator)
 1. [Reverse Polish](#reverse-polish)
 1. [Resevior Sampling](#resevior-sampling)
+1. [Candy Crush](#candy-crush)
 
 [Algorithm Tips](#algo-tips)
 
@@ -1263,6 +1265,54 @@ def mergeSort(array):
 	return sortArray(array)
 ```
 
+## Merge Arrays
+
+Merge K sorted Arrays with a heap
+```python
+def mergeSortedArrays(self, arrays):   
+    return list(heapq.merge(*arrays))
+```
+
+Or manually with heappush/heappop. 
+
+```python
+class Solution:
+def mergeSortedArrays(self, arrays):
+    pq = []
+    for i, arr in enumerate(arrays):
+        pq.append((arr[0], i, 0))
+    heapify(pq)
+
+    res = []
+    while pq:
+        num, i, j = heappop(pq)
+        res.append(num)
+        if j + 1 < len(arrays[i]):
+            heappush(pq, (arrays[i][j + 1], i, j + 1))
+    return res
+```
+
+Merging K Sorted Lists
+
+```python
+def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+    prehead = ListNode()
+    heap = []
+    for i in range(len(lists)):
+        node = lists[i]
+        while node:
+            heapq.heappush(heap, node.val)
+            node = node.next 
+    node = prehead
+    while len(heap) > 0:
+        val = heapq.heappop(heap)
+        node.next = ListNode()
+        node = node.next 
+        node.val = val
+    return prehead.next
+```
+
+
 ## Linked List
 
 1. Lots of linked list operations require 3 pointers (reverse/merge)
@@ -1731,4 +1781,23 @@ Can find the min number of subsequences of strings in some source through binary
                 i = offset[j] + 1
                 
         return ans
+```
+
+## Candy Crush
+
+Removing adjacent duplicates is much more effective with a stack
+```python
+def removeDuplicates(self, s: str, k: int) -> str:
+    stk = []
+    for c in s:
+        if stk and stk[-1][0] == c:
+            stk[-1][1] += 1
+            if stk[-1][1] >= k:
+                stk.pop()
+        else:
+            stk.append([c, 1])
+    ans = []
+    for c in stk:
+        ans.extend([c[0]] * c[1])
+    return "".join(ans)
 ```
