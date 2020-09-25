@@ -31,14 +31,14 @@ class Solution:
                 (x, A[y][x]) for x in range(Ax) if A[y][x] 
             ]
             for y in range(Ay)
-        ]
+        ]  # [[(0, 1)], [(0, -1), (2, 3)]] for [[1,0,0],[-1,0,3]]
         
         colVec = [
             [
                 (y, B[y][x]) for y in range(By) if B[y][x] 
             ]
             for x in range(Bx)
-        ]
+        ] # [[(0, 7)], [], [(2, 1)]] for [[7,0,0],[0,0,0],[0,0,1]]
         
         ans = [
             [
