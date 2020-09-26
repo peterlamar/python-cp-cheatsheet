@@ -16,6 +16,5 @@ class Solution:
                 return max(l, r) + 1
             else:
                 return 0
-            
         dfs(root)
         return self.mx

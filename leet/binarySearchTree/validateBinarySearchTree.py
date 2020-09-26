@@ -8,7 +8,6 @@ class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
         if not root:
             return True
-        
         stk = [(root, float(-inf), float(inf))]
         while stk:
             node, floor, ceil = stk.pop()
@@ -17,6 +16,5 @@ class Solution:
                     return False
                 stk.append((node.right, node.val, ceil))
                 stk.append((node.left, floor, node.val))
-
         return True
         

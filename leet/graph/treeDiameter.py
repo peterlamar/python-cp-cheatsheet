@@ -10,7 +10,6 @@ class Solution:
             adj[a].append(b)
             adj[b].append(a)
             
-        
         def dfs(curr, prev):
             mx1, mx2 = 0,0
             for nei in adj[curr]:

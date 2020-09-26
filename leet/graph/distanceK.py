@@ -25,7 +25,6 @@ class Solution:
                 
         dfsa(root)
         
-        
         def dfs(node, prev, d):
             if node:
                 if d == K:
@@ -37,5 +36,4 @@ class Solution:
                     
         rtn = []
         dfs(target, None, 0)
-            
         return rtn

@@ -39,6 +39,8 @@
 1. [Binary Search](#binary-search)
 1. [Topological Search](#topological-search)
 1. [Sliding Window](#sliding-window)
+1. [Tree Tricks](#tree-tricks)
+1. [Binary Search Tree](#binary-search-tree)
 1. [Anagrams](#anagrams)
 1. [Dynamic Programming](#dynamic-programming)
 1. [Cyclic Sort](#cyclic-sort)
@@ -1060,6 +1062,56 @@ def mySqrt(self, x: int) -> int:
 ```
 [binary search](https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
 
+## Binary Search Tree
+
+Use values to detect if number is missing
+```python
+def isCompleteTree(self, root: TreeNode) -> bool:
+    self.total = 0
+    self.mx = float('-inf')
+    def dfs(node, cnt):
+        if node:
+            self.total += 1
+            self.mx = max(self.mx, cnt)
+            dfs(node.left, (cnt*2))
+            dfs(node.right, (cnt*2)+1)
+    dfs(root, 1)
+    return self.total == self.mx
+```
+
+Get a range sum of values
+```python
+def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:
+    self.total = 0
+    def helper(node):
+        if node is None:
+            return 0
+        if L <= node.val <= R:
+            self.total += node.val
+        if node.val > L:
+            left = helper(node.left)  
+        if node.val < R:
+            right = helper(node.right)
+    helper(root)
+    return self.total
+```
+
+Check if valid
+```python
+def isValidBST(self, root: TreeNode) -> bool:
+    if not root:
+        return True
+    stk = [(root, float(-inf), float(inf))]
+    while stk:
+        node, floor, ceil = stk.pop()
+        if node:
+            if node.val >= ceil or node.val <= floor:
+                return False
+            stk.append((node.right, node.val, ceil))
+            stk.append((node.left, floor, node.val))
+    return True
+```
+
 ## Topological Search
 
 [Kahn's algorithm](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm), detects cycles through degrees and needs all the nodes represented to work 
@@ -1131,8 +1183,89 @@ def fruits_into_baskets(fruits):
   return maxCount
 ```
 
-1. [sliding window template](https://leetcode.com/discuss/general-discussion/657507/Sliding-Window-for-Beginners-Problems-or-Template-or-Sample-Solutions)
-1. [sliding window example](https://leetcode.com/problems/fruit-into-baskets/discuss/170740/JavaC%2B%2BPython-Sliding-Window-for-K-Elements)
+## Tree Tricks
+
+Bottom up solution with arguments for min, max
+
+```python
+def maxAncestorDiff(self, root: TreeNode) -> int:
+    if not root:
+        return 0
+    self.ans = 0
+    def dfs(node, minval, maxval):
+        if not node:
+            self.ans = max(self.ans, abs(maxval - minval))
+            return
+        dfs(node.left, min(node.val, minval), max(node.val, maxval))
+        dfs(node.right, min(node.val, minval), max(node.val, maxval))
+    dfs(root, float('inf'), float('-inf')
+    return self.ans
+```
+
+Building a path through a tree 
+```python
+def binaryTreePaths(self, root: TreeNode) -> List[str]:
+    rtn = []
+    if root is None: return []
+    stk = [(root, str(root.val))]
+    while stk:
+        node, path = stk.pop()
+        if node.left is None and node.right is None:
+            rtn.append(path)
+        if node.left:
+            stk.append((node.left, path + "->" + str(node.left.val)))
+        if node.right:
+            stk.append((node.right, path + "->" + str(node.right.val)))
+    return rtn
+```
+
+Using return value to sum
+```python
+def diameterOfBinaryTree(self, root: TreeNode) -> int:
+    self.mx = 0
+    def dfs(node):
+        if node:
+            l = dfs(node.left)
+            r = dfs(node.right)
+            total = l + r
+            self.mx = max(self.mx, total) 
+            return max(l, r) + 1
+        else:
+            return 0
+    dfs(root)
+    return self.mx
+```
+
+Change Tree to Graph
+```python
+def distanceK(self, root: TreeNode, target: TreeNode, K: int) -> List[int]:
+    adj = collections.defaultdict(list)
+    
+    def dfsa(node):
+        if node.left:
+            adj[node].append(node.left)
+            adj[node.left].append(node)
+            dfsa(node.left)
+        if node.right:
+            adj[node].append(node.right)
+            adj[node.right].append(node)
+            dfsa(node.right)
+            
+    dfsa(root)
+    
+    def dfs(node, prev, d):
+        if node:
+            if d == K:
+                rtn.append(node.val)
+            else:
+                for nei in adj[node]:
+                    if nei != prev:
+                        dfs(nei, node, d+1)
+                
+    rtn = []
+    dfs(target, None, 0)
+    return rtn
+```
 
 ## Anagrams
 

@@ -18,7 +18,6 @@ class Solution:
                     rtn.append(node.val)
                 dfs(node.right, d+1)
                 dfs(node.left, d+1)
-                   
         dfs(root, 0)
         
         return rtn
