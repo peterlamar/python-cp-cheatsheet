@@ -64,6 +64,7 @@
 1. [Reverse Polish](#reverse-polish)
 1. [Resevior Sampling](#resevior-sampling)
 1. [Candy Crush](#candy-crush)
+1. [Kth missing Positive](#kth-missing-positive)
 
 [Algorithm Tips](#algo-tips)
 
@@ -211,6 +212,14 @@ Find substring in string
 ```python
 txt = "Hello, welcome to my world."
 x = txt.find("welcome")  # 7
+```
+
+startswith and endswith are very handy
+```python
+str = "this is string example....wow!!!"
+str.endswith("!!") # True
+str.startswith("this") # True
+str.endswith("is", 2, 4) # True
 ```
 
 ## Tuple
@@ -1895,25 +1904,25 @@ def pick(self, target):
 Can find the min number of subsequences of strings in some source through binary search and a dict of the indexes of the source array
 
 ```python
-    def shortestWay(self, source: str, target: str) -> int:
-        ref = collections.defaultdict(list)
-        for i,c in enumerate(source):
-            ref[c].append(i)
-        
-        ans = 1
-        i = -1
-        for c in target:
-            if c not in ref:
-                return -1
-            offset = ref[c]
-            j = bisect.bisect_left(offset, i)
-            if j == len(offset):
-                ans += 1
-                i = offset[0] + 1
-            else:
-                i = offset[j] + 1
-                
-        return ans
+def shortestWay(self, source: str, target: str) -> int:
+    ref = collections.defaultdict(list)
+    for i,c in enumerate(source):
+        ref[c].append(i)
+    
+    ans = 1
+    i = -1
+    for c in target:
+        if c not in ref:
+            return -1
+        offset = ref[c]
+        j = bisect.bisect_left(offset, i)
+        if j == len(offset):
+            ans += 1
+            i = offset[0] + 1
+        else:
+            i = offset[j] + 1
+            
+    return ans
 ```
 
 ## Candy Crush
@@ -1933,4 +1942,18 @@ def removeDuplicates(self, s: str, k: int) -> str:
     for c in stk:
         ans.extend([c[0]] * c[1])
     return "".join(ans)
+```
+
+## kth Missing Positive
+
+
+```python
+def missingElement(self, nums: List[int], k: int) -> int:
+    target = k + nums[0] - 1
+    le = bisect.bisect(nums, target)
+    while le:
+        nums = nums[le:]
+        target += le
+        le = bisect.bisect(nums, target)
+    return target
 ```
