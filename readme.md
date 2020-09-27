@@ -308,6 +308,7 @@ st.add(a) # Add to st
 st.remove(a) # Remove from st
 st.discard(a) # Removes from set with no error
 st.add(a) # Add to st
+next(iter(s)) # return 3 without removal
 st.pop() # returns 3
 ```
 
@@ -1329,6 +1330,25 @@ def coinChange(self, coins: List[int], amount: int) -> int:
     for a in range(c, amount+1):    
       dp[a] =  min(dp[a], dp[a-c]+1)      
   return dp[amount] if dp[amount] != MAX else -1
+```
+
+Classic DP grid, longest common subsequence
+```python
+def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+    Y = len(text2)+1
+    X = len(text1)+1
+    dp = [[0] * Y for _ in range(X)]
+    # [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+    for i, c in enumerate(text1):
+        for j, d in enumerate(text2):
+            if c == d:
+                dp[i + 1][j + 1] = 1 + dp[i][j]  
+            else:
+                dp[i + 1][j + 1] = max(dp[i][j + 1], dp[i + 1][j])
+    return dp[-1][-1]
+# [[0,0,0,0],[0,1,1,1],[0,1,1,1],[0,1,2,2],[0,1,2,2],[0,1,2,3]]
+# abcde
+# "ace"
 ```
 
 
