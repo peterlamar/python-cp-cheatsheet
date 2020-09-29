@@ -27,7 +27,7 @@ class Solution:
         for i, c in enumerate(order):
             dct[c] = i
         
-        trans = lambda x: list(dct[c] for c in x)
+        trans = lambda x: [dct[c] for c in x]
         
         for w1, w2 in zip(words, words[1:]):
             if trans(w1) > trans(w2):
@@ -39,7 +39,7 @@ class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
         dt = {c:i for i,c in enumerate(order)}
         
-        trans = lambda x: list(dt[c] for c in x)
+        trans = lambda x: [dct[c] for c in x]
         
         for w1, w2 in zip(words, words[1:]):
             if trans(w1) > trans(w2):

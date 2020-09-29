@@ -287,6 +287,10 @@ for key, value in sorted(ans.items()): print(value)
 # [(10, 1), (3, 3)]
 # [(0, 0), (2, 2), (7, 4)]
 
+# sorted transforms dicts to lists
+sorted(ans) # [-3, -1, 0]
+sorted(ans.values()) # [[(0, 0), (2, 2), (7, 4)], [(8, 5)], [(10, 1), (3, 3)]]
+sorted(ans.items()) # [(-3, [(8, 5)]), (-1, [(10, 1), (3, 3)]), (0, [(0, 0), (2, 2), (7, 4)])]
 # Or just sort the dict directly
 [ans[i] for i in sorted(ans)]
 # [[(8, 5)], [(10, 1), (3, 3)], [(0, 0), (2, 2), (7, 4)]]
