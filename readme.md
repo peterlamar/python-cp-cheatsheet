@@ -909,6 +909,11 @@ my_numbers = [1,2,3,4,5]
 results = list(map(lambda x, y: (x, y), my_strings, my_numbers)) # [('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)]
 ```
 
+```python
+A1 = [1, 4, 9]
+''.join(map(str, A1))
+```
+
 ## Filter
 
 filter(func, iterable)
@@ -928,6 +933,11 @@ over_75 = list(filter(is_A_student, scores)) # [90, 76, 88, 81]
 ```python
 dromes = ("demigod", "rewire", "madam", "freer", "anutforajaroftuna", "kiosk")
 palindromes = list(filter(lambda word: word == word[::-1], dromes)) # ['madam', 'anutforajaroftuna']
+```
+
+Get degrees == 0 from list
+```python
+stk = list(filter(lambda x: degree[x]==0, degree.keys()))
 ```
 
 ## Reduce
