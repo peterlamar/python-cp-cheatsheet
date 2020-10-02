@@ -1,8 +1,19 @@
+
+
+Python3 cheatsheet for leetcode/competitive programming. 
+
+## Why
+I choose Python3 over Javascript, Java and Golang for interviews as I felt Python had the combination of most standard libraries available as well as syntax that most resembles psuedo code. Python and Java also have the most examples but Python wins in this case due to being much more concise. 
+
+## How
+I built this cheatsheet while teaching myself Python3 for various interviews and leetcoding for fun after not using Python for about a decade. This cheetsheet only contains code that I didn't know but needed to use to solve a leetcode type problem. I did this to try to get a more used subset of Python vs a dump of every method for every object. The act of recording it helped me store it in memory and as a result I almost never actually referenced my cheetsheet. Hopefully it helps you in your efforts or inspires you to build your own and best of luck!
+
+
 [Language Mechanics](#language-mechanics)
 
 1. [Loops](#loops)
 1. [Strings](#strings)
-1. [Tuples](#tuples)
+1. [Tuples](#tuple)
 1. [Sort](#sort)
 1. [Hash](#hash)
 1. [Set](#set)
@@ -15,7 +26,7 @@
 1. [Random](#random)
 1. [Constants](#constants)
 1. [Ternary Condition](#ternary)
-1. [Bitwise operators](#bitwise)
+1. [Bitwise operators](#bitwise-operators)
 1. [For Else](#for-else)
 1. [Modulo](#modulo)
 1. [any](#any)
@@ -53,9 +64,9 @@
 1. [Max Profit Stock](#max-profit-stock)
 1. [Shift Array Right](#shift-array-right)
 1. [Continuous Subarrays with Sum k ](#continuous-subarrays-with-sum-k)
-1. [Events](#Events)
+1. [Events](#events)
 1. [Merge Meetings](#merge-meetings)
-1. [Trie](#Trie)
+1. [Trie](#trie)
 1. [Kadane's Algorithm - Max subarray sum](#kadane)
 1. [Union Find/DSU](#union-find)
 1. [Fast Power](#fast-power)
