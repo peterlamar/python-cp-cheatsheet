@@ -1,6 +1,6 @@
 
 
-Python3 cheatsheet for interview/competitive programming. 
+Python3 cheatsheet for coding problems/light competitive programming. 
 
 ## Why
 
@@ -8,7 +8,7 @@ I choose Python3 despite being more familiar with Javascript, Java, C++ and Gola
 
 ## How
 
-I built this cheatsheet while teaching myself Python3 for various interviews and leetcoding for fun after not using Python for about a decade. This cheetsheet only contains code that I didn't know but needed to use to solve a leetcode type problem. I did this to try to get a smaller high frequency subset of Python vs a comprehensive list of all methods. Additionally, the act of recording it helped me store it in memory and as a result I almost never actually referenced my cheetsheet. Hopefully it helps you in your efforts or inspires you to build your own and best of luck!
+I built this cheatsheet while teaching myself Python3 for various interviews and leetcoding for fun after not using Python for about a decade. This cheetsheet only contains code that I didn't know but needed to use to solve a leetcode type problem. I did this to try to get a smaller high frequency subset of Python vs a comprehensive list of all methods. Additionally, the act of recording the syntax and algorithms helped me store it in memory and as a result I almost never actually referenced this sheet. Hopefully it helps you in your efforts or inspires you to build your own and best of luck!
 
 
 [Language Mechanics](#language-mechanics)
