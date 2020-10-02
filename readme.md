@@ -77,8 +77,6 @@ I built this cheatsheet while teaching myself Python3 for various interviews and
 1. [Candy Crush](#candy-crush)
 1. [Kth missing Positive](#kth-missing-positive)
 
-[Algorithm Tips](#algo-tips)
-
 # Language Mechanics
 
 ## Loops
