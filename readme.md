@@ -1346,6 +1346,10 @@ def findAnagrams(self, s: str, p: str) -> List[int]:
 
 ## Dynamic Programming
 
+1. [dynamic programming](https://leetcode.com/discuss/general-discussion/458695/Dynamic-Programming-Patterns)
+1. [dp notes](https://leetcode.com/discuss/general-discussion/475924/my-experience-and-notes-for-learning-dp)
+
+
 ```python
 def coinChange(self, coins: List[int], amount: int) -> int:
   MAX = float('inf')
@@ -1377,8 +1381,6 @@ def longestCommonSubsequence(self, text1: str, text2: str) -> int:
 ```
 
 
-[dynamic programming](https://leetcode.com/discuss/general-discussion/458695/Dynamic-Programming-Patterns)
-[dp notes](https://leetcode.com/discuss/general-discussion/475924/my-experience-and-notes-for-learning-dp)
 
 ## Cyclic Sort
 
@@ -1502,7 +1504,8 @@ def mergeKLists(self, lists: List[ListNode]) -> ListNode:
 
 ## Linked List
 
-1. Lots of linked list operations require 3 pointers (reverse/merge)
+1. Solutions typically require 3 pointers: current, previous and next
+1. Solutions are usually made simplier with a prehead or dummy head node you create and then add to. Then return dummy.next
 
 Reverse:
 ```python
@@ -1556,6 +1559,8 @@ def mergeLinkedLists(headOne, headTwo):
 
 ## Convert Base
 
+1. Typically two steps. A digit modulo step and a integer division step by the next base then reverse the result or use a deque()
+
 Base 10 to 16, or any base by changing '16' and index
 ```python
 def toHex(self, num: int) -> str:
@@ -1572,7 +1577,8 @@ def toHex(self, num: int) -> str:
 
 ## Parenthesis
 
-Count can be used if simple case, otherwise stack. 
+1. Count can be used if simple case, otherwise stack. [Basic Calculator](#basic-calculator) is an extension of this algo
+
 ```python
 def isValid(self, s) -> bool:
   cnt = 0
