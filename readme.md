@@ -1,8 +1,23 @@
+
+
+Python3 reference for coding problems/light competitive programming. 
+
+## How
+
+I built this cheatsheet while teaching myself Python3 for various interviews and leetcoding for fun after not using Python for about a decade. This cheetsheet only contains code that I didn't know but needed to use to solve a specific coding problem. I did this to try to get a smaller high frequency subset of Python vs a comprehensive list of all methods. Additionally, the act of recording the syntax and algorithms helped me store it in memory and as a result I almost never actually referenced this sheet. Hopefully it helps you in your efforts or inspires you to build your own and best of luck!
+
+## Why
+
+I choose Python3 despite being more familiar with Javascript, Java, C++ and Golang for interviews as I felt Python had the combination of the most standard libraries available as well as syntax that resembles psuedo code. Python and Java both have the most examples but Python wins in this case due to being much more concise. I was able to get myself reasonably prepared with Python syntax in six weeks of practice.
+
+
+
+
 [Language Mechanics](#language-mechanics)
 
 1. [Loops](#loops)
 1. [Strings](#strings)
-1. [Tuples](#tuples)
+1. [Tuples](#tuple)
 1. [Sort](#sort)
 1. [Hash](#hash)
 1. [Set](#set)
@@ -15,7 +30,7 @@
 1. [Random](#random)
 1. [Constants](#constants)
 1. [Ternary Condition](#ternary)
-1. [Bitwise operators](#bitwise)
+1. [Bitwise operators](#bitwise-operators)
 1. [For Else](#for-else)
 1. [Modulo](#modulo)
 1. [any](#any)
@@ -53,9 +68,9 @@
 1. [Max Profit Stock](#max-profit-stock)
 1. [Shift Array Right](#shift-array-right)
 1. [Continuous Subarrays with Sum k ](#continuous-subarrays-with-sum-k)
-1. [Events](#Events)
+1. [Events](#events)
 1. [Merge Meetings](#merge-meetings)
-1. [Trie](#Trie)
+1. [Trie](#trie)
 1. [Kadane's Algorithm - Max subarray sum](#kadane)
 1. [Union Find/DSU](#union-find)
 1. [Fast Power](#fast-power)
@@ -65,8 +80,6 @@
 1. [Resevior Sampling](#resevior-sampling)
 1. [Candy Crush](#candy-crush)
 1. [Kth missing Positive](#kth-missing-positive)
-
-[Algorithm Tips](#algo-tips)
 
 # Language Mechanics
 
@@ -1335,6 +1348,10 @@ def findAnagrams(self, s: str, p: str) -> List[int]:
 
 ## Dynamic Programming
 
+1. [dynamic programming](https://leetcode.com/discuss/general-discussion/458695/Dynamic-Programming-Patterns)
+1. [dp notes](https://leetcode.com/discuss/general-discussion/475924/my-experience-and-notes-for-learning-dp)
+
+
 ```python
 def coinChange(self, coins: List[int], amount: int) -> int:
   MAX = float('inf')
@@ -1366,8 +1383,6 @@ def longestCommonSubsequence(self, text1: str, text2: str) -> int:
 ```
 
 
-[dynamic programming](https://leetcode.com/discuss/general-discussion/458695/Dynamic-Programming-Patterns)
-[dp notes](https://leetcode.com/discuss/general-discussion/475924/my-experience-and-notes-for-learning-dp)
 
 ## Cyclic Sort
 
@@ -1491,7 +1506,8 @@ def mergeKLists(self, lists: List[ListNode]) -> ListNode:
 
 ## Linked List
 
-1. Lots of linked list operations require 3 pointers (reverse/merge)
+1. Solutions typically require 3 pointers: current, previous and next
+1. Solutions are usually made simplier with a prehead or dummy head node you create and then add to. Then return dummy.next
 
 Reverse:
 ```python
@@ -1545,6 +1561,8 @@ def mergeLinkedLists(headOne, headTwo):
 
 ## Convert Base
 
+1. Typically two steps. A digit modulo step and a integer division step by the next base then reverse the result or use a deque()
+
 Base 10 to 16, or any base by changing '16' and index
 ```python
 def toHex(self, num: int) -> str:
@@ -1561,7 +1579,8 @@ def toHex(self, num: int) -> str:
 
 ## Parenthesis
 
-Count can be used if simple case, otherwise stack. 
+1. Count can be used if simple case, otherwise stack. [Basic Calculator](#basic-calculator) is an extension of this algo
+
 ```python
 def isValid(self, s) -> bool:
   cnt = 0
