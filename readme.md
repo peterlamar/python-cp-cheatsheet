@@ -1,6 +1,6 @@
 
 
-Python3 reference for coding problems/light competitive programming. 
+Python3 reference for interview coding problems/light competitive programming. Contributions welcome!
 
 ## Why
 
