@@ -11,7 +11,7 @@ I built this cheatsheet while teaching myself Python3 for various interviews and
 
 The [rule of least power](https://en.wikipedia.org/wiki/Rule_of_least_power)
 
-I choose Python3 despite being more familiar with Javascript, Java, C++ and Golang for interviews as I felt Python had the combination of the most standard libraries available as well as syntax that resembles psuedo code. Python and Java both have the most examples but Python wins in this case due to being much more concise. I was able to get myself reasonably prepared with Python syntax in six weeks of practice. After picking up Python I have timed myself solving the same exercises in Golang and Python. Although I prefer Golang, I find that I can complete Python examples in half the time even accounting for +50% more bugs (approximately) that I tend to have in Python vs Go. This is optimizing for solved interview questons under pressure, when performance is considered then Go/C++ does consistently perform 1/10 the time of Python. In some rare cases algorithms that time out in Python that I can get away with in C++/Go on Leetcode. 
+I choose Python3 despite being more familiar with Javascript, Java, C++ and Golang for interviews as I felt Python had the combination of the most standard libraries available as well as syntax that resembles psuedo code, therefore being the most expressive. Python and Java both have the most examples but Python wins in this case due to being much more concise. I was able to get myself reasonably prepared with Python syntax in six weeks of practice. After picking up Python I have timed myself solving the same exercises in Golang and Python. Although I prefer Golang, I find that I can complete Python examples in half the time even accounting for +50% more bugs (approximately) that I tend to have in Python vs Go. This is optimizing for solved interview questons under pressure, when performance is considered then Go/C++ does consistently perform 1/10 the time of Python. In some rare cases algorithms that time out in Python that I can get away with in C++/Go on Leetcode. 
 
 
 [Language Mechanics](#language-mechanics)
@@ -376,6 +376,15 @@ list3 = list1 + list2 # ['a', 'b', 'c', 1, 2, 3]
 ## Dict
 
 Hashtables are implemented with dictionaries
+
+```python
+d = {'key': 'value'}
+print(d)  # {'key': 'value'}
+d['mynewkey'] = 'mynewvalue'
+print(d)  # {'key': 'value', 'mynewkey': 'mynewvalue'}
+print(d['key']) # value
+if 'key' in d: print("meh") # meh
+```
 
 Dictionary keys can be iterated through
 ```python
