@@ -44,6 +44,7 @@ I choose Python3 despite being more familiar with Javascript, Java, C++ and Gola
 1. [reduce](#reduce)
 1. [itertools](#itertools)
 1. [regular expression](#regular-expression)
+1. [Types](#types)
 
 [Collections](#collections)
 1. [Deque](#deque)
@@ -987,6 +988,14 @@ RE module allows regular expressions in python
 ```python
 def removeVowels(self, S: str) -> str:
     return re.sub('a|e|i|o|u', '', S)
+```
+
+## Types
+
+[cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
+
+```python
+
 ```
 
 # Collections

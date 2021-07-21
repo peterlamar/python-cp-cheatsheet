@@ -25,4 +25,18 @@ class Solution:
                 if mp[c] != test:
                     return False
         return len(stk) == 0
+
                 
+class Solution:
+    def isValid(self, s) -> bool:
+        stk = []
+        for c in s:
+            if c == '(':
+                stk.append(')')
+            elif c == '[':
+                stk.append(']')
+            elif c == '{':
+                stk.append('}')
+            elif not stk or stk.pop() != c:
+                return False
+        return not stk
