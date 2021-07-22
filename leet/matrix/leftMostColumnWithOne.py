@@ -1,5 +1,23 @@
 class Solution:
     def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
+        
+        R, C = binaryMatrix.dimensions()
+        foundOne = -1
+        rtn = C - 1
+        for r in range(R):
+            for c in range(rtn, -1, -1):
+                if binaryMatrix.get(r,c) == 1:
+                    rtn = c
+                    foundOne = c
+                else:
+                    break
+        
+        if foundOne == -1:
+            return -1
+        
+        return rtn
+
+    def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
         y,x = binaryMatrix.dimensions()
         foundOne = False
         

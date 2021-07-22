@@ -125,6 +125,7 @@ Fun with Ranges
 ```python
 for a in range(0,3): # 0,1,2
 for a in reversed(range(0,3)) # 2,1,0
+for i in range(3,-1,-1) # 3,2,1,0
 for i in range(len(A)//2): # A = [0,1,2,3,4,5]
   print(i) # 0,1,2 
   print(A[i]) # 0,1,2

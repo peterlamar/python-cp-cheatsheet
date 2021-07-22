@@ -1,3 +1,8 @@
+
+"""
+time: O(M + N) N is 26 (Letters) so just O(M)
+space: O(1)
+"""
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
         al = {}

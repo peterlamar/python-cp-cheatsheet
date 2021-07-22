@@ -14,6 +14,13 @@ class Solution:
         if right > 0:
             self.backtracking(stk, n, left, right-1, s + ")")    
 
+"""
+nth Catalan number 1/n+1(2n/n) which is bounded asymptotically
+by 
+Time/space: 4^n/n*sqrt(n)
+space: O(n) to store the sequence
+"""
+
 class Solution:
     def generateParenthesis(self, n:int) -> List[str]:
         rtn = []
