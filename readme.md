@@ -1255,7 +1255,7 @@ def maxAncestorDiff(self, root: TreeNode) -> int:
             return
         dfs(node.left, min(node.val, minval), max(node.val, maxval))
         dfs(node.right, min(node.val, minval), max(node.val, maxval))
-    dfs(root, float('inf'), float('-inf')
+    dfs(root, float('inf'), float('-inf'))
     return self.ans
 ```
 
