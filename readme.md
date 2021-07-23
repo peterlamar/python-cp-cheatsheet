@@ -18,6 +18,7 @@ I choose Python3 despite being more familiar with Javascript, Java, C++ and Gola
 
 1. [Loops](#loops)
 1. [Strings](#strings)
+1. [Slicing](#slicing)
 1. [Tuples](#tuple)
 1. [Sort](#sort)
 1. [Hash](#hash)
@@ -236,6 +237,28 @@ str = "this is string example....wow!!!"
 str.endswith("!!") # True
 str.startswith("this") # True
 str.endswith("is", 2, 4) # True
+```
+
+## Slicing
+
+Slicing [intro](https://stackoverflow.com/questions/509211/understanding-slice-notation)
+
+```python
+                +---+---+---+---+---+---+
+                | P | y | t | h | o | n |
+                +---+---+---+---+---+---+
+Slice position: 0   1   2   3   4   5   6
+Index position:   0   1   2   3   4   5
+p = ['P','y','t','h','o','n']
+p[0] 'P' # indexing gives items, not lists
+alpha[slice(2,4)] # equivalent to p[2:4]
+p[0:1] # ['P'] Slicing gives lists
+p[0:5] # ['P','y','t','h','o'] Start at beginning and count 5
+p[2:4] = ['t','r'] # Slice assignment  ['P','y','t','r','o','n']
+p[2:4] = ['s','p','a','m'] # Slice assignment can be any size['P','y','s','p','a','m','o','n']
+p[4:4] = ['x','y'] # insert slice ['P','y','t','h','x','y','o','n'] 
+p[0:5:2] # ['P', 't', 'o'] sliceable[start:stop:step]
+p[5:0:-1] # ['n', 'o', 'h', 't', 'y']
 ```
 
 ## Tuple
