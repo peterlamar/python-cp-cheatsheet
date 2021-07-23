@@ -18,4 +18,22 @@ class Solution:
             seenNums[n] = i
         
         return myList
+
+
+"""
+Time/Space: n
+"""
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        rtn = []
+        mp = {}
+        
+        for i, n in enumerate(nums):
+            if n in mp:
+                rtn.append(i)
+                rtn.append(mp[n])
+                
+            mp[target - n] = i
+        
+        return rtn
         

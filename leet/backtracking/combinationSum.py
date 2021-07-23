@@ -13,3 +13,22 @@ class Solution:
         
         backtracking(cand, target, [])
         return rtn
+
+class Solution:
+    def combinationSum(self, cand: List[int], target: int) -> List[List[int]]:
+        rtn = []
+        
+        def dfs(path:List[int], remain:int, tmp:List[int]):
+            if remain < 0:
+                return
+            if remain == 0:
+                rtn.append(tmp)
+                return
+            
+            for i in range(0, len(path)):
+                dfs(path[i:], remain-path[i], tmp + [path[i]])
+                
+        dfs(cand, target, [])
+            
+        return rtn
+        

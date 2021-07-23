@@ -82,4 +82,29 @@ class Solution:
 
         # Normal palindrome func
         return True #
+
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        l = 0
+        r = len(s) -1
+        
+        while l<r:
+            if s[l] != s[r]:
+                if l + 1 == r:
+                    return True
+                
+                sA = s[l:r]
+                if sA == sA[::-1]:
+                    return True
+                
+                sB = s[l+1:r+1]
+                if sB == sB[::-1]:
+                    return True    
+                
+                return False
+            
+            l = l + 1
+            r = r - 1
+            
+        return True
         
