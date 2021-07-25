@@ -35,4 +35,27 @@ class Solution:
         dummy.right.left = node
         
         return dummy.right
+
+    def treeToDoublyList(self, root: 'Node') -> 'Node':
+        if root is None:
+            return
+        
+        dummy = Node(-1)
+        prev = dummy
+        
+        def inorder(node):
+            nonlocal prev
+            if node:
+                inorder(node.left)
+                prev.right = node
+                node.left = prev
+                prev = node
+                inorder(node.right)
+                
+        inorder(root)
+        
+        dummy.right.left = prev
+        prev.right = dummy.right
+        
+        return dummy.right
         
