@@ -476,6 +476,7 @@ Recursive
   / \
  4   5
 """
+# PostOrder 4 5 2 3 1  (Left-Right-Root)
 def postOrder(node):
   if node is None:
     return
