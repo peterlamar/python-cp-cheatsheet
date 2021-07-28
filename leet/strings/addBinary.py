@@ -26,3 +26,24 @@ class Solution:
             rtn.append(chr(carry + ord('0')))
 
         return "".join(rtn[::-1])
+
+    def addBinary(self, a: str, b: str) -> str:
+        rtn = deque()
+        
+        a = list(a)
+        b = list(b)
+        
+        carry = 0
+        while a or b:
+            a1 = ord(a.pop()) - ord('0') if a else 0
+            b1 = ord(b.pop()) - ord('0') if b else 0
+            total = a1 + b1 + carry
+            digit = total % 2
+            carry = total // 2
+            rtn.appendleft(str(digit))
+        
+        if carry:
+            rtn.appendleft(str(carry))
+        
+        return "".join(rtn)
+        

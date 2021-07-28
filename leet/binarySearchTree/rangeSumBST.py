@@ -24,3 +24,22 @@ class Solution:
                 right = helper(node.right)
         helper(root)
         return self.total
+
+    def rangeSumBST(self, root: TreeNode, low: int, high: int) -> int:
+        rtn = 0
+        
+        def dfs(node):
+            nonlocal rtn
+            if node:
+                if low <= node.val <= high:
+                    rtn += node.val 
+                
+                if node.val >= low:
+                    dfs(node.left)
+                if node.val <= high:                
+                    dfs(node.right)
+        
+        dfs(root)
+        
+        return rtn
+        
