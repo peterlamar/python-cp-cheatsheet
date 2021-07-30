@@ -107,4 +107,29 @@ class Solution:
             r = r - 1
             
         return True
+
+    def validPalindrome(self, s: str) -> bool:
+        l = 0
+        r = len(s)-1
         
+        while l<r:
+            if l+1 == r:
+                return True
+            
+            if s[l] != s[r]:
+                a1 = s[l:r]
+                if a1 == a1[::-1]:
+                    return True
+                
+                a2 = s[l+1:r+1]
+                if a2 == a2[::-1]:
+                    return True
+                
+                return False
+            
+            l += 1
+            r -= 1
+        
+        return True
+        
+            

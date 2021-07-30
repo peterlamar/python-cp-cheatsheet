@@ -17,3 +17,12 @@ class SparseVector:
 # v1 = SparseVector(nums1)
 # v2 = SparseVector(nums2)
 # ans = v1.dotProduct(v2)
+
+class SparseVector:
+    def __init__(self, nums :List[int]):
+        self.data = {i:n for i,n in enumerate(nums) if n != 0}
+        return
+    
+    def dotProduct(self, vec : 'SpareVector') -> int:        
+        # iterate through keys -for i in vec.data . Not for i,j in enumerate(vec.data)
+        return sum([self.data[i] * vec.data[i] for i in vec.data if i in self.data])

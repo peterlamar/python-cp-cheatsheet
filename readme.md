@@ -122,7 +122,7 @@ for i in range(len(message) + 1):
   if i == len(message) or message[i] == ' ':
 ```
 
-Fun with Ranges
+Fun with Ranges - range(start, stop, step)
 ```python
 for a in range(0,3): # 0,1,2
 for a in reversed(range(0,3)) # 2,1,0

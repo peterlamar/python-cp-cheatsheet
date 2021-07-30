@@ -5,19 +5,23 @@ space: O(N)
 """
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        rtn = list(s)
         stk = []
+        s = list(s)
+        
+        # Key insight: Store indexes in stack
         for i, c in enumerate(s):
             if c == '(':
                 stk.append(i)
             elif c == ')':
-                if len(stk) > 0:
+                if stk:
                     stk.pop()
                 else:
-                    rtn[i] = ''
+                    s[i] = ''
+        
         while stk:
-            rtn[stk.pop()] = ''
-        return "".join(rtn)
+            s[stk.pop()] = ''
+        
+        return "".join(s)
 
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
