@@ -71,6 +71,52 @@ class Solution:
                     rtn = max(rtn, sum(areas[p] for p in possible)+1)
         
         return rtn
-                    
+
+
+    def largestIsland(self, grid: List[List[int]]) -> int:
+        """
+        paint each island, store its area
+        go through 0's, count neighbors area and return largest
+        """
+        
+        def neighbors(r,c):
+            for x,y in ((r+1,c),(r-1,c),(r,c-1),(r,c+1)):
+                if 0<=x<N and 0<=y<N:
+                    yield x,y
+        
+        def paint(r, c, pnum):
+            grid[r][c] = pnum
+            area = 0
+            for x, y in neighbors(r,c):
+                if grid[x][y] == 1:
+                    area += paint(x,y, pnum) 
+            return area + 1
+                
+        
+        N = len(grid)
+        areas = dict()
+        pnum = 2
+        
+        for r in range(N):
+            for c in range(N):
+                if grid[r][c] == 1:
+                    areas[pnum] = paint(r,c, pnum)
+                    pnum += 1
+        
+
+        maxSum = max(areas.values() or [0])
+        for r in range(N):
+            for c in range(N):
+                if grid[r][c] == 0:
+                    tmpSum = 1
+                    possible = set()
+                    for x,y in neighbors(r,c):
+                        if grid[x][y] != 0:
+                            possible.add(grid[x][y])
+                    for p in possible:
+                        tmpSum += areas[p]
+                    maxSum = max(maxSum, tmpSum)
+
+        return maxSum
         
         
