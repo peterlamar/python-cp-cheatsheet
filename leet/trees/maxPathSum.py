@@ -32,4 +32,19 @@ class Solution:
         
             
             
-    
+    def maxPathSum(self, root: TreeNode) -> int:
+        # Get max of left, right + val
+        self.mxPath = float('-inf')
+
+        def dfs(node):
+            if node is None:
+                return 0
+            
+            left = max(dfs(node.left), 0)
+            right = max(dfs(node.right), 0)
+            self.mxPath = max(self.mxPath, node.val + left + right)
+            return node.val + max(left, right)
+        
+        dfs(root)
+        
+        return self.mxPath

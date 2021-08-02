@@ -1,37 +1,45 @@
 class Solution:
     """
     time: 14 min
-    time: O(n * 2^(n-1))
+    time: O(2^n)
     space: O(n)
     """
-    def isValid(self, s) -> bool:
-        cnt = 0
-        for c in s:
-            if c == '(':
-                cnt += 1
-            elif c == ')':
-                cnt -= 1
-                if cnt < 0:
-                    return False
-        return cnt == 0
     def removeInvalidParentheses(self, s: str) -> List[str]:
+        
+        def isValid(s) -> bool:
+            cnt = 0
+            for c in s:
+                if c == '(':
+                    cnt += 1
+                elif c == ')':
+                    if cnt == 0:
+                        return False
+                    else:
+                        cnt -= 1
+            return cnt == 0
+            
+        
         rtn = []
-        v = set()
-        v.add(s)
-        if len(s) == 0: return [""]
+        
+        level = set()
+        level.add(s)
+        
         while True:
-            for n in v:
-                if self.isValid(n):
-                    rtn.append(n)
-            if len(rtn) > 0: break
-            level = set()
-            for n in v:
-                for i, c in enumerate(n):
-                    if c == '(' or c == ')':
-                        sub = n[0:i] + n[i + 1:len(n)]
-                        level.add(sub)
-            v = level
-        return rtn
+            # check if string is valid, if so then add to rtn
+            for s in level:
+                if isValid(s):
+                    rtn.append(s)
+                    
+            if len(rtn) > 0:
+                return rtn
+            
+            # if not, make substrings and repeat
+            newLevel = set()
+            for s in level:
+                for i,c in enumerate(s):
+                    if c == '(' or ')':
+                        newLevel.add(s[0:i] + s[i+1:len(s)])
+            level = newLevel
 
 
 

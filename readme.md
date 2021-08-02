@@ -1006,6 +1006,8 @@ result = reduce(lambda x, y: x+y, numbers, 10) #78
 
 ## itertools
 
+[itertools.accumulate(iterable[, func]) –> accumulate object](https://www.geeksforgeeks.org/python-itertools-accumulate/)
+
 ```python
 import itertools
 data = [3, 4, 6, 2, 1, 9, 0, 7, 5, 8]

@@ -1,4 +1,36 @@
 class Solution:
+        def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        
+        def neighbors(r,c):
+            for x,y in ((r-1,c),(r+1,c),(r,c-1),(r,c+1)):
+                if 0<=x<R and 0<=y<C:
+                    yield x,y
+        
+        def dfs(r,c):
+            area = 0
+            grid[r][c] = 0
+            for x,y in neighbors(r,c):
+                if grid[x][y] == 1:
+                    area += dfs(x,y)
+            return area + 1
+            
+        
+        if not grid:
+            return
+        
+        R = len(grid)
+        C = len(grid[0])
+        
+        mxArea = 0
+        
+        for r in range(R):
+            for c in range(C):
+                if grid[r][c] == 1:
+                    mxArea = max(mxArea, dfs(r,c))
+        
+        return mxArea
+    
+    
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         
         Y = len(grid)
