@@ -3,20 +3,20 @@ time: a + b
 space: a + b
 """
 class Solution:
-    def intervalIntersection(self, A: List[List[int]], B: List[List[int]]) -> List[List[int]]:
-        
-        a = 0
-        b = 0
+    def intervalIntersection(self, l1: List[List[int]], l2: List[List[int]]) -> List[List[int]]:
         rtn = []
+        a = b = 0
         
-        while a < len(A) and b < len(B):
-            ast, ae =  A[a]
-            bst, be =  B[b]
+        while a < len(l1) and b < len(l2):
+            ast, aed = l1[a]
+            bst, bed = l2[b]
             
-            if ast <= be and ae >= bst:
-                rtn.append((max(bst, ast), min(ae,be)))
+            # if intersecting, merge. 
+            if aed >= bst and ast <= bed:
+                rtn.append((max(ast,bst), min(bed, aed)))
             
-            if ae <= be:
+            # else catch up list using end times
+            if aed <= bed:
                 a += 1
             else:
                 b += 1

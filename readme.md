@@ -294,6 +294,8 @@ print(cars) # ['VW', 'BMW', 'Ford', 'Mitsubishi']
 
 ```python
 print(sorted(['Ford', 'BMW', 'Volvo'])) # ['BMW', 'Ford', 'Volvo']
+nums = [-4,-1,0,3,10]
+print(sorted(n*n for n in nums)) # [0,1,9,16,100]
 ```
 
 
@@ -1583,26 +1585,23 @@ def reverse(head):
 ```
 Merge:
 ```python
-def mergeLinkedLists(headOne, headTwo):
-    p1 = headOne
-    p2 = headTwo
-    prev = None
-
-    while p1 and p2:
-        if p1.value < p2.value:
-            prev = p1
-            p1 = p1.next
+def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+    dummy = ListNode(-1)
+    
+    prev = dummy
+    
+    while l1 and l2:
+        if l1.val < l2.val:
+            prev.next = l1
+            l1 = l1.next 
         else:
-            if prev:
-                prev.next = p2
-            prev = p2
-            p2 = p2.next
-            prev.next = p1
-	
-    if p1 is None:
-        prev.next = p2
-	
-    return headOne if headOne.value < headTwo.value else headTwo
+            prev.next = l2
+            l2 = l2.next 
+        prev = prev.next 
+    
+    prev.next = l1 if l1 is not None else l2 
+    
+    return dummy.next 
 ```
 
 ## Convert Base

@@ -4,24 +4,19 @@ space: up to n
 """
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
-        dt = collections.defaultdict(int)
-        dt[0] = -1
-        
-        if len(nums) <= 1:
-            return False
-        
+        # look for repeated mod values to signal multiple of k
+        hm = {0:-1}
         total = 0
-        for i,n in enumerate(nums):
+        for i, n in enumerate(nums):
             total += n
-            if k != 0:
-                rem = total % k
-            else:
-                rem = total
             
-            if rem in dt:
-                if i - dt[rem] > 1:
+            key = total % k
+            
+            # values not adjacent
+            if key in hm:
+                if i - hm[key] > 1:
                     return True
             else:
-                dt[rem] = i
-            
-        return False                
+                hm[key] = i
+        
+        return False             

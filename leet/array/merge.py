@@ -5,9 +5,11 @@ class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         if not intervals:
             return
-        
+
+        # sort intervals
         intervals.sort(key = lambda x:x[0])
-        
+
+        # start merged list and go through intervals
         merged = [intervals[0]]
         
         for i in intervals:
