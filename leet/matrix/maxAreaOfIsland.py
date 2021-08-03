@@ -1,4 +1,9 @@
-class Solution:
+"""
+time: O(r*c) - we visit every square
+space: O(r*c) - call stack
+"""
+
+lass Solution:
         def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         
         def neighbors(r,c):

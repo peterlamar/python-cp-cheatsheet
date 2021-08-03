@@ -21,3 +21,18 @@ class Solution:
                 stk.append((node.right, c+1))
 
         return [cols[i] for i in sorted(cols)]
+
+    def verticalOrder(self, root: TreeNode) -> List[List[int]]:
+        col = collections.defaultdict(list)
+        
+        # pop left, add c as key to dict and return col.values()
+        stk = deque([(root, 0)])
+        
+        while stk:
+            node, c = stk.popleft()
+            if node:
+                col[c].append(node.val)
+                stk.append((node.left, c-1))
+                stk.append((node.right, c+1))
+        
+        return [col[i] for i in sorted(col)]

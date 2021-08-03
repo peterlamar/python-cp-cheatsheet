@@ -4,17 +4,25 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+"""
+time: N
+space: N worst case (logN if balanced)
+"""
 class Solution:
     def diameterOfBinaryTree(self, root: TreeNode) -> int:
-        self.mx = 0
+        self.cnt = 0
+        
         def dfs(node):
-            if node:
-                l = dfs(node.left)
-                r = dfs(node.right)
-                total = l + r
-                self.mx = max(self.mx, total) 
-                return max(l, r) + 1
-            else:
+            if node is None:
                 return 0
+            
+            l = dfs(node.left)
+            r = dfs(node.right)
+            
+            self.cnt = max(self.cnt, l+r)
+            
+            return max(l, r) + 1
+        
         dfs(root)
-        return self.mx
+        
+        return self.cnt
