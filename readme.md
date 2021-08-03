@@ -1558,10 +1558,10 @@ def mergeKLists(self, lists: List[ListNode]) -> ListNode:
 Reverse:
 ```python
 def reverseLinkedList(head):
-	prev, node  = None, head
+    prev, node  = None, head
     while node:
-		node.next, prev, node = prev, node, node.next
-	return prev
+        node.next, prev, node = prev, node, node.next
+    return prev
 ```
 
 Reversing is easier if you can modify the values of the list
