@@ -13,12 +13,16 @@ class Solution:
 
 class Solution:
     def removeSubfolders(self, folder: List[str]) -> List[str]:
+        # sort, add stems to set and skip folders which are stem + sub
         folder.sort()
         seen = set()
+        
         for f in folder:
             for i in range(2, len(f)):
-                if f[i] == '/' and f[: i] in seen:
+                if f[i] == '/' and f[:i] in seen:
                     break
+            # Break not encountered
             else:
                 seen.add(f)
+        
         return list(seen)

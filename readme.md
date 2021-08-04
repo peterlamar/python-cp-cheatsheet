@@ -1123,7 +1123,18 @@ dd['key'].append(2) # defaultdict(<class 'list'>, {'key': [1, 2]})
 ## Binary Search
 
 ```python
-class Solution:
+def firstBadVersion(self, n):
+    l, r = 0, n
+    while l < r:
+        m = l + (r-l) // 2
+        if isBadVersion(m):
+            r = m
+        else:
+            l = m + 1
+    return l
+```
+
+```python
 """
 12345678 
 FFTTTTTT
