@@ -1796,15 +1796,25 @@ def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[Lis
 Good for autocomplete, spell checker, IP routing (match longest prefix), predictive text, solving word games
 
 ```python
-def __init__(self):
-    self.trie = {}
-def addWord(self, word: str) -> None:
-    node = self.trie 
-    for c in word:
-        if c not in node:
-            node[c] = {}
-        node = node[c]
-    node['$'] = True
+class Trie:
+    def __init__(self):
+        self.trie = {}
+
+    def addWord(self, s: str):
+        tmp = self.trie 
+        for c in s:
+            if c not in self.trie:
+                tmp[c] = {}
+            tmp = tmp[c]
+            
+    def search(self, s: str):
+        tmp = self.trie 
+        for c in s:
+            if c in tmp:
+                tmp = tmp[c]
+            else:
+                return False
+        return True
 ```
 
 Search example with . for wildcards

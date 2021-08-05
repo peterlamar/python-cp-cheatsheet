@@ -2,6 +2,7 @@ class WordDictionary:
 
     def __init__(self):
         self.trie = {}
+        
     def addWord(self, word: str) -> None:
         node = self.trie 
         for c in word:
