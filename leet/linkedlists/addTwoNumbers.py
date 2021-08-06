@@ -10,6 +10,26 @@
  
 """
 class Solution:
+
+        def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        head = node = ListNode(-1)
+        carry = 0
+        
+        while l1 or l2 or carry:
+            d1 = l1.val if l1 else 0
+            d2 = l2.val if l2 else 0
+            total = d1 + d2 + carry
+            newNode = ListNode(total%10)
+            carry = total // 10
+            node.next = newNode
+            node = node.next 
+            if l1:
+                l1 = l1.next 
+            if l2:
+                l2 = l2.next
+        
+        return head.next 
+
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         root = n = ListNode(0)
         carry = 0
