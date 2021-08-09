@@ -602,6 +602,41 @@ def removeInvalidParentheses(self, s: str) -> List[str]:
     return rtn
 ```
 
+Reconstructing binary trees
+1. Binary tree could be constructed from preorder and inorder traversal
+1. Inorder traversal of BST is an array sorted in the ascending order
+
+Convert tree to array and then to balanced tree
+```python
+def balanceBST(self, root: TreeNode) -> TreeNode:
+    self.inorder = []
+    
+    def getOrder(node):
+        if node is None:
+            return
+        getOrder(node.left)
+        self.inorder.append(node.val)
+        getOrder(node.right)
+
+    # Get inorder treenode ["1,2,3,4"]
+    getOrder(root)
+    
+    # Convert to Tree
+    #        2
+    #       1 3
+    #          4
+    def bst(listTree):
+        if not listTree:
+            return None
+        mid = len(listTree) // 2
+        root = TreeNode(listTree[mid])
+        root.left = bst(listTree[:mid])
+        root.right = bst(listTree[mid+1:])
+        return root
+
+    return bst(self.inorder)
+```
+
 ## Graph
 
 Build an [adjecency graph](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs) from edges list
@@ -1835,6 +1870,8 @@ def search(self, word: str) -> bool:
 
 ## Kadane
 
+local_maxiumum[i] = max(A[i], A[i] + local_maximum[i-1])
+[Explanation](https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d)
 Determine max subarray sum
 
 ```python
