@@ -12,27 +12,22 @@ space: O(H)
 """
 class Solution:
     def closestValue(self, root: TreeNode, target: float) -> int:
-        self.dif = float('inf')
-        self.val = 0
+        self.diff = float('inf')
+        self.val = float('inf')
         
-        if root:
-            self.val = root.val
-        else:
-            return
-        
-        def helper(node):
+        def dfs(node):
             if node is None:
-                return 0
-
-            if node:
-                if abs(node.val - target) < self.dif:
-                    self.dif = abs(node.val - target)
-                    self.val = node.val
-
-                helper(node.left)
-                helper(node.right)
+                return
+            if self.diff > abs(target-node.val):
+                self.val = node.val 
+                self.diff = abs(target-node.val)
             
-        helper(root)
+            if target < node.val:
+                dfs(node.left)
+            else:            
+                dfs(node.right)
+        
+        dfs(root)
         return self.val
 
     """
