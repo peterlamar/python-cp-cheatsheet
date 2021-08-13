@@ -42,6 +42,30 @@
 #        """
 
 class Solution:
+    """
+    [[1,1],2,[1,1]]
+    unweighted = 2
+    weighted = 2
+
+    unweighted = 2 + 1 + 1 + 1 + 1 = 6
+    weighted = 2 + 6 (2 added twice since it stays in unweighted)
+    """
+    def depthSumInverse(self, nestedList: List[NestedInteger]) -> int:
+        weighted = 0
+        unweighted = 0
+        
+        while nestedList:
+            level = []
+            for item in nestedList:
+                if item.isInteger():
+                    unweighted += item.getInteger()
+                else:
+                    level = level + item.getList()
+            weighted += unweighted # repeatedly adds the previous level
+            nestedList = level
+        
+        return weighted
+
     def depthSumInverse(self, nestedList: List[NestedInteger]) -> int:
         unweighted = 0
         weighted = 0

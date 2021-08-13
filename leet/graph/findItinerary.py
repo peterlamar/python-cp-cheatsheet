@@ -5,11 +5,11 @@ class Solution:
         for fr, to in sorted(tickets)[::-1]:
             adj[fr].append(to)
             
-        rtn = deque()
+        rtn = []
         def visit(airport):
             while adj[airport]:
                 visit(adj[airport].pop())
-            rtn.appendleft(airport)
+            rtn.append(airport)
         
         visit('JFK')
                     
