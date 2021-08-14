@@ -283,14 +283,9 @@ def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
 
 ## Sort
 
-Sort sorts alphabectically
-```python
-cars = ['Ford', 'BMW', 'Volvo']
-cars.sort() # returns None type
-print(cars) # ['BMW', 'Ford', 'Volvo']
-cars.sort(key=lambda x: len(x) )
-print(cars) # ['VW', 'BMW', 'Ford', 'Mitsubishi']
-```
+sorted(iterable, key=key, reverse=reverse)
+
+Sort sorts alphabectically, from smallest to largest
 
 ```python
 print(sorted(['Ford', 'BMW', 'Volvo'])) # ['BMW', 'Ford', 'Volvo']
@@ -298,14 +293,27 @@ nums = [-4,-1,0,3,10]
 print(sorted(n*n for n in nums)) # [0,1,9,16,100]
 ```
 
+```python
+cars = ['Ford', 'BMW', 'Volvo']
+cars.sort() # returns None type
+cars.sort(key=lambda x: len(x) ) # ['BMW', 'Ford', 'Volvo']
+print(sorted(cars, key=lambda x:len(x))) # ['BMW', 'Ford', 'Volvo']
+```
+
+Sort key by value, even when value is a list
+```python
+meh = {'a':3,'b':0,'c':2,'d':-1}
+print(sorted(meh, key=lambda x:meh[x])) # ['d', 'b', 'c', 'a']
+meh = {'a':[0,3,'a'],'b':[-2,-3,'b'],'c':[2,3,'c'],'d':[-2,-2,'d']}
+print(sorted(meh, key=lambda x:meh[x])) # ['b', 'd', 'a', 'c']
+```
 
 ```python
-  def merge_sorted_lists(arr1, arr2): # built in sorted does Timsort optimized for subsection sorted lists
+def merge_sorted_lists(arr1, arr2): # built in sorted does Timsort optimized for subsection sorted lists
     return sorted(arr1 + arr2)
 ```
 
 Sort an array but keep the original indexes
-
 ```python
 self.idx, self.vals = zip(*sorted([(i,v) for i,v in enumerate(nums)], key=lambda x:x[1]))
 ```
@@ -320,7 +328,6 @@ print(test) # [(0, 100), (2, 20), (5, 10), (2, 3)]
 ```
 
 Sort and print dict values by key
-
 ```python
 ans = {-1: [(10, 1), (3, 3)], 0: [(0, 0), (2, 2), (7, 4)], -3: [(8, 5)]}
 for key, value in sorted(ans.items()): print(value)
@@ -1065,10 +1072,28 @@ def removeVowels(self, S: str) -> str:
 
 ## Types
 
+from typing import List, Set, Dict, Tuple, Optional
 [cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
 
-```python
+## Grids
 
+Useful helpful function
+```python
+R = len(grid)
+C = len(grid[0])
+
+def neighbors(r, c):
+    for nr, nc in ((r,c-1), (r,c+1), (r-1, c), (r+1,c)):
+        if 0<=nr<R and 0<=nc<C:
+            yield nr, nc
+
+def dfs(r,c, index):
+    area = 0
+    grid[r][c] = index
+    for x,y in neighbors(r,c):
+        if grid[x][y] == 1:
+            area += dfs(x,y, index)
+    return area + 1
 ```
 
 # Collections
@@ -1833,17 +1858,34 @@ Good for autocomplete, spell checker, IP routing (match longest prefix), predict
 ```python
 class Trie:
     def __init__(self):
-        self.trie = {}
-
+        self.root = {}
+    
     def addWord(self, s: str):
-        tmp = self.trie 
+        tmp = self.root 
         for c in s:
-            if c not in self.trie:
+            if c not in tmp:
                 tmp[c] = {}
             tmp = tmp[c]
+        tmp['#'] = s # Store full word at '#' to simplify
+    
+    def matchPrefix(self, s: str, tmp=None):
+        if not tmp: tmp = self.root 
+        for c in s:
+            if c not in tmp:
+                return []
+            tmp = tmp[c]
+        
+        rtn = []
+        
+        for k in tmp:
+            if k == '#':
+                rtn.append(tmp[k])
+            else:
+                rtn += self.matchPrefix('', tmp[k])
+        return rtn
             
-    def search(self, s: str):
-        tmp = self.trie 
+    def hasWord(self, s: str):
+        tmp = self.root 
         for c in s:
             if c in tmp:
                 tmp = tmp[c]
