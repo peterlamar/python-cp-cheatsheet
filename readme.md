@@ -46,6 +46,7 @@ I choose Python3 despite being more familiar with Javascript, Java, C++ and Gola
 1. [itertools](#itertools)
 1. [regular expression](#regular-expression)
 1. [Types](#types)
+1. [Grids](#grids)
 
 [Collections](#collections)
 1. [Deque](#deque)
