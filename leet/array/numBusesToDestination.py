@@ -1,25 +1,50 @@
 class Solution:
     def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
-        stopToRoute = collections.defaultdict(set)
+        adj = collections.defaultdict(set)
         
-        for i, stops in enumerate(routes):
-            for stop in stops: 
-                stopToRoute[stop].add(i)
-                
-        bfs = [(source,0)]
+        for i, r in enumerate(routes):
+            for stop in r:
+                adj[stop].add(i)
+        
+        dfs = [(source, 0)]
+        seenStops = set([source])
+        seenRoutes = set()
+        
+        for stop, busRoute in dfs:
+            if stop == target:
+                return busRoute
+            for route in adj[stop]:
+                if route not in seenRoutes:
+                    seenRoutes.add(route)
+                    for s in routes[route]:
+                        if s not in seenStops:
+                            seenStops.add(s)
+                            dfs.append((s, busRoute+1))
+        
+        return -1
+
+    def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+        
+        adj = collections.defaultdict(set)
+        
+        for i, r in enumerate(routes):
+            for stop in r:
+                adj[stop].add(i)
+        
+        dfs = deque([(source, 0)])
         seenStops = {source}
         seenRoutes = set()
         
-        for stop, buses in bfs:
+        while dfs:
+            stop, busRoute = dfs.popleft()
             if stop == target:
-                return buses
-            
-            for r in stopToRoute[stop]:
-                if r not in seenRoutes:
-                    seenRoutes.add(r)
-                    for nextStop in routes[r]:
-                        if nextStop not in seenStops:
-                            seenStops.add(nextStop)
-                            bfs.append((nextStop, buses+1))
+                return busRoute
+            for route in adj[stop]:
+                if route not in seenRoutes:
+                    seenRoutes.add(route)
+                    for s in routes[route]:
+                        if s not in seenStops:
+                            seenStops.add(s)
+                            dfs.append((s, busRoute+1))
         
         return -1
