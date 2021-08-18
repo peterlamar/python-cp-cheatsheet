@@ -462,6 +462,13 @@ sales = { 'apple': 2, 'orange': 3, 'grapes': 4 }
 print (sales.items()) # dict_items([('apple', 2), ('orange', 3), ('grapes', 4)])
 ```
 
+Create 2D dict
+```python
+votes = ["ABC","CBD","BCA"]
+rnk = {v:[0] * len(votes[0]) for v in votes[0]} 
+print(rnk) # {'A': [0, 0, 0], 'B': [0, 0, 0], 'C': [0, 0, 0]}
+```
+
 ## BinaryTree
 
 
