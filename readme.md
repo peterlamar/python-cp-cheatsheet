@@ -1281,6 +1281,27 @@ def isValidBST(self, root: TreeNode) -> bool:
 [Kahn's algorithm](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm), detects cycles through degrees and needs all the nodes represented to work 
 
 ```python
+def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    # Kahns algorithm, topological sort
+    adj = collections.defaultdict(list)
+    degree = collections.Counter()
+    
+    for dest, orig in prerequisites:
+        adj[orig].append(dest)
+        degree[dest] += 1
+    
+    bfs = [c for c in range(numCourses) if degree[c] == 0]
+    
+    for o in bfs:
+        for d in adj[o]:
+            degree[d] -= 1
+            if degree[d] == 0:
+                bfs.append(d)
+
+    return len(bfs) == numCourses
+```
+
+```python
 def alienOrder(self, words: List[str]) -> str:
     nodes = set("".join(words))
     adj = collections.defaultdict(list)
@@ -1308,7 +1329,6 @@ def alienOrder(self, words: List[str]) -> str:
                 stk.append(nei)
     
     return "".join(ans) * (set(ans) == nodes)
-        
 ```
 
 ## Sliding Window
