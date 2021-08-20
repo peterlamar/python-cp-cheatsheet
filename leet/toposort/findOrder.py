@@ -3,6 +3,29 @@ class Solution:
         adj = collections.defaultdict(list)
         degree = collections.Counter()
         
+        for dest, orig in prerequisites:
+            adj[orig].append(dest)
+            degree[dest] += 1
+        
+        # Get origins
+        bfs = [c for c in range(numCourses) if degree[c] == 0]
+        
+        for c in bfs:
+            for n in adj[c]:
+                degree[n] -= 1
+                if degree[n] == 0:
+                    bfs.append(n)
+        
+        if len(bfs) == numCourses:
+            return bfs
+        else:
+            return []
+                    
+
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        adj = collections.defaultdict(list)
+        degree = collections.Counter()
+        
         for p in prerequisites:
             dest, org = p
             adj[org].append(dest)

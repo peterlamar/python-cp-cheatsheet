@@ -56,7 +56,7 @@ I choose Python3 despite being more familiar with Javascript, Java, C++ and Gola
 [Algorithms](#algorithms)
 
 1. [Binary Search](#binary-search)
-1. [Topological Search](#topological-search)
+1. [Topological Sort](#topological-sort)
 1. [Sliding Window](#sliding-window)
 1. [Tree Tricks](#tree-tricks)
 1. [Binary Search Tree](#binary-search-tree)
@@ -468,6 +468,21 @@ votes = ["ABC","CBD","BCA"]
 rnk = {v:[0] * len(votes[0]) for v in votes[0]} 
 print(rnk) # {'A': [0, 0, 0], 'B': [0, 0, 0], 'C': [0, 0, 0]}
 ```
+## Tree
+
+1. A [tree](https://www.geeksforgeeks.org/some-theorems-on-trees/) is an undirected [graph](https://www.cs.sfu.ca/~ggbaker/zju/math/trees.html) in which any two vertices are
+connected by exactly one path.
+1. Any connected graph who has n nodes with n-1 edges is a tree.
+1. The degree of a vertex is the number of edges connected to the vertex.
+1. A leaf is a vertex of degree 1. An internal vertex is a vertex of degree at least 2.
+1. A [path graph](https://en.wikipedia.org/wiki/Path_graph) is a tree with two or more vertices with no branches, degree of 2 except for leaves which have degree of 1
+
+1. Any two vertices in G can be connected by a unique simple path.
+1. G is acyclic, and a simple cycle is formed if any edge is added to G.
+1. G is connected and has no cycles.
+1. G is connected but would become disconnected if any single edge is removed from G.
+1. 
+
 
 ## BinaryTree
 
@@ -1276,9 +1291,16 @@ def isValidBST(self, root: TreeNode) -> bool:
     return True
 ```
 
-## Topological Search
+## Topological Sort
 
-[Kahn's algorithm](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm), detects cycles through degrees and needs all the nodes represented to work 
+[Kahn's algorithm](https://www.geeksforgeeks.org/all-topological-sorts-of-a-directed-acyclic-graph/), detects cycles through degrees and needs all the nodes represented to work 
+
+1. Initialize vertices as unvisited
+1. Pick vertex with zero indegree, append to result, decrease indegree of neighbors 
+1. Now repeat for neighbors, resulting list is sorted by source -> dest
+
+If cycle, then degree of nodes in cycle will not be 0 since there
+is no origin
 
 ```python
 def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
