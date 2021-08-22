@@ -3,6 +3,22 @@ time: O(nk)
 """
 class Solution:
     def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
+        hm = {}
+        l = rtn = 0
+        
+        for r, c in enumerate(s):
+            hm[c] = r
+            
+            if len(hm) > k:
+                idx = min(hm.values())
+                del hm[s[idx]]
+                l = idx + 1
+            
+            rtn = max(rtn, r-l+1)
+        
+        return rtn
+
+    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
         cnt = collections.Counter()
         l = mx = 0
         

@@ -83,7 +83,6 @@ I choose Python3 despite being more familiar with Javascript, Java, C++ and Gola
 1. [Reverse Polish](#reverse-polish)
 1. [Resevior Sampling](#resevior-sampling)
 1. [Candy Crush](#candy-crush)
-1. [Kth missing Positive](#kth-missing-positive)
 
 # Language Mechanics
 
@@ -820,7 +819,7 @@ for a, b in zip(words, words[1:]):
         print("c2 ", c2, end=" ") 
 ```
 
-A single argument can be passed when traversing a list of lists
+Passing in [*](https://stackoverflow.com/questions/29139350/difference-between-ziplist-and-ziplist/29139418) unpacks a list or other iterable, making each of its elements a separate argument. 
 
 ```python
 a = [[1,2],[3,4]]
@@ -835,6 +834,16 @@ Useful when rotating a matrix
 ```python
 # matrix = [[1,2,3],[4,5,6],[7,8,9]]
 matrix[:] = zip(*matrix[::-1]) # [[7,4,1],[8,5,2],[9,6,3]]
+```
+
+Iterate through chars in a list of strs
+```python
+strs = ["cir","car","caa"]
+for i, l in enumerate(zip(*strs)):
+    print(l)  
+    # ('c', 'c', 'c')
+    # ('i', 'a', 'a')
+    # ('r', 'r', 'a')
 ```
 
 ## Random
@@ -1387,6 +1396,26 @@ def fruits_into_baskets(fruits):
       j += 1  
 
   return maxCount
+```
+
+## Greedy
+
+Make the optimal [choice](https://brilliant.org/wiki/greedy-algorithm/) at each step. 
+
+[Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/), true if i < j < k
+```python
+def increasingTriplet(self, nums: List[int]) -> bool:
+    l = m = float('inf')
+    
+    for n in nums:
+        if n <= l:
+            l = n
+        elif n <= m:
+            m = n
+        else:
+            return True
+    
+    return False
 ```
 
 ## Tree Tricks
@@ -2192,16 +2221,30 @@ def removeDuplicates(self, s: str, k: int) -> str:
     return "".join(ans)
 ```
 
-## kth Missing Positive
+## Dutch Flag
+
+[Dutch National Flag Problem](https://en.wikipedia.org/wiki/Dutch_national_flag_problem) proposed by [Edsger W. Dijkstra](https://en.wikipedia.org/wiki/Edsger_W._Dijkstra)
 
 
 ```python
-def missingElement(self, nums: List[int], k: int) -> int:
-    target = k + nums[0] - 1
-    le = bisect.bisect(nums, target)
-    while le:
-        nums = nums[le:]
-        target += le
-        le = bisect.bisect(nums, target)
-    return target
+def sortColors(self, nums: List[int]) -> None:
+    """
+    Do not return anything, modify nums in-place instead.
+    """
+    # for all idx < p0 : nums[idx < p0] = 0
+    # curr is an index of element under consideration
+    p0 = curr = 0
+    # for all idx > p2 : nums[idx > p2] = 2
+    p2 = len(nums) - 1
+
+    while curr <= p2:
+        if nums[curr] == 0:
+            nums[p0], nums[curr] = nums[curr], nums[p0]
+            p0 += 1
+            curr += 1
+        elif nums[curr] == 2:
+            nums[curr], nums[p2] = nums[p2], nums[curr]
+            p2 -= 1
+        else:
+            curr += 1
 ```

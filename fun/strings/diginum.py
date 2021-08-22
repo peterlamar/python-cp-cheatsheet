@@ -35,11 +35,9 @@ def getDigitalNum(i : int) -> str:
     
     return digits[i]
 
-
 print(getDigitalNum(1) == "   \n|  \n|  \n")
 print(getDigitalNum(4) == "   \n|_|\n  |\n")
 print(getDigitalNum(5) == " _ \n|_ \n _|\n")
-
 
 import collections
 
@@ -63,8 +61,6 @@ print(getLongDigitalNum(111))
 print(getLongDigitalNum(145))
 print(getLongDigitalNum(555))
 
-
-"""
 # ' _  _  _ \n|_ |_ |_ \n _| _| _|\n'
 from typing import List
 
@@ -72,13 +68,15 @@ def convertDigital( dig : str ) -> int:
     rtn = []
     
     for l in dig:
-        for token in l.split('\n'):
-            print(repr(token))
+        tmp = list(l.split('\n'))
+        del tmp[3]
+        out = []
+        print(tmp)
+        for i, t in enumerate(zip(*tmp)):
+            print(t)
 
 input555 = [' _  _  _ \n|_ |_ |_ \n _| _| _|\n']
 input444 = ['         \n|_||_||_|\n  |  |  |\n']
 input111 = ['         \n|  |  |  \n|  |  |  \n']
 
 convertDigital( input555 )
-"""
-
