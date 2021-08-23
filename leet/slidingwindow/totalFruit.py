@@ -16,53 +16,19 @@ of problem.
 size or number of windows based on problem requirement.
 
     """
-    def totalFruit(self, tree: List[int]) -> int:
-      maxCount, j = 0, 0
-      ht = {}
-
-      # counter with hashmap to move right
-      for i, c in enumerate(tree):
-        ht[c] = ht.get(c, 0) + 1
-
-        # reduce window right with if or while loop
-        if len(ht) <= 2:
-          maxCount = max(maxCount, i-j+1) # Store max
-        else:
-          jc = tree[j]
-          ht[jc] -= 1
-          if ht[jc] <= 0:
-            del ht[jc]
-          j += 1  
-
-      return maxCount
-
-
-
-              """
-        ht = {}
-        l = 0
-        matched = 0
+    def totalFruit(self, fruits: List[int]) -> int:
+        l = rtn = 0
+        hm = {}
         
-        for c in s1: 
-            ht[c] = ht.get(c, 0) + 1
-        
-        for r, c in enumerate(s2):
-            if c in ht:
-                ht[c] -= 1
-                if ht[c] == 0:
-                    matched += 1
-                    
-                if matched >= len(ht):
-                    return True
+        for r, f in enumerate(fruits):
+            
+            hm[f] = r
+            
+            while len(hm) > 2:
+                lf = min(hm.values())
+                l = max(lf+1, l)
+                del hm[fruits[lf]]
                 
-            if r > len(s1) - 1:
-                lc = s2[l]
-                l += 1
-                if lc in ht:
-                    if ht[lc] == 0:
-                        matched -= 1
-                    ht[lc] += 1
-        
-        return False
-        
-        """
+            rtn = max(rtn, r-l+1)
+            
+        return rtn

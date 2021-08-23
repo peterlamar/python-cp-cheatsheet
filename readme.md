@@ -1376,6 +1376,40 @@ def alienOrder(self, words: List[str]) -> str:
 Can require [2 or 3 pointers to solve](https://medium.com/algorithms-and-leetcode/magic-solution-to-leetcode-problems-sliding-window-algorithm-891e3d60bf89)
 
 ```python
+    def slidingWindowTemplate(self, s: str):
+        #init a collection or int value to save the result according the question.
+        rtn = []
+        
+        # create a hashmap to save the Characters of the target substring.
+        # (K, V) = (Character, Frequence of the Characters)
+        hm = {}
+
+        # maintain a counter to check whether match the target string as needed
+        cnt = collections.Counter(s)
+
+        # Two Pointers: begin - left pointer of the window; end - right pointer of the window if needed
+        l = r = 0
+
+        # loop at the begining of the source string
+        for r, c in enumerate(s): 
+            
+            if c in hm:
+                l = max(hm[c]+1, l) # +/- 1 or set l to index, max = never move l left 
+
+            # update hm
+            hm[c] = r
+
+            # increase l pointer to make it invalid/valid again
+            while cnt == 0: # counter condition
+                cnt[c] += 1  # modify counter if needed
+    
+            # Save result / update min/max after loop is valid
+            rtn = max(rtn, r-l+1)
+
+        return rtn
+```
+
+```python
 def fruits_into_baskets(fruits):
   maxCount, j = 0, 0
   ht = {}
