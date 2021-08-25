@@ -1,8 +1,31 @@
 # The read4 API is already defined for you.
 # def read4(buf4: List[str]) -> int:
 """
-
+Read characters from file
 """
+# Read from file once
+class Solution:
+    def read(self, buf, n):
+        """
+        :type buf: Destination buffer (List[str])
+        :type n: Number of characters to read (int)
+        :rtype: The number of actual characters read (int)
+        """
+        q = deque()
+        i = 0
+        
+        while i < n:
+            if q:
+                buf[i] = q.popleft()
+                i += 1
+            else:
+                q.extend([''] * 4)
+                read4(q)
+
+        return i
+        
+
+# Read from file repeatedly
 class Solution:
     def __init__(self):
         self.q = deque()

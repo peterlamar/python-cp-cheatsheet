@@ -2,6 +2,7 @@
 """
 time: O(M + N) N is 26 (Letters) so just O(M)
 space: O(1)
+Verifying an Alien Dictionary
 """
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:

@@ -55,6 +55,8 @@ I choose Python3 despite being more familiar with Javascript, Java, C++ and Gola
 
 [Algorithms](#algorithms)
 
+
+1. [General Tips](#general-tips)
 1. [Binary Search](#binary-search)
 1. [Topological Sort](#topological-sort)
 1. [Sliding Window](#sliding-window)
@@ -237,6 +239,20 @@ str = "this is string example....wow!!!"
 str.endswith("!!") # True
 str.startswith("this") # True
 str.endswith("is", 2, 4) # True
+```
+
+Python3 format strings
+```python
+name = "Eric"
+profession = "comedian"
+affiliation = "Monty Python"
+message = (
+     f"Hi {name}. "
+     f"You are a {profession}. "
+     f"You were in {affiliation}."
+)
+message
+'Hi Eric. You are a comedian. You were in Monty Python.'
 ```
 
 ## Slicing
@@ -1211,6 +1227,23 @@ dd['key'].append(2) # defaultdict(<class 'list'>, {'key': [1, 2]})
 ```
 
 # Algorithms
+
+## General Tips
+
+* Get all info
+* Debug example, is it a special case?
+* Brute Force
+  * Get to brute-force solution as soon as possible. State runtime and then optimize, don't code yet
+* Optimize
+  * Look for unused info
+  * Solve it manually on example, then reverse engineer thought process
+  * Space vs time, hashing
+  * BUDS (Bottlenecks, Unnecessary work, Duplication)
+* Walk through approach
+* Code
+* Test
+  * Start small
+  * Hit edge cases
 
 ## Binary Search
 
