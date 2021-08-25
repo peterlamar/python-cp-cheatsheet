@@ -1,4 +1,7 @@
 class Solution:
+    # Leftmost Column with at Least a One
+    # O(N * M)
+    # Space O(1)
     def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
         
         R, C = binaryMatrix.dimensions()

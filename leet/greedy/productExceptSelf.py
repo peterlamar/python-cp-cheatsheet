@@ -1,6 +1,7 @@
 """
 time: 5 min
 errors: forgot range needed len to process list!
+Product of Array Except Self
 """
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:

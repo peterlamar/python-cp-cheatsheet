@@ -1,6 +1,7 @@
 """
 time: p * logk
 space: k
+K Closest Points to Origin
 """
 class Solution:
     def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:

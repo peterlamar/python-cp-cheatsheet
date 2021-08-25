@@ -1,8 +1,20 @@
 """
 time: n
 space: n
+Subarray Sum Equals K
 """
 class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        hm = collections.Counter([0])
+        rtn = ps = 0
+        
+        for n in nums:
+            ps += n
+            rtn += hm[ps - k]
+            hm[ps] += 1
+            
+        return rtn
+        
     def subarraySum(self, nums: List[int], k: int) -> int:
         mp = {0: 1} 
         rtn, total = 0, 0
