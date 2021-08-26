@@ -4,7 +4,9 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
+"""
+Balance a Binary Search Tree
+"""
 class Solution:
     def balanceBST(self, root: TreeNode) -> TreeNode:
         self.inorder = []

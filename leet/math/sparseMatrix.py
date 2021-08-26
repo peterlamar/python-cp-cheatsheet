@@ -1,3 +1,6 @@
+"""
+Sparse Matrix Multiplication
+"""
 class Solution:
     def dot(self, row, col):
         R = len(row)

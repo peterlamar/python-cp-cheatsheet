@@ -1,4 +1,5 @@
 """
+Find First and Last Position of Element in Sorted Array
 time: 2lgn
 """
 from bisect import bisect, bisect_left

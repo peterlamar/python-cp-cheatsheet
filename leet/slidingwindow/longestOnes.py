@@ -1,3 +1,8 @@
+"""
+Max Consecutive Ones III
+O(N)
+1
+"""
 class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:
         

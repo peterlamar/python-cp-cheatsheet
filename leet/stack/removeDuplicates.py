@@ -1,6 +1,7 @@
 """
 time: n
 space: n
+Remove All Adjacent Duplicates in String II
 """
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:

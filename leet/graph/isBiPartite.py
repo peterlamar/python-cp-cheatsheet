@@ -1,6 +1,7 @@
 """
 time: n + e
 space: n
+Paint
 """
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
