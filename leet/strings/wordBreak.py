@@ -1,17 +1,4 @@
 """
-time: n^3
-space: n
-"""
-class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        dp = [True] + [False] * len(s)
-        for i in range(1, len(s)+1):
-            for w in wordDict:
-                if s[:i].endswith(w):
-                    dp[i] |= dp[i-len(w)]
-        return dp[-1]
-
-"""
 time: n^2
 space: n
 """
@@ -35,3 +22,16 @@ class Solution:
                         stk.append(wend)
         
         return False
+
+"""
+time: n^3
+space: n
+"""
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        dp = [True] + [False] * len(s)
+        for i in range(1, len(s)+1):
+            for w in wordDict:
+                if s[:i].endswith(w):
+                    dp[i] |= dp[i-len(w)]
+        return dp[-1]

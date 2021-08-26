@@ -1,3 +1,8 @@
+"""
+Alien Dictionary
+O(n) for letters in words
+O(1) since constant letters (26)
+"""
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
         nodes = set("".join(words))
