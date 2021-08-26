@@ -1,6 +1,7 @@
 """
 time: init: 1, pick: n worst case
 space: n, 1
+Random Pick Index
 """
 class Solution:
 

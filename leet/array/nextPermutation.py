@@ -6,6 +6,40 @@
 # did not handle 1,5,1
 
 class Solution:
+"""
+2nd round, must faster. 
+More algorithm insights and use of built in reverse and while loops
+"""
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        i = len(nums) - 1
+        
+        # Get largest number index
+        while i > 0 and nums [i-1] >= nums[i]:
+            i -= 1
+
+        if i == 0:
+            nums.reverse()
+            return
+        
+        # Get next smallest index
+        j = len(nums) - 1
+        k = i - 1
+        while nums[k] > nums[j]:
+            j -= 1
+        
+        # Swap pivots
+        nums[i-1], nums[j] = nums[j], nums[i-1]
+        l, r = i, len(nums) - 1
+        while l < r:
+            nums[l], nums[r] = nums[r], nums[l]
+            l += 1
+            r -= 1
+
+
     def nextPermutation(self, nums: List[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
@@ -63,35 +97,3 @@ class Solution:
         
         return
 
-"""
-2nd round, must faster. 
-More algorithm insights and use of built in reverse and while loops
-"""
-class Solution:
-    def nextPermutation(self, nums: List[int]) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
-        i = len(nums) - 1
-        
-        # Get largest number index
-        while i > 0 and nums [i-1] >= nums[i]:
-            i -= 1
-
-        if i == 0:
-            nums.reverse()
-            return
-        
-        # Get next smallest index
-        j = len(nums) - 1
-        k = i - 1
-        while nums[k] > nums[j]:
-            j -= 1
-        
-        # Swap pivots
-        nums[i-1], nums[j] = nums[j], nums[i-1]
-        l, r = i, len(nums) - 1
-        while l < r:
-            nums[l], nums[r] = nums[r], nums[l]
-            l += 1
-            r -= 1

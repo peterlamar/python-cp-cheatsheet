@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+# Construct Binary Tree from String
 class Solution:
     def str2tree(self, s: str) -> TreeNode:
         if len(s)==0:

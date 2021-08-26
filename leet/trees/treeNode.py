@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+# Binary Search Tree Iterator
 class BSTIterator:
 
     def __init__(self, root: TreeNode):

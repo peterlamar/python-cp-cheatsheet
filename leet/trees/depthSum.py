@@ -43,6 +43,7 @@
 """
 time: n
 space: d (depth of nesting)
+Nested List Weight Sum
 """
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:

@@ -4,13 +4,29 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+#  Lowest Common Ancestor of a Binary Tree
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        while root:
-            if root.val > p.val and root.val > q.val:
-                root = root.left 
-            elif root.val < p.val and root.val < q.val:
-                root = root.right 
-            else:
-                return root
+        
+        self.lc = None
+        # bubble up true if left or right are found
+        def dfs(node):
+            if node:
+                left = dfs(node.left)
+                right = dfs(node.right)
+                found = node == p or node == q
+                
+                if left and right:
+                    self.lc = node 
+                
+                if (left or right) and found:
+                    self.lc = node 
+                
+                return left or right or found
+                    
+            return False
+        
+        dfs(root)
+        
+        return self.lc 

@@ -1,6 +1,9 @@
 """
 time: lgn
 space: 1
+Kth Missing Positive Number
+The number of positive integers which are missing
+before the arr[idx] is equal to arr[idx] - idx - 1.
 """
 class Solution:
     def findKthPositive(self, arr: List[int], k: int) -> int:

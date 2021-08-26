@@ -1,6 +1,7 @@
 """
-
-        
+Divide Two Integers
+O(logn)
+O(logn)
 """
 
 class Solution:
