@@ -2,6 +2,9 @@
 time: n
 space: n
 Subarray Sum Equals K
+1,  -1,        0
+    rtn+=0:1   rtn+=0:2
+    0:2    
 """
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
