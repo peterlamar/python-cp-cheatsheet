@@ -1,22 +1,21 @@
+"""
+[2, 1, -1]
+rsum = 2
+ps + n = 2
+check lsum = rsum (2=2)
+rsum -= n 
+O(N) (2n)
+"""
+
 class Solution:
     def pivotIndex(self, nums: List[int]) -> int:
-        r = sum(nums)
         ps = 0
+        rsum = sum(nums)
         
-        for l, n in enumerate(nums):
+        for i, n in enumerate(nums):
             ps += n
-            if ps == r:
-                return l
-            r -= n
-        
-        return -1
-
-    def pivotIndex(self, nums: List[int]) -> int:
-        right = sum(nums)
-        left = 0
-        for i,n in enumerate(nums):
-            right -= n
-            if left == right:
+            if ps == rsum:
                 return i
-            left += n
+            rsum -= n
+
         return -1

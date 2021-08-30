@@ -862,6 +862,39 @@ for i, l in enumerate(zip(*strs)):
     # ('r', 'r', 'a')
 ```
 
+Diagonals can be traversed with the help of a list
+
+```python
+"""
+[[1,2,3],
+ [4,5,6],
+ [7,8,9],
+ [10,11,12]]
+"""
+def printDiagonalMatrix(self, matrix: List[List[int]]) -> bool:
+    R = len(matrix)
+    C = len(matrix[0])
+    
+    tmp = [[] for _ in range(R+C-1)]
+    
+    for r in range(R):
+        for c in range(C):
+            tmp[r+c].append(matrix[r][c])
+    
+    for t in tmp:
+        for n in t:
+            print(n, end=' ')            
+        print("")
+"""
+ 1,
+ 2,4
+ 3,5,7
+ 6,8,10
+ 9,11
+ 12
+"""
+```
+
 ## Random
 
 ```Python
