@@ -138,6 +138,12 @@ for i in range(len(A)//2): # A = [0,1,2,3,4,5]
 
 ## Strings
 
+
+```python
+str1.find('x')          # find first location of char x and return index
+str1.rfind('x')         # find first int location of char x from reverse
+```
+
 Parse a log on ":"
 ```python
 l = "0:start:0"
