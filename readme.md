@@ -138,7 +138,6 @@ for i in range(len(A)//2): # A = [0,1,2,3,4,5]
 
 ## Strings
 
-
 ```python
 str1.find('x')          # find first location of char x and return index
 str1.rfind('x')         # find first int location of char x from reverse
@@ -1146,6 +1145,9 @@ list(itertools.accumulate(data)) # [3, 7, 13, 15, 16, 25, 25, 32, 37, 45]
 list(accumulate(data, max))  # [3, 4, 6, 6, 6, 9, 9, 9, 9, 9]
 cashflows = [1000, -90, -90, -90, -90]  # Amortize a 5% loan of 1000 with 4 annual payments of 90
 list(itertools.accumulate(cashflows, lambda bal, pmt: bal*1.05 + pmt)) [1000, 960.0, 918.0, 873.9000000000001, 827.5950000000001]
+for k,v in groupby("aabbbc")    # group by common letter
+    print(k)                    # a,b,c
+    print(list(v))              # [a,a],[b,b,b],[c,c]
 ```
 
 ## Regular Expression
