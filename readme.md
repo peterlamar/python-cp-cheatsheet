@@ -260,6 +260,11 @@ message
 'Hi Eric. You are a comedian. You were in Monty Python.'
 ```
 
+Print string with all chars, useful for debugging
+```python
+print(repr("meh\n"))     # 'meh\n'
+```
+
 ## Slicing
 
 Slicing [intro](https://stackoverflow.com/questions/509211/understanding-slice-notation)
