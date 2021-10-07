@@ -16,6 +16,7 @@ I choose Python3 despite being more familiar with Javascript, Java, C++ and Gola
 
 [Language Mechanics](#language-mechanics)
 
+1. [Literals](#literals)
 1. [Loops](#loops)
 1. [Strings](#strings)
 1. [Slicing](#slicing)
@@ -87,6 +88,25 @@ I choose Python3 despite being more familiar with Javascript, Java, C++ and Gola
 1. [Candy Crush](#candy-crush)
 
 # Language Mechanics
+
+## Literals
+
+```python
+255, 0b11111111, 0o377, 0xff # Integers (decimal, binary, octal, hex)
+123.0, 1.23                  # Float
+7 + 5j, 7j                   # Complex 
+'a', '\141', '\x61'          # Character (literal, octal, hex)
+'\n', '\\', '\'', '\"'       # Newline, backslash, single quote, double quote
+"string\n"                   # String of characters ending with newline 
+"hello"+"world"              # Concatenated strings
+True, False                  # bool constants, 1 == True, 0 == False 
+[1, 2, 3, 4, 5]              # List 
+['meh', 'foo', 5]            # List
+(2, 4, 6, 8)                 # Tuple, immutable
+{'name': 'a', 'age': 90}     # Dict
+'a', 'e', 'i', 'o', 'u'}     # Set
+None                         # Null var
+```
 
 ## Loops
 
@@ -437,57 +457,20 @@ list3 = list1 + list2 # ['a', 'b', 'c', 1, 2, 3]
 Hashtables are implemented with dictionaries
 
 ```python
-d = {'key': 'value'}
-print(d)  # {'key': 'value'}
-d['mynewkey'] = 'mynewvalue'
-print(d)  # {'key': 'value', 'mynewkey': 'mynewvalue'}
-print(d['key']) # value
-if 'key' in d: print("meh") # meh
-```
-
-Dictionary keys can be iterated through
-```python
-def intToRoman(self, num: int) -> str:
-    d = {1000: 'M', 900: 'CM', 500: 'D', 400: 'CD', 100: 'C', 90: 'XC', 50:'L', 40: 'XL', 10:'X', 9:'IX', 5:'V', 4:'IV', 1:'I'}
-    res = ''
-    for i in d:
-        res += num//i*d[i] # num // key * referenced character
-        num %= i
-    return res
-```
-
-Dict can also be initiated with comprehension
-```python
-nodes = {'f', 'e', 'r', 'w', 't'}
-degree = {x:0 for x in nodes} # {'f': 0, 'e': 0, 'r': 0, 'w': 0, 't': 0}
-```
-
-Default can be set dict[key]=default if key is not already in dict
-```python
+d = {'key': 'value'}         # Declare dict{'key': 'value'}
+d['key'] = 'value'           # Add Key and Value
+{x:0 for x in {'a', 'b'}}    # {'a': 0, 'b': 0} declare through comprehension 
+d['key'])                    # Access value
+d.items()                    # Items as tuple list dict_items([('key', 'value')])
+if 'key' in d: print("meh")  # Check if value exists
 par = {}
-par.setdefault(1,1) # returns 1, makes par = { 1 : 1 } 
-```
-
-Removing vals
-```python
- par = {0:True, 1:False}
-par.pop(0) # Returns True
-print(par) # {1: False}
+par.setdefault(1,1)          # returns 1, makes par = { 1 : 1 }
 par = {0:True, 1:False}
-par.pop(2) # key error
-par.pop(2,0) # 0 as default is passed
-par = {0:True, 1:False}
-del par[0]
-print(par) # {1: False}
+par.pop(0)                   # Remove key 0, Returns True, par now {1: False}
+for k in d: print(k)         # Iterate through keys
 ```
 
-Access items as a list
-```python
-sales = { 'apple': 2, 'orange': 3, 'grapes': 4 }
-print (sales.items()) # dict_items([('apple', 2), ('orange', 3), ('grapes', 4)])
-```
-
-Create 2D dict
+Create Dict of Lists that match length of list to count votes
 ```python
 votes = ["ABC","CBD","BCA"]
 rnk = {v:[0] * len(votes[0]) for v in votes[0]} 
@@ -506,7 +489,6 @@ connected by exactly one path.
 1. G is acyclic, and a simple cycle is formed if any edge is added to G.
 1. G is connected and has no cycles.
 1. G is connected but would become disconnected if any single edge is removed from G.
-1. 
 
 
 ## BinaryTree
