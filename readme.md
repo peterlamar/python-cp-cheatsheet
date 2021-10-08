@@ -307,6 +307,15 @@ p[0:5:2] # ['P', 't', 'o'] sliceable[start:stop:step]
 p[5:0:-1] # ['n', 'o', 'h', 't', 'y']
 ```
 
+Go through num and get combinations missing a member
+
+```python
+numList = [1,2,3,4]
+for i in range(len(numList)): 
+    newList = numList[0:i] + numList[i+1:len(numList)]
+    print(newList) # [2, 3, 4], [1, 3, 4], [1, 2, 4], [1, 2, 3]
+```
+
 ## Tuple
 
 Collection that is ordered and unchangable
