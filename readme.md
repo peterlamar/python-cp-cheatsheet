@@ -1651,8 +1651,6 @@ def findAnagrams(self, s: str, p: str) -> List[int]:
 ## Dynamic Programming
 
 1. [dynamic programming](https://leetcode.com/discuss/general-discussion/458695/Dynamic-Programming-Patterns)
-1. [dp notes](https://leetcode.com/discuss/general-discussion/475924/my-experience-and-notes-for-learning-dp)
-
 
 ```python
 def coinChange(self, coins: List[int], amount: int) -> int:
