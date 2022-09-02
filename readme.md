@@ -100,7 +100,7 @@ True, False                  # bool constants, 1 == True, 0 == False
 ['meh', 'foo', 5]            # List
 (2, 4, 6, 8)                 # Tuple, immutable
 {'name': 'a', 'age': 90}     # Dict
-{'a', 'e', 'i', 'o', 'u'}     # Set
+{'a', 'e', 'i', 'o', 'u'}    # Set
 None                         # Null var
 ```
 
