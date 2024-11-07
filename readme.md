@@ -190,13 +190,14 @@ def splitWords(input_string) -> list:
   words = [] #
   start = length = 0
   for i, c in enumerate(input_string):
-    if c.isalpha():
-      if length == 0:
-        start = i
-        length += 1
-      else:
-        words.append(input_string[start:start+length])
-        length = 0
+     if c.isalpha():
+       if length == 0:
+          start = i
+          length += 1
+     else:
+        if length !=0:
+	   words.append(input_string[start:start+length])
+           length = 0
   if length > 0:
     words.append(input_string[start:start+length])
   return words
