@@ -897,7 +897,7 @@ Useful when rotating a matrix
 
 ```python
 # matrix = [[1,2,3],[4,5,6],[7,8,9]]
-matrix[:] = zip(*matrix[::-1]) # [[7,4,1],[8,5,2],[9,6,3]]
+matrix[:] = [list(t) for t in zip(*matrix[::-1])] # [[7,4,1],[8,5,2],[9,6,3]]
 ```
 
 Iterate through chars in a list of strs
