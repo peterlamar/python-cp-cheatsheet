@@ -190,13 +190,14 @@ def splitWords(input_string) -> list:
   words = [] #
   start = length = 0
   for i, c in enumerate(input_string):
-    if c.isalpha():
-      if length == 0:
-        start = i
-        length += 1
-      else:
-        words.append(input_string[start:start+length])
-        length = 0
+     if c.isalpha():
+       if length == 0:
+          start = i
+          length += 1
+     else:
+        if length !=0:
+	   words.append(input_string[start:start+length])
+           length = 0
   if length > 0:
     words.append(input_string[start:start+length])
   return words
@@ -877,8 +878,8 @@ Compare characters of alternating words
 ```python
 for a, b in zip(words, words[1:]):
     for c1, c2 in zip(a,b):
-        print("c1 ", c1, end=" ")
-        print("c2 ", c2, end=" ")
+        print("c1", c1, end=" ")
+        print("c2", c2, end="\n ")
 ```
 
 Passing in [\*](https://stackoverflow.com/questions/29139350/difference-between-ziplist-and-ziplist/29139418) unpacks a list or other iterable, making each of its elements a separate argument.
@@ -886,7 +887,7 @@ Passing in [\*](https://stackoverflow.com/questions/29139350/difference-between-
 ```python
 a = [[1,2],[3,4]]
 test = zip(*a)
-print(test) # (1, 3) (2, 4)
+print(list(test)) # [(1, 3) (2, 4)]
 matrix = [[1,2,3],[4,5,6],[7,8,9]]
 test = zip(*matrix)
 print(*test) # (1, 4, 7) (2, 5, 8) (3, 6, 9)
@@ -896,7 +897,7 @@ Useful when rotating a matrix
 
 ```python
 # matrix = [[1,2,3],[4,5,6],[7,8,9]]
-matrix[:] = zip(*matrix[::-1]) # [[7,4,1],[8,5,2],[9,6,3]]
+matrix[:] = [list(t) for t in zip(*matrix[::-1])] # [[7,4,1],[8,5,2],[9,6,3]]
 ```
 
 Iterate through chars in a list of strs
