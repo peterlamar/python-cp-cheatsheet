@@ -2,7 +2,7 @@
 time: 20 min
 time: O(log(n))
 space: O(1)
-Fast Power Algorithim/Exponential by squaring
+Fast Power Algorithm/Exponential by squaring
 https://en.wikipedia.org/wiki/Exponentiation_by_squaring
 """
 class Solution:
